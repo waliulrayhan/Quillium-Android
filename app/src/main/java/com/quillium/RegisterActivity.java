@@ -18,7 +18,7 @@ import java.util.Calendar;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText date_of_birth;
+    Button date_of_birth;
     DatePickerDialog datePickerDialog;
 
     @Override
@@ -26,7 +26,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
 
-        date_of_birth = findViewById(R.id.date_of_birth);
+        date_of_birth = findViewById(R.id.date_of_birth_field);
         Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_MONTH);
         int month = calendar.get(Calendar.MONTH);

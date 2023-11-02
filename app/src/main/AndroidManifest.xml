@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Quillium"
         tools:targetApi="31">
         <activity
+            android:name=".Test"
+            android:exported="false" />
+        <activity
+            android:name=".TestLayout"
+            android:exported="false" />
+        <activity
             android:name=".CreatePassword"
             android:exported="false" />
         <activity

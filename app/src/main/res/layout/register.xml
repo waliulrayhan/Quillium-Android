@@ -126,41 +126,28 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
+        <Button
             android:id="@+id/date_of_birth_field"
+            style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="62dp"
             android:layout_below="@id/student_hsc_roll_field"
+            android:fontFamily="@font/sf_pro_regular"
             android:layout_marginStart="12dp"
             android:layout_marginTop="8dp"
+            android:gravity="left|center_vertical"
             android:layout_marginEnd="12dp"
-            android:hint="@string/date_of_birth_field"
-            android:textColorHint="@color/primary"
-            app:boxCornerRadiusBottomEnd="15dp"
-            app:boxCornerRadiusBottomStart="15dp"
-            app:boxCornerRadiusTopEnd="15dp"
-            app:boxCornerRadiusTopStart="15dp"
+            android:text="    Date of Birth"
+            android:paddingLeft="16dp"
+            android:textSize="16sp"
             app:boxStrokeColor="@color/primary"
-            app:errorEnabled="false"
-            app:errorIconTint="@color/primary"
-            app:helperTextEnabled="false"
-            app:hintAnimationEnabled="true"
-            app:hintEnabled="true"
-            app:hintTextColor="@color/primary"
-            app:startIconDrawable="@drawable/round_calendar_month_24">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/date_of_birth"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:defaultFocusHighlightEnabled="false"
-                android:fontFamily="@font/sf_pro_regular"
-                android:inputType="date"
-                android:paddingStart="52dp"
-                android:paddingEnd="0dp"
-                tools:ignore="VisualLintTextFieldSize" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+            app:cornerRadius="15dp"
+            app:icon="@drawable/round_calendar_month_24"
+            app:iconGravity="textStart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.535"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintVertical_bias="0.571" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_verify"
