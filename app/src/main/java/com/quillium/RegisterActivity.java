@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.textfield.TextInputEditText;
@@ -21,25 +23,43 @@ public class RegisterActivity extends AppCompatActivity {
     Button date_of_birth;
     DatePickerDialog datePickerDialog;
 
+    //Database Helper
+    private DbHelper dbHelper = new DbHelper(this);
+
+    private String selectedDate = ""; // Define a variable to store the selected date
+    String DOB;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
 
         date_of_birth = findViewById(R.id.date_of_birth_field);
+        TextInputEditText studentIdEditText = findViewById(R.id.student_id);
+        TextInputEditText studentHscRollEditText = findViewById(R.id.student_hsc_roll);
+        TextView Login = findViewById(R.id.textView_login);
+        Button Verify = findViewById(R.id.button_verify);
+
+
         Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_MONTH);
         int month = calendar.get(Calendar.MONTH);
         int year = calendar.get(Calendar.YEAR);
 
+
         date_of_birth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openDatePicker(); // Call the openDatePicker method when the EditText is clicked
+                selectedDate = openDatePicker(); // Update the selectedDate variable with the returned date
+                // Now the selectedDate will contain the selected date after the DatePicker dialog is closed
+                date_of_birth.setText("    " + selectedDate);
             }
         });
 
-        TextInputEditText studentIdEditText = findViewById(R.id.student_id);
+        String StudentID = studentIdEditText.getText().toString().trim();
+        String HSCRoll = studentHscRollEditText.getText().toString().trim();
+
 
         studentIdEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -61,7 +81,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        TextInputEditText studentHscRollEditText = findViewById(R.id.student_hsc_roll);
 
         studentHscRollEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -70,7 +89,7 @@ public class RegisterActivity extends AppCompatActivity {
                     // Set the dynamic hint text inside the EditText when it gains focus
                     studentHscRollEditText.setHint("(e.g: 123456)");
 
-                    // Request focus programmatically to show the keyboard
+                    // Request focus programmatically to show the    keyboard
                     studentHscRollEditText.requestFocus();
 
                     // Show the keyboard
@@ -86,7 +105,6 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         // open login activity
-        TextView Login = findViewById(R.id.textView_login);
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,7 +114,6 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         // open verified data overview and verify email activity
-        Button Verify = findViewById(R.id.button_verify);
         Verify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,30 +124,53 @@ public class RegisterActivity extends AppCompatActivity {
                 CircularProgressIndicator circularLoading = findViewById(R.id.circularLoading);
                 circularLoading.setVisibility(View.VISIBLE);
 
-                // Simulate a 1.5-second delay using a Handler
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        // Start the next activity (VerifyEmailActivity) after the initial 1.5-second delay
-                        Intent intent = new Intent(RegisterActivity.this, VerifyEmailActivity.class);
-                        startActivity(intent);
+//                // Simulate a 1.5-second delay using a Handler
+//                new Handler().postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        // Start the next activity (VerifyEmailActivity) after the initial 1.5-second delay
+//                        Intent intent = new Intent(RegisterActivity.this, VerifyEmailActivity.class);
+//                        startActivity(intent);
+//
+//                        // After an additional 0.5 seconds, make the "Verify" button visible again
+//                        new Handler().postDelayed(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                Verify.setVisibility(View.VISIBLE);
+//                                circularLoading.setVisibility(View.INVISIBLE);
+//                            }
+//                        }, 500); // 500 milliseconds = 0.5 seconds
+//                    }
+//                }, 1500); // 1500 milliseconds = 1.5 seconds
 
-                        // After an additional 0.5 seconds, make the "Verify" button visible again
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                Verify.setVisibility(View.VISIBLE);
-                                circularLoading.setVisibility(View.INVISIBLE);
-                            }
-                        }, 500); // 500 milliseconds = 0.5 seconds
-                    }
-                }, 1500); // 1500 milliseconds = 1.5 seconds
+                if(!StudentID.isEmpty() || !HSCRoll.isEmpty() || !selectedDate.isEmpty()){
+                    long id = dbHelper.insertRegisterData(
+                            ""+StudentID,
+                            ""+HSCRoll,
+                            ""+selectedDate
+                    );
+
+                    //To check insert data successfully, show a toast massege
+                    Toast.makeText(getApplicationContext(),"Success! "+id, Toast.LENGTH_LONG).show();
+
+                    Verify.setVisibility(View.VISIBLE);
+                    circularLoading.setVisibility(View.INVISIBLE);
+
+                    Intent intent = new Intent(RegisterActivity.this, VerifyEmailActivity.class);
+                    startActivity(intent);
+                }
+                else{
+                    // show toast message
+                    Toast.makeText(getApplicationContext(),"Nothing to save..", Toast.LENGTH_LONG).show();
+                    Verify.setVisibility(View.VISIBLE);
+                    circularLoading.setVisibility(View.INVISIBLE);
+                }
             }
         });
     }
 
     // Define the openDatePicker method to open the date picker dialog
-    private void openDatePicker() {
+    private String openDatePicker() {
         Calendar calendar = Calendar.getInstance();
         int currentYear = calendar.get(Calendar.YEAR);
         int currentMonth = calendar.get(Calendar.MONTH);
@@ -147,7 +187,7 @@ public class RegisterActivity extends AppCompatActivity {
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
-                        date_of_birth.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+                        selectedDate = dayOfMonth + "/" + (month + 1) + "/" + year;
                     }
                 },
                 currentYear, currentMonth, currentDay
@@ -163,5 +203,8 @@ public class RegisterActivity extends AppCompatActivity {
         datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
 
         datePickerDialog.show();
+
+        // Return the selected date after the dialog is closed
+        return selectedDate;
     }
 }
