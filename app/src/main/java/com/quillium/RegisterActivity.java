@@ -28,6 +28,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     private String selectedDate = ""; // Define a variable to store the selected date
     String DOB;
+    String StudentID;
+    String HSCRoll;
 
 
     @Override
@@ -57,8 +59,8 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        String StudentID = studentIdEditText.getText().toString().trim();
-        String HSCRoll = studentHscRollEditText.getText().toString().trim();
+//        StudentID = studentIdEditText.getText().toString().trim();
+//        HSCRoll = studentHscRollEditText.getText().toString().trim();
 
 
         studentIdEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -143,6 +145,9 @@ public class RegisterActivity extends AppCompatActivity {
 //                    }
 //                }, 1500); // 1500 milliseconds = 1.5 seconds
 
+                StudentID = studentIdEditText.getText().toString().trim();
+                HSCRoll = studentHscRollEditText.getText().toString().trim();
+
                 if(!StudentID.isEmpty() || !HSCRoll.isEmpty() || !selectedDate.isEmpty()){
                     long id = dbHelper.insertRegisterData(
                             ""+StudentID,
@@ -157,6 +162,8 @@ public class RegisterActivity extends AppCompatActivity {
                     circularLoading.setVisibility(View.INVISIBLE);
 
                     Intent intent = new Intent(RegisterActivity.this, VerifyEmailActivity.class);
+                    intent.putExtra("key1", StudentID);
+                    intent.putExtra("key2", HSCRoll);
                     startActivity(intent);
                 }
                 else{

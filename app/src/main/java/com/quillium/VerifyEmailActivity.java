@@ -9,16 +9,32 @@ import android.os.Handler;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class VerifyEmailActivity extends AppCompatActivity {
 
+    String receivedValue1;
+    String receivedValue2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.verify_email);
+
+        Intent intent = getIntent();
+        if(intent != null) {
+            receivedValue1 = intent.getStringExtra("key1");
+            receivedValue2 = intent.getStringExtra("key2");
+            // Use the received values as needed
+        }
+
+        TextView studentId = findViewById(R.id.student_id_textView);
+
+        studentId.setText(receivedValue1);
+
 
         TextInputEditText studentIdEditText = findViewById(R.id.student_email);
 
