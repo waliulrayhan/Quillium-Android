@@ -17,7 +17,7 @@
             android:name=".Test"
             android:exported="false" />
         <activity
-            android:name=".TestLayout"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".CreatePassword"
@@ -30,7 +30,7 @@
             android:exported="false"
             />
         <activity
-            android:name=".MainActivity"
+            android:name=".TestLayout"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
