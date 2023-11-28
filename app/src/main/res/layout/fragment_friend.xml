@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/app_bg"
-    tools:context=".HomeFragment">
-
+    tools:context=".FriendFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,37 +12,36 @@
         android:orientation="vertical">
 
         <!-- Post 1 -->
-        <include layout="@layout/layout_post"/>
+        <include layout="@layout/layout_friend"/>
 
         <!-- Post 2 -->
-        <include layout="@layout/layout_post"/>
+        <include layout="@layout/layout_friend"/>
 
         <!-- Post 3 -->
-        <include layout="@layout/layout_post"/>
+        <include layout="@layout/layout_friend"/>
 
         <!-- Post 4 -->
-        <include layout="@layout/layout_post"/>
+        <include layout="@layout/layout_friend"/>
 
         <!-- Post 5 -->
-        <include layout="@layout/layout_post"/>
+        <include layout="@layout/layout_friend"/>
 
         <!-- Post 6 -->
-        <include layout="@layout/layout_post"/>
+        <include layout="@layout/layout_friend"/>
 
         <!-- Post 7 -->
-        <include layout="@layout/layout_post"/>
+        <include layout="@layout/layout_friend"/>
 
         <!-- Post 8 -->
-        <include layout="@layout/layout_post"/>
+        <include layout="@layout/layout_friend"/>
 
         <!-- Post 9 -->
-        <include layout="@layout/layout_post"/>
+        <include layout="@layout/layout_friend"/>
 
         <!-- Post 10 -->
-        <include layout="@layout/layout_post"/>
+        <include layout="@layout/layout_friend"/>
 
     </LinearLayout>
-
 
 
 </ScrollView>
