@@ -13,6 +13,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -60,21 +61,37 @@ public class TestLayout extends AppCompatActivity {
         replaceFragment(new HomeFragment());
 
         bottomNavigationView.setBackground(null);
-        bottomNavigationView.setOnItemSelectedListener(item -> {
+//        bottomNavigationView.setOnItemSelectedListener(item -> {
+//
+//            switch (item.getItemId()) {
+//                case R.id.home_button:
+//                    replaceFragment(new HomeFragment());
+//                    break;
+//                case R.id.shorts_button:
+//                    replaceFragment(new ShortsFragment());
+//                    break;
+//                case R.id.subscriptions_button:
+//                    replaceFragment(new SubscriptionsFragment());
+//                    break;
+//                case R.id.library_button:
+//                    replaceFragment(new LibraryFragment());
+//                    break;
+//            }
+//
+//            return true;
+//        });
 
-            switch (item.getItemId()) {
-                case R.id.home_button:
-                    replaceFragment(new HomeFragment());
-                    break;
-                case R.id.shorts_button:
-                    replaceFragment(new ShortsFragment());
-                    break;
-                case R.id.subscriptions_button:
-                    replaceFragment(new SubscriptionsFragment());
-                    break;
-                case R.id.library_button:
-                    replaceFragment(new LibraryFragment());
-                    break;
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+
+            if (id == R.id.home_button) {
+                replaceFragment(new HomeFragment());
+            } else if (id == R.id.shorts_button) {
+                replaceFragment(new ShortsFragment());
+            } else if (id == R.id.subscriptions_button) {
+                replaceFragment(new SubscriptionsFragment());
+            } else if (id == R.id.library_button) {
+                replaceFragment(new LibraryFragment());
             }
 
             return true;
