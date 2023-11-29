@@ -13,6 +13,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -29,6 +30,13 @@ public class HomePage extends AppCompatActivity {
     FloatingActionButton fab;
     DrawerLayout drawerLayout;
     BottomNavigationView bottomNavigationView;
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menu_item);
+//        return true;
+//    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +72,7 @@ public class HomePage extends AppCompatActivity {
             } else if (id == R.id.notifications_button) {
                 replaceFragment(new NotificationFragment());
             } else if (id == R.id.profile_button) {
-                replaceFragment(new LibraryFragment());
+                replaceFragment(new ProfileFragment());
             }
 
             return true;
