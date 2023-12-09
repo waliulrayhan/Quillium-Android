@@ -21,26 +21,26 @@
         <!-- Post 3 -->
         <include layout="@layout/layout_post"/>
 
-        <!-- Post 4 -->
-        <include layout="@layout/layout_post"/>
+<!--        &lt;!&ndash; Post 4 &ndash;&gt;-->
+<!--        <include layout="@layout/layout_post"/>-->
 
-        <!-- Post 5 -->
-        <include layout="@layout/layout_post"/>
+<!--        &lt;!&ndash; Post 5 &ndash;&gt;-->
+<!--        <include layout="@layout/layout_post"/>-->
 
-        <!-- Post 6 -->
-        <include layout="@layout/layout_post"/>
+<!--        &lt;!&ndash; Post 6 &ndash;&gt;-->
+<!--        <include layout="@layout/layout_post"/>-->
 
-        <!-- Post 7 -->
-        <include layout="@layout/layout_post"/>
+<!--        &lt;!&ndash; Post 7 &ndash;&gt;-->
+<!--        <include layout="@layout/layout_post"/>-->
 
-        <!-- Post 8 -->
-        <include layout="@layout/layout_post"/>
+<!--        &lt;!&ndash; Post 8 &ndash;&gt;-->
+<!--        <include layout="@layout/layout_post"/>-->
 
-        <!-- Post 9 -->
-        <include layout="@layout/layout_post"/>
+<!--        &lt;!&ndash; Post 9 &ndash;&gt;-->
+<!--        <include layout="@layout/layout_post"/>-->
 
-        <!-- Post 10 -->
-        <include layout="@layout/layout_post"/>
+<!--        &lt;!&ndash; Post 10 &ndash;&gt;-->
+<!--        <include layout="@layout/layout_post"/>-->
 
     </LinearLayout>
 

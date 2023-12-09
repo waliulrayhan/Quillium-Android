@@ -17,29 +17,29 @@
         <!-- Post 2 -->
         <include layout="@layout/layout_friend"/>
 
-        <!-- Post 3 -->
+<!--        &lt;!&ndash; Post 3 &ndash;&gt;
         <include layout="@layout/layout_friend"/>
 
-        <!-- Post 4 -->
+        &lt;!&ndash; Post 4 &ndash;&gt;
         <include layout="@layout/layout_friend"/>
 
-        <!-- Post 5 -->
+        &lt;!&ndash; Post 5 &ndash;&gt;
         <include layout="@layout/layout_friend"/>
 
-        <!-- Post 6 -->
+        &lt;!&ndash; Post 6 &ndash;&gt;
         <include layout="@layout/layout_friend"/>
 
-        <!-- Post 7 -->
+        &lt;!&ndash; Post 7 &ndash;&gt;
         <include layout="@layout/layout_friend"/>
 
-        <!-- Post 8 -->
+        &lt;!&ndash; Post 8 &ndash;&gt;
         <include layout="@layout/layout_friend"/>
 
-        <!-- Post 9 -->
+        &lt;!&ndash; Post 9 &ndash;&gt;
         <include layout="@layout/layout_friend"/>
 
-        <!-- Post 10 -->
-        <include layout="@layout/layout_friend"/>
+        &lt;!&ndash; Post 10 &ndash;&gt;
+        <include layout="@layout/layout_friend"/>-->
 
     </LinearLayout>
 
