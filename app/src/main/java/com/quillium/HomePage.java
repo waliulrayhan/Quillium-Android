@@ -210,6 +210,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+                openFragment(new CreatePostFragment());
                 Toast.makeText(HomePage.this, "Create a Post is clicked", Toast.LENGTH_SHORT).show();
             }
         });
