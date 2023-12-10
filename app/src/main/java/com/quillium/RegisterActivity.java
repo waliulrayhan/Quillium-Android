@@ -14,8 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.textfield.TextInputEditText;
+
 import java.util.Calendar;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -105,7 +107,6 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
 
-
         // open login activity
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,33 +146,37 @@ public class RegisterActivity extends AppCompatActivity {
 //                    }
 //                }, 1500); // 1500 milliseconds = 1.5 seconds
 
-                StudentID = studentIdEditText.getText().toString().trim();
-                HSCRoll = studentHscRollEditText.getText().toString().trim();
+//                StudentID = studentIdEditText.getText().toString().trim();
+//                HSCRoll = studentHscRollEditText.getText().toString().trim();
+//
+//                if(!StudentID.isEmpty() || !HSCRoll.isEmpty() || !selectedDate.isEmpty()){
+//                    long id = dbHelper.insertRegisterData(
+//                            ""+StudentID,
+//                            ""+HSCRoll,
+//                            ""+selectedDate
+//                    );
+//
+//                    //To check insert data successfully, show a toast massege
+//                    Toast.makeText(getApplicationContext(),"Success! ", Toast.LENGTH_LONG).show();
+//
+//                    Verify.setVisibility(View.VISIBLE);
+//                    circularLoading.setVisibility(View.INVISIBLE);
+//
+//                    Intent intent = new Intent(RegisterActivity.this, VerifyEmailActivity.class);
+//                    intent.putExtra("key1", StudentID);
+//                    intent.putExtra("key2", HSCRoll);
+//                    startActivity(intent);
+//                }
+//                else{
+//                    // show toast message
+//                    Toast.makeText(getApplicationContext(),"Nothing to save..", Toast.LENGTH_LONG).show();
+//                    Verify.setVisibility(View.VISIBLE);
+//                    circularLoading.setVisibility(View.INVISIBLE);
+//                }
 
-                if(!StudentID.isEmpty() || !HSCRoll.isEmpty() || !selectedDate.isEmpty()){
-                    long id = dbHelper.insertRegisterData(
-                            ""+StudentID,
-                            ""+HSCRoll,
-                            ""+selectedDate
-                    );
+                Intent intent = new Intent(RegisterActivity.this, VerifyEmailActivity.class);
+                startActivity(intent);
 
-                    //To check insert data successfully, show a toast massege
-                    Toast.makeText(getApplicationContext(),"Success! "+id, Toast.LENGTH_LONG).show();
-
-                    Verify.setVisibility(View.VISIBLE);
-                    circularLoading.setVisibility(View.INVISIBLE);
-
-                    Intent intent = new Intent(RegisterActivity.this, VerifyEmailActivity.class);
-                    intent.putExtra("key1", StudentID);
-                    intent.putExtra("key2", HSCRoll);
-                    startActivity(intent);
-                }
-                else{
-                    // show toast message
-                    Toast.makeText(getApplicationContext(),"Nothing to save..", Toast.LENGTH_LONG).show();
-                    Verify.setVisibility(View.VISIBLE);
-                    circularLoading.setVisibility(View.INVISIBLE);
-                }
             }
         });
     }

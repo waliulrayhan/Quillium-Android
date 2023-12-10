@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,6 +28,7 @@ import java.util.Calendar;
 public class FirebaseRegistration extends AppCompatActivity {
 
     private EditText emailEditText, nameEditText, passwordEditText;
+    private TextView firebaseLogin;
     DatePickerDialog datePickerDialog;
     private String selectedDate = ""; // Define a variable to store the selected date
     private Button registerButton, dobEditText;
@@ -47,6 +49,8 @@ public class FirebaseRegistration extends AppCompatActivity {
         dobEditText = findViewById(R.id.date_of_birth_field);
         passwordEditText = findViewById(R.id.student_password_id);
         registerButton = findViewById(R.id.button_verify_firebase);
+        firebaseLogin = findViewById(R.id.textView_login_firebase);
+
 
 
         dobEditText.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +59,15 @@ public class FirebaseRegistration extends AppCompatActivity {
                 selectedDate = openDatePicker(); // Update the selectedDate variable with the returned date
                 // Now the selectedDate will contain the selected date after the DatePicker dialog is closed
                 dobEditText.setText("    " + selectedDate);
+            }
+        });
+
+        // open login activity
+        firebaseLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FirebaseRegistration.this, MainActivity.class);
+                    startActivity(intent);
             }
         });
 
@@ -76,6 +89,8 @@ public class FirebaseRegistration extends AppCompatActivity {
                 if (!email.isEmpty() && !fullname.isEmpty() && !selectedDate.isEmpty() && !password.isEmpty()) {
                     registerUser(email, password, fullname, selectedDate);
                 } else {
+                    registerButton.setVisibility(View.VISIBLE);
+                    circularLoading.setVisibility(View.INVISIBLE);
                     Toast.makeText(FirebaseRegistration.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -87,6 +102,9 @@ public class FirebaseRegistration extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task task) {
                 if (task.isSuccessful()) {
+                    Intent intent = new Intent(FirebaseRegistration.this, MainActivity.class);
+                    startActivity(intent);
+
                     // Registration successful
                     databaseReference = FirebaseDatabase.getInstance().getReference().child("users");
 
@@ -104,18 +122,16 @@ public class FirebaseRegistration extends AppCompatActivity {
 
                     registerButton.setVisibility(View.VISIBLE);
                     circularLoading.setVisibility(View.INVISIBLE);
-
-                    Intent intent = new Intent(FirebaseRegistration.this, MainActivity.class);
-                    startActivity(intent);
                 } else {
-                    registerButton.setVisibility(View.VISIBLE);
-                    circularLoading.setVisibility(View.INVISIBLE);
-
                     // If registration fails, display a message to the user.
                     if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                        registerButton.setVisibility(View.VISIBLE);
+                        circularLoading.setVisibility(View.INVISIBLE);
                         Toast.makeText(getApplicationContext(), "User is already Registered", Toast.LENGTH_LONG).show();
 
                     } else {
+                        registerButton.setVisibility(View.VISIBLE);
+                        circularLoading.setVisibility(View.INVISIBLE);
                         Toast.makeText(getApplicationContext(), "Registration is Unsuccessful. Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }

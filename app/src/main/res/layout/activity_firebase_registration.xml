@@ -200,7 +200,7 @@
             android:layout_marginBottom="8dp"
             android:height="55dp"
             android:fontFamily="@font/sf_pro_bold"
-            android:text="@string/verify_button"
+            android:text="Registration"
             android:textSize="18sp"
             android:textColor="@color/secondary"
             app:backgroundTint="@color/primary"
@@ -214,7 +214,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/circularLoading"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="90dp"
             android:layout_marginBottom="8dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/date_of_birth_field"
@@ -224,7 +224,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/button_verify"
+            android:layout_below="@+id/button_verify_firebase"
             android:layout_marginStart="15dp"
             android:layout_marginTop="0dp"
             android:layout_marginEnd="15dp"
@@ -246,7 +246,7 @@
                 android:textSize="18sp" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/textView_login"
+                android:id="@+id/textView_login_firebase"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textView_login_prompt"
