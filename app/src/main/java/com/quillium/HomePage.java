@@ -258,6 +258,8 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
             return true;
         } else if (id == R.id.menu_messenger) {
 //            openFragment(new FriendFragment());
+            Intent intent = new Intent(HomePage.this, MessengerHomePage.class);
+            startActivity(intent);
             Toast.makeText(HomePage.this, "Messenger is Clicked", Toast.LENGTH_LONG).show();
             return true;
         }
