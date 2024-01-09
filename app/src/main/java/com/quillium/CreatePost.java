@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
@@ -122,13 +123,14 @@ public class CreatePost extends AppCompatActivity {
             String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
             // Get the current timestamp
-            String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+ //            String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+            String timestamp = String.valueOf(new Date().getTime());
 
             // Create a new post object
             Map<String, Object> postMap = new HashMap<>();
-            postMap.put("userId", userId);
-            postMap.put("postText", postText);
-            postMap.put("timestamp", timestamp);
+            postMap.put("postedBy", userId);
+            postMap.put("postDescription", postText);
+            postMap.put("postedAt", timestamp);
 
             // Push the post to Firebase Realtime Database
             DatabaseReference newPostRef = databaseReference.push();
@@ -156,8 +158,11 @@ public class CreatePost extends AppCompatActivity {
     }
 
     private void uploadImage(String postId, String postText) {
+        // Get the current user's ID (you may need to replace this with your own user ID retrieval logic)
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
         // Specify a storage reference (replace "images" with your desired storage path)
-        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("images");
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("posts").child(userId);
 
         // Create a unique filename for the image
         String imageName = postId + "." + getFileExtension(imageUri);
@@ -172,7 +177,7 @@ public class CreatePost extends AppCompatActivity {
             imageReference.getDownloadUrl().addOnSuccessListener(uri -> {
                 // Update the post with the actual image URL
                 DatabaseReference postRef = databaseReference.child(postId);
-                postRef.child("imageUrl").setValue(uri.toString());
+                postRef.child("postImage").setValue(uri.toString());
                 Log.d("CreatePostActivity", "Image upload successful, URL: " + uri.toString());
             }).addOnFailureListener(e -> {
                 // Handle failure to get download URL

@@ -1,114 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/app_bg"
-    tools:context=".HomeFragment">
+    android:background="@color/white"
+    tools:context=".Fragment.HomeFragment">
 
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:id="@+id/postLayout"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:layout_height="wrap_content">
 
-
-            <!-- Profile Photo -->
-            <ImageView
-                android:id="@+id/imageViewProfilePhoto"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/round_person_24"/>
-
-            <!-- User's Name -->
-            <TextView
-                android:id="@+id/newsfeed_textViewName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/imageViewProfilePhoto"
-                android:layout_marginStart="8dp"
-                android:text="John Doe"
-                android:textStyle="bold"
-                android:textSize="16sp"/>
-
-            <!-- Date and Time -->
-            <TextView
-                android:id="@+id/newsfeed_textViewDateTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/newsfeed_textViewName"
-                android:text="Nov 27, 2023 - 10:30 AM"
-                android:textSize="12sp"
-                android:textColor="@android:color/darker_gray"
-                android:layout_toEndOf="@id/imageViewProfilePhoto"
-                android:layout_marginStart="8dp"/>
-
-            <!-- Post Content -->
-            <TextView
-                android:id="@+id/newsfeed_textViewPost"
+            <HorizontalScrollView
+                android:id="@+id/horizontalScrollView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/newsfeed_textViewDateTime"
-                android:layout_marginTop="8dp"
-                android:text="This is a sample post text. Your dynamic post content will go here."/>
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                android:scrollbars="none"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <!-- Post Photo -->
-            <ImageView
-                android:id="@+id/newsfeed_imageViewPostPhoto"
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/storyRV"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="16dp"
+                            app:layout_constraintStart_toEndOf="@+id/postImg" />
+
+                        <com.makeramen.roundedimageview.RoundedImageView
+                            android:id="@+id/postImg"
+                            android:layout_width="130dp"
+                            android:layout_height="150dp"
+                            android:layout_marginStart="16dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/world"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:riv_border_color="#333333"
+                            app:riv_border_width="2dip"
+                            app:riv_corner_radius="10dip"
+                            app:riv_mutate_background="true"
+                            app:riv_tile_mode="repeat" />
+
+                        <View
+                            android:id="@+id/view"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/postImg"
+                            app:layout_constraintEnd_toEndOf="@+id/postImg"
+                            app:layout_constraintStart_toStartOf="@+id/postImg"
+                            app:layout_constraintTop_toTopOf="@+id/postImg" />
+
+                        <ImageView
+                            android:id="@+id/imageView"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_add"
+                            app:layout_constraintBottom_toBottomOf="@+id/postImg"
+                            app:layout_constraintEnd_toEndOf="@+id/postImg"
+                            app:layout_constraintStart_toStartOf="@+id/postImg"
+                            app:layout_constraintTop_toTopOf="@+id/postImg"
+                            app:layout_constraintVertical_bias="0.36" />
+
+                        <TextView
+                            android:id="@+id/textView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Create a Story"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp"
+                            app:layout_constraintEnd_toEndOf="@+id/postImg"
+                            app:layout_constraintStart_toStartOf="@+id/postImg"
+                            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <View
+                android:id="@+id/view4"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/lavender"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/dashboardRv"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_below="@id/newsfeed_textViewPost"
-                android:layout_marginTop="16dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/world"/>
-
-            <!-- Like Button -->
-            <ImageView
-                android:id="@+id/imageViewLike"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_below="@id/newsfeed_imageViewPostPhoto"
-                android:layout_marginTop="16dp"
-                android:src="@drawable/baseline_thumb_up_24"
-                android:clickable="true"
-                android:onClick="onLikeClick"/>
-
-            <!-- Comment Button -->
-            <ImageView
-                android:id="@+id/imageViewComment"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_below="@id/newsfeed_imageViewPostPhoto"
-                android:layout_marginTop="16dp"
-                android:layout_toEndOf="@id/imageViewLike"
+                android:layout_height="match_parent"
                 android:layout_marginStart="16dp"
-                android:src="@drawable/baseline_comment_24"
-                android:clickable="true"
-                android:onClick="onCommentClick"/>
-
-            <!-- Share Button -->
-            <ImageView
-                android:id="@+id/imageViewShare"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_below="@id/newsfeed_imageViewPostPhoto"
                 android:layout_marginTop="16dp"
-                android:layout_toEndOf="@id/imageViewComment"
-                android:layout_marginStart="16dp"
-                android:src="@drawable/baseline_share_24"
-                android:clickable="true"
-                android:onClick="onShareClick"/>
-
-        </RelativeLayout>
-
-    </LinearLayout>
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
 
-
-</ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

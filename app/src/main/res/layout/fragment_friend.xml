@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/app_bg"
-    tools:context=".FriendFragment">
+    tools:context=".Fragment.FriendFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

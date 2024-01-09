@@ -1,6 +1,7 @@
 package com.quillium;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -39,6 +40,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.quillium.Fragment.FriendFragment;
+import com.quillium.Fragment.HomeFragment;
+import com.quillium.Fragment.NotificationFragment;
+import com.quillium.Fragment.ProfileFragment;
 
 public class HomePage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawerLayout;
@@ -55,6 +60,17 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
+
+        Toolbar toolbar = findViewById(R.id.toolbar); // Replace with the correct ID
+        setSupportActionBar(toolbar);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeAsUpIndicator(R.drawable.baseline_person_outline_24); // This line sets the drawer icon
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
 
         fab = findViewById(R.id.fab);
         toolbar = findViewById(R.id.toolbar);
