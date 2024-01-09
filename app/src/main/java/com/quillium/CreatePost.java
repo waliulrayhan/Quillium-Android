@@ -215,7 +215,7 @@ public class CreatePost extends AppCompatActivity {
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
                     // Handle error
-                    Log.e("FirebaseData", "Error reading user data: " + databaseError.getMessage());
+                    Log.e("FirebaseData", "Error Reading User Data: " + databaseError.getMessage());
                 }
             });
         }

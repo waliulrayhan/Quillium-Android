@@ -51,7 +51,6 @@ public class HomeFragment extends Fragment {
         list.add(new StoryModel(R.drawable.person,R.drawable.avatar_person,R.drawable.active_chat_bac,"Waliul"));
         list.add(new StoryModel(R.drawable.img_1050,R.drawable.baseline_add_24,R.drawable.baseline_home_24,"Waliul"));
         list.add(new StoryModel(R.drawable.img_1050,R.drawable.avatar_person,R.drawable.active_chat_bac,"Waliul"));
-        list.add(new StoryModel(R.drawable.img_1191,R.drawable.avatar_person,R.drawable.active_chat_bac,"Waliul"));
         list.add(new StoryModel(R.drawable.img_1222,R.drawable.avatar_person,R.drawable.active_chat_bac,"Waliul"));
 
         StoryAdapter adapter = new StoryAdapter(list, getContext());
