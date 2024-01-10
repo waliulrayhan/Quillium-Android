@@ -88,8 +88,8 @@ public class HomeFragment extends Fragment {
 //        dashboardRV.setAdapter(postAdapter);
 //        return view;
 
-        dashboardRV = view.findViewById(R.id.dashboardRv);
-        PostList = new ArrayList<>();
+//        dashboardRV = view.findViewById(R.id.dashboardRv);
+//        PostList = new ArrayList<>();
 
         PostAdapter postAdapter = new PostAdapter(PostList,getContext());
 //        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext());
@@ -97,21 +97,21 @@ public class HomeFragment extends Fragment {
 //        dashboardRV.addItemDecoration(new DividerItemDecoration(dashboardRV.getContext(), DividerItemDecoration));
 
 
-        database.getReference().child("posts").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    Post post = dataSnapshot.getValue(Post.class);
-                    PostList.add(post);
-                }
-//                PostAdapter.noti
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+//        database.getReference().child("posts").addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+//                    Post post = dataSnapshot.getValue(Post.class);
+//                    PostList.add(post);
+//                }
+////                PostAdapter.noti
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 
 
         return view;

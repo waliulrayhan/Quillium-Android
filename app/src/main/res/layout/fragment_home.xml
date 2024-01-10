@@ -94,6 +94,11 @@
                 </LinearLayout>
             </HorizontalScrollView>
 
+
+
+
+
+
             <View
                 android:id="@+id/view4"
                 android:layout_width="wrap_content"
@@ -105,17 +110,502 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/dashboardRv"
+<!--            <androidx.recyclerview.widget.RecyclerView-->
+<!--                android:id="@+id/dashboardRv"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.5"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />-->
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="@+id/view4"
+                tools:ignore="MissingConstraints">
+
+            <RelativeLayout
+                android:id="@+id/postLayout1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+
+                <!-- Profile Photo -->
+                <ImageView
+                    android:id="@+id/imageViewProfilePhoto"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/round_person_24"/>
+
+                <!-- User's Name -->
+                <TextView
+                    android:id="@+id/textViewName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/imageViewProfilePhoto"
+                    android:layout_marginStart="8dp"
+                    android:text="John Doe"
+                    android:textStyle="bold"
+                    android:textSize="16sp"/>
+
+                <!-- Date and Time -->
+                <TextView
+                    android:id="@+id/textViewDateTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textViewName"
+                    android:text="Nov 27, 2023 - 10:30 AM"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/darker_gray"
+                    android:layout_toEndOf="@id/imageViewProfilePhoto"
+                    android:layout_marginStart="8dp"/>
+
+                <!-- Post Content -->
+                <TextView
+                    android:id="@+id/textViewPost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textViewDateTime"
+                    android:layout_marginTop="8dp"
+                    android:text="This is a sample post text. Your dynamic post content will go here."/>
+
+                <!-- Post Photo -->
+                <ImageView
+                    android:id="@+id/imageViewPostPhoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_below="@id/textViewPost"
+                    android:layout_marginTop="16dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/world"/>
+
+                <!-- Like Button -->
+                <ImageView
+                    android:id="@+id/imageViewLike"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_below="@id/imageViewPostPhoto"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/baseline_thumb_up_24"
+                    android:clickable="true"
+                    android:onClick="onLikeClick"/>
+
+                <!-- Comment Button -->
+                <ImageView
+                    android:id="@+id/imageViewComment"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_below="@id/imageViewPostPhoto"
+                    android:layout_marginTop="16dp"
+                    android:layout_toEndOf="@id/imageViewLike"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/baseline_comment_24"
+                    android:clickable="true"
+                    android:onClick="onCommentClick"/>
+
+                <!-- Share Button -->
+                <ImageView
+                    android:id="@+id/imageViewShare"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_below="@id/imageViewPostPhoto"
+                    android:layout_marginTop="16dp"
+                    android:layout_toEndOf="@id/imageViewComment"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/baseline_share_24"
+                    android:clickable="true"
+                    android:onClick="onShareClick"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/postLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                tools:ignore="MissingConstraints">
+
+
+                <!-- Profile Photo -->
+                <ImageView
+                    android:id="@+id/imageViewProfilePhoto2"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/round_person_24"/>
+
+                <!-- User's Name -->
+                <TextView
+                    android:id="@+id/textViewName2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/imageViewProfilePhoto2"
+                    android:layout_marginStart="8dp"
+                    android:text="Fitness Junkie"
+                    android:textStyle="bold"
+                    android:textSize="16sp"/>
+
+                <!-- Date and Time -->
+                <TextView
+                    android:id="@+id/textViewDateTime2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textViewName2"
+                    android:text="November 27, 2023 - 10:30 AM"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/darker_gray"
+                    android:layout_toEndOf="@id/imageViewProfilePhoto2"
+                    android:layout_marginStart="8dp"/>
+
+                <!-- Post Content -->
+                <TextView
+                    android:id="@+id/textViewPost2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textViewDateTime2"
+                    android:layout_marginTop="8dp"
+                    android:text="Indulge in the cozy charm of our new winter collection! ❄️ Embrace warmth and style with our latest arrivals that blend comfort and fashion seamlessly. Hurry, shop now and elevate your winter wardrobe! #WinterFashion #CozyChic"/>
+
+                <!-- Post Photo -->
+                <ImageView
+                    android:id="@+id/imageViewPostPhoto2"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_below="@id/textViewPost2"
+                    android:layout_marginTop="16dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/pexels1"/>
+
+                <!-- Like Button -->
+                <ImageView
+                    android:id="@+id/imageViewLike2"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_below="@id/imageViewPostPhoto2"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/baseline_thumb_up_24"
+                    android:clickable="true"
+                    android:onClick="onLikeClick"/>
+
+                <!-- Comment Button -->
+                <ImageView
+                    android:id="@+id/imageViewComment2"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_below="@id/imageViewPostPhoto2"
+                    android:layout_marginTop="16dp"
+                    android:layout_toEndOf="@id/imageViewLike2"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/baseline_comment_24"
+                    android:clickable="true"
+                    android:onClick="onCommentClick"/>
+
+                <!-- Share Button -->
+                <ImageView
+                    android:id="@+id/imageViewShare2"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_below="@id/imageViewPostPhoto2"
+                    android:layout_marginTop="16dp"
+                    android:layout_toEndOf="@id/imageViewComment2"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/baseline_share_24"
+                    android:clickable="true"
+                    android:onClick="onShareClick"/>
+
+            </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/postLayout3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    tools:ignore="MissingConstraints">
+
+
+                    <!-- Profile Photo -->
+                    <ImageView
+                        android:id="@+id/imageViewProfilePhoto3"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/round_person_24"/>
+
+                    <!-- User's Name -->
+                    <TextView
+                        android:id="@+id/textViewName3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@id/imageViewProfilePhoto3"
+                        android:layout_marginStart="8dp"
+                        android:text="Music Maven"
+                        android:textStyle="bold"
+                        android:textSize="16sp"/>
+
+                    <!-- Date and Time -->
+                    <TextView
+                        android:id="@+id/textViewDateTime3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textViewName3"
+                        android:text="March 12, 2023 - 6:00 PM"
+                        android:textSize="12sp"
+                        android:textColor="@android:color/darker_gray"
+                        android:layout_toEndOf="@id/imageViewProfilePhoto3"
+                        android:layout_marginStart="8dp"/>
+
+                    <!-- Post Content -->
+                    <TextView
+                        android:id="@+id/textViewPost3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textViewDateTime3"
+                        android:layout_marginTop="8dp"
+                        android:text="Unleash the adventurer in you with our travel essentials! 🌍 From versatile backpacks to compact travel organizers, we've got everything you need for your next journey. Pack smart, travel light, and make every trip memorable! ✈️ #TravelEssentials #AdventureAwaits"/>
+
+                    <!-- Post Photo -->
+                    <ImageView
+                        android:id="@+id/imageViewPostPhoto3"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_below="@id/textViewPost3"
+                        android:layout_marginTop="16dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/pexels2"/>
+
+                    <!-- Like Button -->
+                    <ImageView
+                        android:id="@+id/imageViewLike3"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_below="@id/imageViewPostPhoto3"
+                        android:layout_marginTop="16dp"
+                        android:src="@drawable/baseline_thumb_up_24"
+                        android:clickable="true"
+                        android:onClick="onLikeClick"/>
+
+                    <!-- Comment Button -->
+                    <ImageView
+                        android:id="@+id/imageViewComment3"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_below="@id/imageViewPostPhoto3"
+                        android:layout_marginTop="16dp"
+                        android:layout_toEndOf="@id/imageViewLike3"
+                        android:layout_marginStart="16dp"
+                        android:src="@drawable/baseline_comment_24"
+                        android:clickable="true"
+                        android:onClick="onCommentClick"/>
+
+                    <!-- Share Button -->
+                    <ImageView
+                        android:id="@+id/imageViewShare3"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_below="@id/imageViewPostPhoto3"
+                        android:layout_marginTop="16dp"
+                        android:layout_toEndOf="@id/imageViewComment3"
+                        android:layout_marginStart="16dp"
+                        android:src="@drawable/baseline_share_24"
+                        android:clickable="true"
+                        android:onClick="onShareClick"/>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/postLayout4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    tools:ignore="MissingConstraints">
+
+
+                    <!-- Profile Photo -->
+                    <ImageView
+                        android:id="@+id/imageViewProfilePhoto4"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/round_person_24"/>
+
+                    <!-- User's Name -->
+                    <TextView
+                        android:id="@+id/textViewName4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@id/imageViewProfilePhoto4"
+                        android:layout_marginStart="8dp"
+                        android:text="Coffee Addict"
+                        android:textStyle="bold"
+                        android:textSize="16sp"/>
+
+                    <!-- Date and Time -->
+                    <TextView
+                        android:id="@+id/textViewDateTime4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textViewName4"
+                        android:text="September 8, 2021 - 9:15 AM"
+                        android:textSize="12sp"
+                        android:textColor="@android:color/darker_gray"
+                        android:layout_toEndOf="@id/imageViewProfilePhoto4"
+                        android:layout_marginStart="8dp"/>
+
+                    <!-- Post Content -->
+                    <TextView
+                        android:id="@+id/textViewPost4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textViewDateTime4"
+                        android:layout_marginTop="8dp"
+                        android:text="Satisfy your sweet cravings with our delectable desserts! 🍰 Indulge in the heavenly taste of our freshly baked treats that are sure to tickle your taste buds. Treat yourself today and let the sweetness take over! #SweetTooth #DessertLovers"/>
+
+                    <!-- Post Photo -->
+                    <ImageView
+                        android:id="@+id/imageViewPostPhoto4"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_below="@id/textViewPost4"
+                        android:layout_marginTop="16dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/pexels3"/>
+
+                    <!-- Like Button -->
+                    <ImageView
+                        android:id="@+id/imageViewLike4"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_below="@id/imageViewPostPhoto4"
+                        android:layout_marginTop="16dp"
+                        android:src="@drawable/baseline_thumb_up_24"
+                        android:clickable="true"
+                        android:onClick="onLikeClick"/>
+
+                    <!-- Comment Button -->
+                    <ImageView
+                        android:id="@+id/imageViewComment4"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_below="@id/imageViewPostPhoto4"
+                        android:layout_marginTop="16dp"
+                        android:layout_toEndOf="@id/imageViewLike4"
+                        android:layout_marginStart="16dp"
+                        android:src="@drawable/baseline_comment_24"
+                        android:clickable="true"
+                        android:onClick="onCommentClick"/>
+
+                    <!-- Share Button -->
+                    <ImageView
+                        android:id="@+id/imageViewShare4"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_below="@id/imageViewPostPhoto4"
+                        android:layout_marginTop="16dp"
+                        android:layout_toEndOf="@id/imageViewComment4"
+                        android:layout_marginStart="16dp"
+                        android:src="@drawable/baseline_share_24"
+                        android:clickable="true"
+                        android:onClick="onShareClick"/>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/postLayout5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    tools:ignore="MissingConstraints">
+
+
+                    <!-- Profile Photo -->
+                    <ImageView
+                        android:id="@+id/imageViewProfilePhoto5"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/round_person_24"/>
+
+                    <!-- User's Name -->
+                    <TextView
+                        android:id="@+id/textViewName5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@id/imageViewProfilePhoto5"
+                        android:layout_marginStart="8dp"
+                        android:text="Alex Writer"
+                        android:textStyle="bold"
+                        android:textSize="16sp"/>
+
+                    <!-- Date and Time -->
+                    <TextView
+                        android:id="@+id/textViewDateTime5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textViewName5"
+                        android:text="May 15, 2022 - 2:45 PM"
+                        android:textSize="12sp"
+                        android:textColor="@android:color/darker_gray"
+                        android:layout_toEndOf="@id/imageViewProfilePhoto5"
+                        android:layout_marginStart="8dp"/>
+
+                    <!-- Post Content -->
+                    <TextView
+                        android:id="@+id/textViewPost5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textViewDateTime5"
+                        android:layout_marginTop="8dp"
+                        android:text="Transform your workspace into a productivity haven! 🖥️ Elevate your work-from-home setup with our stylish and functional office accessories. Boost efficiency and create a space you'll love to work in. Browse our collection now! #HomeOffice #ProductivityBoos"/>
+
+                    <!-- Post Photo -->
+                    <ImageView
+                        android:id="@+id/imageViewPostPhoto5"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_below="@id/textViewPost5"
+                        android:layout_marginTop="16dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/pexels4"/>
+
+                    <!-- Like Button -->
+                    <ImageView
+                        android:id="@+id/imageViewLike5"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_below="@id/imageViewPostPhoto5"
+                        android:layout_marginTop="16dp"
+                        android:src="@drawable/baseline_thumb_up_24"
+                        android:clickable="true"
+                        android:onClick="onLikeClick"/>
+
+                    <!-- Comment Button -->
+                    <ImageView
+                        android:id="@+id/imageViewComment5"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_below="@id/imageViewPostPhoto5"
+                        android:layout_marginTop="16dp"
+                        android:layout_toEndOf="@id/imageViewLike5"
+                        android:layout_marginStart="16dp"
+                        android:src="@drawable/baseline_comment_24"
+                        android:clickable="true"
+                        android:onClick="onCommentClick"/>
+
+                    <!-- Share Button -->
+                    <ImageView
+                        android:id="@+id/imageViewShare5"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_below="@id/imageViewPostPhoto5"
+                        android:layout_marginTop="16dp"
+                        android:layout_toEndOf="@id/imageViewComment5"
+                        android:layout_marginStart="16dp"
+                        android:src="@drawable/baseline_share_24"
+                        android:clickable="true"
+                        android:onClick="onShareClick"/>
+
+                </RelativeLayout>
+            </LinearLayout>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
