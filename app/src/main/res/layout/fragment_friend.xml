@@ -11,35 +11,315 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Post 1 -->
-        <include layout="@layout/layout_friend"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/friendLayout"
+            android:padding="16dp">
 
-        <!-- Post 2 -->
-        <include layout="@layout/layout_friend"/>
+            <!-- Profile Photo -->
+            <ImageView
+                android:id="@+id/friendProfilePhoto"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:src="@drawable/baseline_person_outline_24"
+                android:scaleType="centerCrop"
+                android:layout_alignParentStart="true"/>
 
-<!--        &lt;!&ndash; Post 3 &ndash;&gt;
-        <include layout="@layout/layout_friend"/>
+            <!-- User Name -->
+            <TextView
+                android:id="@+id/friendUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hasan Ali"
+                android:textSize="18sp"
+                android:layout_toEndOf="@id/friendProfilePhoto"
+                android:layout_marginStart="16dp"/>
 
-        &lt;!&ndash; Post 4 &ndash;&gt;
-        <include layout="@layout/layout_friend"/>
+            <!-- Time -->
+            <TextView
+                android:id="@+id/friendTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10 hours ago"
+                android:textSize="12sp"
+                android:paddingLeft="120dp"
+                android:layout_toEndOf="@id/friendUsername"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"/>
 
-        &lt;!&ndash; Post 5 &ndash;&gt;
-        <include layout="@layout/layout_friend"/>
+            <!-- Mutual Follows -->
+            <TextView
+                android:id="@+id/friendMutualFollows"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="15 Mutual Follows"
+                android:textSize="14sp"
+                android:layout_below="@id/friendUsername"
+                android:layout_toEndOf="@id/friendProfilePhoto"
+                android:layout_marginTop="4dp"
+                android:layout_marginStart="16dp"/>
 
-        &lt;!&ndash; Post 6 &ndash;&gt;
-        <include layout="@layout/layout_friend"/>
+            <!-- Accept Follow Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/friendAcceptButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Accept Follow"
+                android:layout_below="@id/friendMutualFollows"
+                android:layout_toEndOf="@id/friendProfilePhoto"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="#2196F3"
 
-        &lt;!&ndash; Post 7 &ndash;&gt;
-        <include layout="@layout/layout_friend"/>
+                android:layout_marginStart="16dp"/>
 
-        &lt;!&ndash; Post 8 &ndash;&gt;
-        <include layout="@layout/layout_friend"/>
+            <!-- Reject Follow Button -->
+            <Button
+                android:id="@+id/friendRejectButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reject"
+                android:layout_below="@id/friendMutualFollows"
+                android:layout_toEndOf="@id/friendAcceptButton"
+                android:backgroundTint="#E42F22"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"/>
 
-        &lt;!&ndash; Post 9 &ndash;&gt;
-        <include layout="@layout/layout_friend"/>
 
-        &lt;!&ndash; Post 10 &ndash;&gt;
-        <include layout="@layout/layout_friend"/>-->
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/friendLayout2"
+            android:padding="16dp">
+
+            <!-- Profile Photo -->
+            <ImageView
+                android:id="@+id/friendProfilePhoto2"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:src="@drawable/baseline_person_outline_24"
+                android:scaleType="centerCrop"
+                android:layout_alignParentStart="true"/>
+
+            <!-- User Name -->
+            <TextView
+                android:id="@+id/friendUsername2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Asir Shahriar"
+                android:textSize="18sp"
+                android:layout_toEndOf="@id/friendProfilePhoto2"
+                android:layout_marginStart="16dp"/>
+
+            <!-- Time -->
+            <TextView
+                android:id="@+id/friendTime2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12 hours ago"
+                android:textSize="12sp"
+                android:paddingLeft="120dp"
+                android:layout_toEndOf="@id/friendUsername2"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"/>
+
+            <!-- Mutual Follows -->
+            <TextView
+                android:id="@+id/friendMutualFollows2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5 Mutual Follows"
+                android:textSize="14sp"
+                android:layout_below="@id/friendUsername2"
+                android:layout_toEndOf="@id/friendProfilePhoto2"
+                android:layout_marginTop="4dp"
+                android:layout_marginStart="16dp"/>
+
+            <!-- Accept Follow Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/friendAcceptButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Accept Follow"
+                android:layout_below="@id/friendMutualFollows2"
+                android:layout_toEndOf="@id/friendProfilePhoto2"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="#2196F3"
+
+                android:layout_marginStart="16dp"/>
+
+            <!-- Reject Follow Button -->
+            <Button
+                android:id="@+id/friendRejectButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reject"
+                android:layout_below="@id/friendMutualFollows2"
+                android:layout_toEndOf="@id/friendAcceptButton2"
+                android:backgroundTint="#E42F22"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"/>
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/friendLayout3"
+            android:padding="16dp">
+
+            <!-- Profile Photo -->
+            <ImageView
+                android:id="@+id/friendProfilePhoto3"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:src="@drawable/baseline_person_outline_24"
+                android:scaleType="centerCrop"
+                android:layout_alignParentStart="true"/>
+
+            <!-- User Name -->
+            <TextView
+                android:id="@+id/friendUsername3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nishat Mahmud"
+                android:textSize="18sp"
+                android:layout_toEndOf="@id/friendProfilePhoto3"
+                android:layout_marginStart="16dp"/>
+
+            <!-- Time -->
+            <TextView
+                android:id="@+id/friendTime3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2 days ago"
+                android:textSize="12sp"
+                android:paddingLeft="120dp"
+                android:layout_toEndOf="@id/friendUsername3"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"/>
+
+            <!-- Mutual Follows -->
+            <TextView
+                android:id="@+id/friendMutualFollows3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3 Mutual Follows"
+                android:textSize="14sp"
+                android:layout_below="@id/friendUsername3"
+                android:layout_toEndOf="@id/friendProfilePhoto3"
+                android:layout_marginTop="4dp"
+                android:layout_marginStart="16dp"/>
+
+            <!-- Accept Follow Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/friendAcceptButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Accept Follow"
+                android:layout_below="@id/friendMutualFollows3"
+                android:layout_toEndOf="@id/friendProfilePhoto3"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="#2196F3"
+
+                android:layout_marginStart="16dp"/>
+
+            <!-- Reject Follow Button -->
+            <Button
+                android:id="@+id/friendRejectButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reject"
+                android:layout_below="@id/friendMutualFollows3"
+                android:layout_toEndOf="@id/friendAcceptButton3"
+                android:backgroundTint="#E42F22"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"/>
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/friendLayout4"
+            android:padding="16dp">
+
+            <!-- Profile Photo -->
+            <ImageView
+                android:id="@+id/friendProfilePhoto4"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:src="@drawable/baseline_person_outline_24"
+                android:scaleType="centerCrop"
+                android:layout_alignParentStart="true"/>
+
+            <!-- User Name -->
+            <TextView
+                android:id="@+id/friendUsername4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Waliul Islam"
+                android:textSize="18sp"
+                android:layout_toEndOf="@id/friendProfilePhoto4"
+                android:layout_marginStart="16dp"/>
+
+            <!-- Time -->
+            <TextView
+                android:id="@+id/friendTime4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5 days ago"
+                android:textSize="12sp"
+                android:paddingLeft="120dp"
+                android:layout_toEndOf="@id/friendUsername4"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"/>
+
+            <!-- Mutual Follows -->
+            <TextView
+                android:id="@+id/friendMutualFollows4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2 Mutual Follows"
+                android:textSize="14sp"
+                android:layout_below="@id/friendUsername4"
+                android:layout_toEndOf="@id/friendProfilePhoto4"
+                android:layout_marginTop="4dp"
+                android:layout_marginStart="16dp"/>
+
+            <!-- Accept Follow Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/friendAcceptButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Accept Follow"
+                android:layout_below="@id/friendMutualFollows4"
+                android:layout_toEndOf="@id/friendProfilePhoto4"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="#2196F3"
+
+                android:layout_marginStart="16dp"/>
+
+            <!-- Reject Follow Button -->
+            <Button
+                android:id="@+id/friendRejectButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reject"
+                android:layout_below="@id/friendMutualFollows4"
+                android:layout_toEndOf="@id/friendAcceptButton4"
+                android:backgroundTint="#E42F22"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"/>
+
+
+        </RelativeLayout>
 
     </LinearLayout>
 
