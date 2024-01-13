@@ -3,9 +3,31 @@ package com.quillium;
 public class User {
     private String fullname;
     private String email;
+    private String userId;
     private String dob; // Date of Birth
+    private int followerCount;
+
+    public int getFollowerCount() {
+        return followerCount;
+    }
+
+    public void setFollowerCount(int followerCount) {
+        this.followerCount = followerCount;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     private String coverPhotoUrl;
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getCoverPhotoUrl() {
         return coverPhotoUrl;

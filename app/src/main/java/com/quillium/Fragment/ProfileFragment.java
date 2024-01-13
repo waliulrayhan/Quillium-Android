@@ -7,6 +7,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
@@ -26,11 +28,14 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.quillium.Adapter.FollowersAdapter;
+import com.quillium.Model.Follow;
 import com.quillium.R;
 import com.quillium.User;
 import com.quillium.databinding.FragmentProfileBinding;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,6 +48,8 @@ public class ProfileFragment extends Fragment {
     FirebaseDatabase database;
     private Uri imageUri;
     DatabaseReference userRef, databaseReference;
+    RecyclerView recyclerView;
+    ArrayList<Follow> list;
 
 
 
@@ -75,6 +82,20 @@ public class ProfileFragment extends Fragment {
         profilePhoto = view.findViewById(R.id.profile_picture_image);
         name = view.findViewById(R.id.username);
         id = view.findViewById(R.id.userId);
+        recyclerView = view.findViewById(R.id.followersRV);
+
+        list = new ArrayList<>();
+
+        list.add(new Follow(R.drawable.asir));
+        list.add(new Follow(R.drawable.asir));
+        list.add(new Follow(R.drawable.asir));
+        list.add(new Follow(R.drawable.asir));
+        list.add(new Follow(R.drawable.asir));
+
+        FollowersAdapter adapter = new FollowersAdapter(list,getContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
 
 
         userRef = database.getReference("users").child(FirebaseAuth.getInstance().getUid());
