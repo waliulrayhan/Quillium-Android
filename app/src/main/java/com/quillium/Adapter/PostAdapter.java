@@ -46,33 +46,37 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder>{
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
         Post model = list.get(position);
-//        Picasso.get()
-//                .load(model.getPostImage())
-//                .placeholder(R.drawable.pexels2)
-//                .into(holder.binding.postImage);
-//
+        Picasso.get()
+                .load(model.getPostImage())
+                .into(holder.binding.postImage);
+
         holder.binding.like.setText(model.getPostLike()+"");
-//
-//        FirebaseDatabase.getInstance().getReference().child("users")
-//                .child(model.getPostedBy()).addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                        User user = snapshot.getValue(User.class);
-//                        String profilePhotoUrl = user.getProfilePhotoUrl();
-//
-//                        holder.binding.userName.setText(user.getFullname());
-//                        holder.binding.about.setText(user.getEmail());
-////                        Picasso.get()
-////                                .load(profilePhotoUrl)
-////                                .placeholder(R.drawable.man)
-////                                .into(holder.binding.profileImagePicture);
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError error) {
-//
-//                    }
-//                });
+
+        FirebaseDatabase.getInstance().getReference().child("users")
+                .child(model.getPostedBy()).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()) {
+                            User user = snapshot.getValue(User.class);
+                            if (user != null) {
+                                String profilePhotoUrl = user.getProfilePhotoUrl();
+
+                                holder.binding.userName.setText(user.getFullname());
+                                holder.binding.about.setText(user.getEmail());
+                                Picasso.get()
+                                        .load(profilePhotoUrl)
+                                        .placeholder(R.drawable.man)
+                                        .into(holder.binding.profileImagePicture);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
 
 
         FirebaseDatabase.getInstance().getReference()
