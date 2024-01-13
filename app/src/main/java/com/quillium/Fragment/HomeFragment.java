@@ -15,13 +15,12 @@ import android.view.ViewGroup;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.quillium.Adapter.PostAdapter;
 import com.quillium.Adapter.StoryAdapter;
 import com.quillium.Model.Post;
-import com.quillium.Model.StoryModel;
+import com.quillium.Model.Story;
 import com.quillium.R;
 
 import java.util.ArrayList;
@@ -31,7 +30,7 @@ public class HomeFragment extends Fragment {
 
 
     RecyclerView storyRV, dashboardRV;
-    ArrayList<StoryModel> list;
+    ArrayList<Story> list;
     ArrayList<Post> PostList;
     FirebaseDatabase database;
     FirebaseAuth auth;
@@ -61,10 +60,10 @@ public class HomeFragment extends Fragment {
         storyRV = view.findViewById(R.id.storyRV);
 
         list = new ArrayList<>();
-        list.add(new StoryModel(R.drawable.person,R.drawable.avatar_person,R.drawable.active_chat_bac,"Waliul"));
-        list.add(new StoryModel(R.drawable.img_1050,R.drawable.baseline_add_24,R.drawable.baseline_home_24,"Waliul"));
-        list.add(new StoryModel(R.drawable.img_1050,R.drawable.avatar_person,R.drawable.active_chat_bac,"Waliul"));
-        list.add(new StoryModel(R.drawable.img_1222,R.drawable.avatar_person,R.drawable.active_chat_bac,"Waliul"));
+//        list.add(new Story(R.drawable.person,R.drawable.avatar_person,R.drawable.active_chat_bac,"Waliul"));
+//        list.add(new Story(R.drawable.img_1050,R.drawable.baseline_add_24,R.drawable.baseline_home_24,"Waliul"));
+//        list.add(new Story(R.drawable.img_1050,R.drawable.avatar_person,R.drawable.active_chat_bac,"Waliul"));
+//        list.add(new Story(R.drawable.img_1222,R.drawable.avatar_person,R.drawable.active_chat_bac,"Waliul"));
 
         StoryAdapter adapter = new StoryAdapter(list, getContext());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
@@ -72,26 +71,40 @@ public class HomeFragment extends Fragment {
         storyRV.setNestedScrollingEnabled(false);
         storyRV.setAdapter(adapter);
 
+//      Dashboard Recycler View
+        dashboardRV = view.findViewById(R.id.dashboardRv);
+        PostList = new ArrayList<>();
+        PostAdapter postAdapter = new PostAdapter(PostList,getContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        dashboardRV.setLayoutManager(layoutManager);
+        dashboardRV.addItemDecoration(new DividerItemDecoration(dashboardRV.getContext(), DividerItemDecoration.HORIZONTAL));
+        dashboardRV.setNestedScrollingEnabled(false);
+        dashboardRV.setAdapter(postAdapter);
 
-//        dashboardRV = view.findViewById(R.id.dashboardRv);
-//        dashboardList = new ArrayList<>();
-////        dashboardList.add(new Post(R.drawable.img_1191,R.drawable.img20231103163126,R.drawable.aklogo_1,"Waliul Islam","Food Blogger","500","15","10"));
-////        dashboardList.add(new Post(R.drawable.img_1050,R.drawable.img20231103163126,R.drawable.aklogo_1,"Waliul Islam","Food Blogger","500","15","10"));
-////        dashboardList.add(new Post(R.drawable.img_1222,R.drawable.img20231103163126,R.drawable.aklogo_1,"Waliul Islam","Food Blogger","500","15","10"));
-////        dashboardList.add(new Post(R.drawable.img20231103163126,R.drawable.img20231103163126,R.drawable.aklogo_1,"Waliul Islam","Food Blogger","500","15","10"));
-////        dashboardList.add(new Post(R.drawable.img20231103163131,R.drawable.img20231103163126,R.drawable.aklogo_1,"Waliul Islam","Food Blogger","500","15","10"));
-//
-//        PostAdapter postAdapter = new PostAdapter(dashboardList,getContext());
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-//        dashboardRV.setLayoutManager(layoutManager);
-//        dashboardRV.setNestedScrollingEnabled(false);
-//        dashboardRV.setAdapter(postAdapter);
-//        return view;
+        database.getReference().child("posts").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                PostList.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    Post post = dataSnapshot.getValue(Post.class);
+                    post.setPostId(dataSnapshot.getKey());
+                    PostList.add(post);
+                }
+                postAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        return view;
 
 //        dashboardRV = view.findViewById(R.id.dashboardRv);
 //        PostList = new ArrayList<>();
 
-        PostAdapter postAdapter = new PostAdapter(PostList,getContext());
+//        PostAdapter postAdapter = new PostAdapter(PostList,getContext());
 //        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext());
 //        dashboardRV.setLayoutManager(linearLayoutManager1);
 //        dashboardRV.addItemDecoration(new DividerItemDecoration(dashboardRV.getContext(), DividerItemDecoration));
@@ -114,7 +127,7 @@ public class HomeFragment extends Fragment {
 //        });
 
 
-        return view;
+//        return view;
     }
 
 }

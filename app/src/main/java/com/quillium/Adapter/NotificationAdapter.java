@@ -1,6 +1,7 @@
 package com.quillium.Adapter;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,18 +11,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.quillium.Model.Story;
+import com.quillium.Model.NotificationModel;
 import com.quillium.R;
 
 import java.util.ArrayList;
 
-public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.viewHolder>{
+public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.viewHolder>{
 
-
-    ArrayList<Story> list;
+    ArrayList<NotificationModel> list;
     Context context;
 
-    public StoryAdapter(ArrayList<Story> list, Context context) {
+    public NotificationAdapter(ArrayList<NotificationModel> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -29,18 +29,21 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.viewHolder>{
     @NonNull
     @Override
     public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.story_rv_design,parent,false);
+
+        View view = LayoutInflater.from(context).inflate(R.layout.notification2sample,parent,false);
+
+
         return new viewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
 
-        Story model = list.get(position);
-//        holder.storyImg.setImageResource(model.getStory());
-//        holder.profile.setImageResource(model.getProfile());
-//        holder.storyType.setImageResource(model.getStoryType());
-//        holder.name.setText(model.getName());
+        NotificationModel model = list.get(position);
+
+        holder.profile.setImageResource(model.getProfile());
+        holder.notification.setText(Html.fromHtml(model.getNotification()));
+        holder.time.setText(model.getTime());
 
     }
 
@@ -50,16 +53,14 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.viewHolder>{
     }
 
     public class viewHolder extends RecyclerView.ViewHolder{
-
-        ImageView storyImg, profile, storyType;
-        TextView name;
+        ImageView profile;
+        TextView notification, time;
         public viewHolder(@NonNull View itemView) {
             super(itemView);
 
-            storyImg = itemView.findViewById(R.id.postImage);
             profile = itemView.findViewById(R.id.profile_image_picture);
-            storyType = itemView.findViewById(R.id.storyType);
-            name = itemView.findViewById(R.id.name);
+            notification = itemView.findViewById(R.id.notification);
+            time = itemView.findViewById(R.id.time);
         }
     }
 }

@@ -21,7 +21,6 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.util.Calendar;
 
 public class RegisterActivity extends AppCompatActivity {
-
     Button date_of_birth;
     DatePickerDialog datePickerDialog;
 

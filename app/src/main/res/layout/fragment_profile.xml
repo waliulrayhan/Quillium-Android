@@ -1,81 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:diagonal="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="0dp"
+    android:background="@mipmap/app_bg"
     tools:context=".Fragment.ProfileFragment">
+
+    <!-- Cover Photo -->
+    <ImageView
+        android:id="@+id/coverPhoto"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/world"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- User Image -->
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_picture_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/coverPhoto"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="100dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/man"
+        app:layout_constraintStart_toStartOf="@+id/coverPhoto"
+        app:layout_constraintTop_toTopOf="@+id/coverPhoto" />
+
+    <ImageView
+        android:id="@+id/changeCoverPhoto"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/add_a_photo"
+        app:layout_constraintBottom_toBottomOf="@+id/coverPhoto"
+        app:layout_constraintEnd_toEndOf="@+id/coverPhoto" />
+
+    <ImageView
+        android:id="@+id/changeProfilePhoto"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/center_focus_camera"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_picture_image"
+        app:layout_constraintEnd_toEndOf="@+id/profile_picture_image" />
+
+    <!-- Edit Profile Button -->
+    <Button
+        android:id="@+id/editProfileButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="#4CAF50"
+        android:text="Verified ID"
+        android:textColor="@android:color/white"
+        app:cornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/coverPhoto" />
+
+    <!-- User Name -->
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:text="Md. Waliul Islam Rayhan"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_picture_image" />
+
+    <!-- User ID -->
+    <TextView
+        android:id="@+id/userId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/username"
+        android:layout_marginStart="24dp"
+        android:text="waliulrayhan"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username" />
+
+    <!-- About -->
+    <TextView
+        android:id="@+id/about"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="Publishing and graphic design, Lorem ipsum is a placeholder text ."
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userId" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp">
-
-        <!-- Cover Photo -->
-        <ImageView
-            android:id="@+id/coverPhoto"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:src="@drawable/world"
-            android:scaleType="centerCrop"
-            android:layout_centerHorizontal="true"/>
-
-
-        <!-- User Image -->
-        <ImageView
-            android:id="@+id/userImage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/man"
-            android:scaleType="centerCrop"
-            android:layout_below="@id/coverPhoto"
-            android:layout_marginTop="-50dp"
-            android:layout_marginLeft="20dp"
-            />
-
-        <!-- Edit Profile Button -->
-        <Button
-            android:id="@+id/editProfileButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Edit Profile"
-            app:cornerRadius="8dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="150dp"
-            android:layout_marginEnd="0dp"
-            android:backgroundTint="@android:color/holo_blue_light"
-            android:textColor="@android:color/white"/>
-
-        <!-- User Name -->
-        <TextView
-            android:id="@+id/username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Md. Waliul Islam Rayhan"
-            android:textSize="18sp"
-            android:layout_below="@id/userImage"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="20dp"/>
-
-        <!-- User ID -->
-        <TextView
-            android:id="@+id/userId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="waliulrayhan"
-            android:textSize="14sp"
-            android:layout_below="@id/username"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="20dp"/>
+        android:layout_marginLeft="0dp"
+        android:layout_marginEnd="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/about">
 
         <!-- CardView for Follower, Following, and Post Counts -->
         <androidx.cardview.widget.CardView
             android:id="@+id/followcard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/userId"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="0dp"
             android:layout_marginRight="0dp"
@@ -192,55 +237,7 @@
 
         </androidx.cardview.widget.CardView>
 
-<!--         User's Posts -->
-        <TextView
-            android:id="@+id/PostText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Posts"
-            android:layout_below="@+id/followcard"
-            android:textSize="18sp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"/>
-
-        <LinearLayout
-            android:layout_below="@+id/PostText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <!-- Post 1 -->
-            <include layout="@layout/layout_post"/>
-
-<!--            &lt;!&ndash; Post 2 &ndash;&gt;-->
-<!--            <include layout="@layout/layout_post"/>-->
-
-<!--            &lt;!&ndash; Post 3 &ndash;&gt;-->
-<!--            <include layout="@layout/layout_post"/>-->
-
-<!--            &lt;!&ndash; Post 4 &ndash;&gt;-->
-<!--            <include layout="@layout/layout_post"/>-->
-
-<!--            &lt;!&ndash; Post 5 &ndash;&gt;-->
-<!--            <include layout="@layout/layout_post"/>-->
-
-<!--            &lt;!&ndash; Post 6 &ndash;&gt;-->
-<!--            <include layout="@layout/layout_post"/>-->
-
-<!--            &lt;!&ndash; Post 7 &ndash;&gt;-->
-<!--            <include layout="@layout/layout_post"/>-->
-
-<!--            &lt;!&ndash; Post 8 &ndash;&gt;-->
-<!--            <include layout="@layout/layout_post"/>-->
-
-<!--            &lt;!&ndash; Post 9 &ndash;&gt;-->
-<!--            <include layout="@layout/layout_post"/>-->
-
-<!--            &lt;!&ndash; Post 10 &ndash;&gt;-->
-<!--            <include layout="@layout/layout_post"/>-->
-
-        </LinearLayout>
-
     </RelativeLayout>
 
-</ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

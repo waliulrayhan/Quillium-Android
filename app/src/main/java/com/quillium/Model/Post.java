@@ -7,6 +7,16 @@ public class Post {
     private String postDescription;
     private String postedAt;
 
+    public int getPostLike() {
+        return postLike;
+    }
+
+    public void setPostLike(int postLike) {
+        this.postLike = postLike;
+    }
+
+    private int postLike;
+
     public Post() {
     }
 

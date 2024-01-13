@@ -62,14 +62,14 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         setContentView(R.layout.activity_home_page);
 
 
-        Toolbar toolbar = findViewById(R.id.toolbar); // Replace with the correct ID
-        setSupportActionBar(toolbar);
-
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setHomeAsUpIndicator(R.drawable.baseline_person_outline_24); // This line sets the drawer icon
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
+//        Toolbar toolbar = findViewById(R.id.toolbar); // Replace with the correct ID
+////        setSupportActionBar(toolbar);
+//
+//        ActionBar actionBar = getSupportActionBar();
+//        if (actionBar != null) {
+//            actionBar.setHomeAsUpIndicator(R.drawable.baseline_person_outline_24); // This line sets the drawer icon
+//            actionBar.setDisplayHomeAsUpEnabled(true);
+//        }
 
 
         fab = findViewById(R.id.fab);

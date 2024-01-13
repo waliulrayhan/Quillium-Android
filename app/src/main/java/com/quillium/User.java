@@ -5,6 +5,26 @@ public class User {
     private String email;
     private String dob; // Date of Birth
 
+    private String coverPhotoUrl;
+
+    public String getCoverPhotoUrl() {
+        return coverPhotoUrl;
+    }
+
+    public void setCoverPhotoUrl(String coverPhotoUrl) {
+        this.coverPhotoUrl = coverPhotoUrl;
+    }
+
+    public String getProfilePhotoUrl() {
+        return profilePhotoUrl;
+    }
+
+    public void setProfilePhotoUrl(String profilePhotoUrl) {
+        this.profilePhotoUrl = profilePhotoUrl;
+    }
+
+    private String profilePhotoUrl;
+
     public User() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }

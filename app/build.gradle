@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace 'com.quillium'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.quillium"
-        minSdk 29
-        targetSdk 33
+        minSdk 26
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -27,15 +27,15 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    viewBinding {
-        enabled = true
+    buildFeatures {
+        viewBinding true
     }
 }
 
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'com.google.android.material:material:1.11.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.google.firebase:firebase-auth:22.3.0'
     implementation 'com.google.firebase:firebase-database:20.3.0'
@@ -52,4 +52,9 @@ dependencies {
 //    implementation 'com.github.MrNouri:DynamicSizes:1.0'
     implementation 'com.makeramen:roundedimageview:2.3.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'com.squareup.picasso:picasso:2.8'
+//    implementation 'com.github.sharish:ShimmerRecyclerView:v1.3'
+//    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+//    implementation 'com.todkars:shimmer-recyclerview:0.4.1'
+
 }

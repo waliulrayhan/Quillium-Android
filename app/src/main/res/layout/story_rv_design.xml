@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 
     <com.makeramen.roundedimageview.RoundedImageView
-        android:id="@+id/postImg"
+        android:id="@+id/postImage"
         android:layout_width="130dp"
         android:layout_height="150dp"
         android:layout_marginEnd="16dp"
@@ -20,24 +20,24 @@
         app:riv_tile_mode="repeat" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profile_image"
+        android:id="@+id/profile_image_picture"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:padding="4dp"
         android:src="@drawable/person"
-        app:layout_constraintStart_toStartOf="@+id/postImg"
+        app:layout_constraintStart_toStartOf="@+id/postImage"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/view"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/profile_image"
-        app:layout_constraintEnd_toEndOf="@+id/profile_image"
-        app:layout_constraintStart_toStartOf="@+id/profile_image"
-        app:layout_constraintTop_toTopOf="@+id/profile_image" />
+        app:layout_constraintBottom_toBottomOf="@+id/profile_image_picture"
+        app:layout_constraintEnd_toEndOf="@+id/profile_image_picture"
+        app:layout_constraintStart_toStartOf="@+id/profile_image_picture"
+        app:layout_constraintTop_toTopOf="@+id/profile_image_picture" />
 
     <ImageView
         android:id="@+id/storyType"
@@ -46,8 +46,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="4dp"
         android:src="@drawable/round_email_24"
-        app:layout_constraintEnd_toEndOf="@+id/postImg"
-        app:layout_constraintTop_toTopOf="@+id/postImg" />
+        app:layout_constraintEnd_toEndOf="@+id/postImage"
+        app:layout_constraintTop_toTopOf="@+id/postImage" />
 
     <TextView
         android:id="@+id/name"
@@ -57,7 +57,7 @@
         android:layout_marginBottom="8dp"
         android:text="Waliul Islam"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/postImg"
-        app:layout_constraintStart_toStartOf="@+id/postImg" />
+        app:layout_constraintBottom_toBottomOf="@+id/postImage"
+        app:layout_constraintStart_toStartOf="@+id/postImage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
