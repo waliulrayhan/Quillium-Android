@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.quillium.Model.Story;
 import com.quillium.R;
+import com.quillium.databinding.StoryRvDesignBinding;
 
 import java.util.ArrayList;
 
@@ -36,7 +37,7 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.viewHolder>{
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
 
-        Story model = list.get(position);
+        Story story = list.get(position);
 //        holder.storyImg.setImageResource(model.getStory());
 //        holder.profile.setImageResource(model.getProfile());
 //        holder.storyType.setImageResource(model.getStoryType());
@@ -51,15 +52,20 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.viewHolder>{
 
     public class viewHolder extends RecyclerView.ViewHolder{
 
-        ImageView storyImg, profile, storyType;
-        TextView name;
+//        ImageView storyImg, profile, storyType;
+//        TextView name;
+
+        StoryRvDesignBinding binding;
         public viewHolder(@NonNull View itemView) {
             super(itemView);
 
-            storyImg = itemView.findViewById(R.id.postImage);
-            profile = itemView.findViewById(R.id.profile_image_picture);
-            storyType = itemView.findViewById(R.id.storyType);
-            name = itemView.findViewById(R.id.name);
+//            storyImg = itemView.findViewById(R.id.postImage);
+//            profile = itemView.findViewById(R.id.profile_image_picture);
+//            storyType = itemView.findViewById(R.id.storyType);
+//            name = itemView.findViewById(R.id.name);
+
+            binding = StoryRvDesignBinding.bind(itemView);
+
         }
     }
 }

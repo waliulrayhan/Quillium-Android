@@ -1,29 +1,45 @@
 package com.quillium.Fragment;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.quillium.Adapter.PostAdapter;
 import com.quillium.Adapter.StoryAdapter;
 import com.quillium.Model.Post;
 import com.quillium.Model.Story;
+import com.quillium.Model.UserStories;
 import com.quillium.R;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class HomeFragment extends Fragment {
@@ -34,7 +50,12 @@ public class HomeFragment extends Fragment {
     ArrayList<Post> PostList;
     FirebaseDatabase database;
     FirebaseAuth auth;
-
+    RoundedImageView addStoryImage;
+    private Uri imageUri;
+    private static final int PICK_IMAGE_REQUEST_STORIES = 1;
+    private static final int PICK_IMAGE_REQUEST_COVER = 2;
+    private static final int RESULT_OK = -1; // or Activity.RESULT_OK
+    FirebaseStorage storage;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -47,6 +68,7 @@ public class HomeFragment extends Fragment {
 
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -64,6 +86,8 @@ public class HomeFragment extends Fragment {
 //        list.add(new Story(R.drawable.img_1050,R.drawable.baseline_add_24,R.drawable.baseline_home_24,"Waliul"));
 //        list.add(new Story(R.drawable.img_1050,R.drawable.avatar_person,R.drawable.active_chat_bac,"Waliul"));
 //        list.add(new Story(R.drawable.img_1222,R.drawable.avatar_person,R.drawable.active_chat_bac,"Waliul"));
+
+
 
         StoryAdapter adapter = new StoryAdapter(list, getContext());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
@@ -99,35 +123,123 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        addStoryImage = view.findViewById(R.id.postImageStores);
+        addStoryImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openGalleryForStories();
+            }
+        });
+
         return view;
+    }
 
-//        dashboardRV = view.findViewById(R.id.dashboardRv);
-//        PostList = new ArrayList<>();
+    private void openGalleryForStories() {
+        // Open gallery for Stories photo
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(galleryIntent, PICK_IMAGE_REQUEST_STORIES);
+    }
 
-//        PostAdapter postAdapter = new PostAdapter(PostList,getContext());
-//        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext());
-//        dashboardRV.setLayoutManager(linearLayoutManager1);
-//        dashboardRV.addItemDecoration(new DividerItemDecoration(dashboardRV.getContext(), DividerItemDecoration));
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK && data != null && data.getData() != null) {
+            imageUri = data.getData();
+
+            // Set the selected image to the Stories photo
+            addStoryImage.setImageURI(imageUri);
+
+            final StorageReference reference = storage.getReference()
+                    .child("stories")
+                    .child(FirebaseAuth.getInstance().getUid())
+                    .child(new Date().getTime()+"");
+
+            reference.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    Story story = new Story();
+                                    story.setStoryAt(new Date().getTime()+"");
+
+                                    database.getReference()
+                                            .child("stories")
+                                            .child(FirebaseAuth.getInstance().getUid())
+                                            .child("postedBy")
+                                            .setValue(story.getStoryAt()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void unused) {
+                                                    UserStories stories = new UserStories(uri.toString(),story.getStoryAt());
+
+                                                    database.getReference()
+                                                            .child("stories")
+                                                            .child(FirebaseAuth.getInstance().getUid())
+                                                            .child("userStories")
+                                                            .push()
+                                                            .setValue(stories);
+                                                }
+                                            });
+                                }
+                            });
+                        }
+                    })
+                    .addOnFailureListener(e -> {
+                        // Handle any errors that occurred during the upload
+                        Toast.makeText(getActivity(), "Failed to upload image", Toast.LENGTH_SHORT).show();
+                    });
+        }
+    }
 
 
-//        database.getReference().child("posts").addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-//                    Post post = dataSnapshot.getValue(Post.class);
-//                    PostList.add(post);
-//                }
-////                PostAdapter.noti
-//            }
+//    private void uploadStoriesPhotoToFirebase() {
+//        if (imageUri != null) {
+//            final StorageReference reference = storage.getReference().child("stories")
+//                    .child(FirebaseAuth.getInstance().getUid()).child(String.valueOf(new Date().getTime()));
 //
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
+//            reference.putFile(imageUri)
+//                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                        @Override
+//                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                            // Image uploaded successfully
+//                            Toast.makeText(getActivity(), "Image uploaded successfully", Toast.LENGTH_SHORT).show();
 //
-//            }
-//        });
+//                            // Get the download URL of the uploaded image
+//                            reference.getDownloadUrl().addOnSuccessListener(uri -> {
+//                                // Update user data in the database with the image URL
+////                                updateStoriesPhotoInDatabase(uri.toString());
+//                            });
+//                        }
+//                    })
+//                    .addOnFailureListener(e -> {
+//                        // Handle any errors that occurred during the upload
+//                        Toast.makeText(getActivity(), "Failed to upload image", Toast.LENGTH_SHORT).show();
+//                    });
+//
+//        }
+//    }
 
+    private void updateStoriesPhotoInDatabase(String img) {
+        Story story = new Story();
+        story.setStoryAt(String.valueOf(new Date().getTime()));
+        database.getReference()
+                .child("stories")
+                .child(FirebaseAuth.getInstance().getUid())
+                .child("postedBy")
+                .setValue(story.getStoryAt()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        UserStories stories = new UserStories(img,story.getStoryAt());
 
-//        return view;
+                        database.getReference()
+                                .child("stories")
+                                .child(FirebaseAuth.getInstance().getUid())
+                                .child("userStories")
+                                .push()
+                                .setValue(stories);
+                    }
+                });
     }
 
 }

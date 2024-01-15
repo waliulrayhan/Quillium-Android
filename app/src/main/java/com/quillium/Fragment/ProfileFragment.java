@@ -42,7 +42,7 @@ import java.util.Map;
 public class ProfileFragment extends Fragment {
 
     ImageView coverPhoto, cPhoto, profile,profilePhoto;
-    TextView name, id;
+    TextView name, id, followCount;
     FragmentProfileBinding binding;
     FirebaseStorage storage;
     FirebaseDatabase database;
@@ -83,19 +83,34 @@ public class ProfileFragment extends Fragment {
         name = view.findViewById(R.id.username);
         id = view.findViewById(R.id.userId);
         recyclerView = view.findViewById(R.id.followersRV);
+        followCount = view.findViewById(R.id.followers);
 
         list = new ArrayList<>();
 
-        list.add(new Follow(R.drawable.asir));
-        list.add(new Follow(R.drawable.asir));
-        list.add(new Follow(R.drawable.asir));
-        list.add(new Follow(R.drawable.asir));
-        list.add(new Follow(R.drawable.asir));
 
         FollowersAdapter adapter = new FollowersAdapter(list,getContext());
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
+
+        database.getReference().child("users")
+                .child(FirebaseAuth.getInstance().getUid())
+                .child("followers").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        list.clear();
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                            Follow follow = dataSnapshot.getValue(Follow.class);
+                            list.add(follow);
+                        }
+                        adapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
 
 
         userRef = database.getReference("users").child(FirebaseAuth.getInstance().getUid());
@@ -121,10 +136,12 @@ public class ProfileFragment extends Fragment {
 
                     String fullname = user.getFullname();
                     String email = user.getEmail();
+                    String follows = String.valueOf(user.getFollowerCount());
 
                     // Set the fullname and email to the TextViews
                     name.setText(fullname);
                     id.setText(email);
+                    followCount.setText(follows);
                 }
             }
 

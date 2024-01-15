@@ -2,10 +2,9 @@ package com.quillium.Model;
 
 public class Follow {
     private String followedBy;
-    private long followedAt;
+    private String followedAt;
 
-    public Follow(int profile) {
-        Profile = profile;
+    public Follow() {
     }
 
     public String getFollowedBy() {
@@ -16,23 +15,11 @@ public class Follow {
         this.followedBy = followedBy;
     }
 
-    public long getFollowedAt(long time) {
+    public String getFollowedAt() {
         return followedAt;
     }
 
-    public void setFollowedAt(long followedAt) {
+    public void setFollowedAt(String followedAt) {
         this.followedAt = followedAt;
     }
-
-//===================================================================================================
-    public int getProfile() {
-        return Profile;
-    }
-
-    public void setProfile(int profile) {
-        this.Profile = profile;
-    }
-
-    int Profile;
-    //===================================================================================================
 }
