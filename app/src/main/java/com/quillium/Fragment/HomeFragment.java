@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +48,7 @@ public class HomeFragment extends Fragment {
 
 
     RecyclerView storyRV, dashboardRV;
-    ArrayList<Story> list;
+    ArrayList<Story> storyList;
     ArrayList<Post> PostList;
     FirebaseDatabase database;
     FirebaseAuth auth;
@@ -83,19 +84,41 @@ public class HomeFragment extends Fragment {
 
         storyRV = view.findViewById(R.id.storyRV);
 
-        list = new ArrayList<>();
-//        list.add(new Story(R.drawable.person,R.drawable.avatar_person,R.drawable.active_chat_bac,"Waliul"));
-//        list.add(new Story(R.drawable.img_1050,R.drawable.baseline_add_24,R.drawable.baseline_home_24,"Waliul"));
-//        list.add(new Story(R.drawable.img_1050,R.drawable.avatar_person,R.drawable.active_chat_bac,"Waliul"));
-//        list.add(new Story(R.drawable.img_1222,R.drawable.avatar_person,R.drawable.active_chat_bac,"Waliul"));
+        storyList = new ArrayList<>();
 
-
-
-        StoryAdapter adapter = new StoryAdapter(list, getContext());
+        StoryAdapter adapter = new StoryAdapter(storyList, getContext());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         storyRV.setLayoutManager(linearLayoutManager);
         storyRV.setNestedScrollingEnabled(false);
         storyRV.setAdapter(adapter);
+
+//        database.getReference().child("stories").addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                        if (snapshot.exists()){
+//                            for (DataSnapshot storySnapshot : snapshot.getChildren()){
+//                                Story story = new Story();
+//                                story.setStoryBy(storySnapshot.getKey());
+//                                story.setStoryAt(String.valueOf(storySnapshot.child("postedBy").getValue(Long.class)));
+//
+//                                ArrayList<UserStories> stories = new ArrayList<>();
+//                                for (DataSnapshot snapshot1 : storySnapshot.child("userStories").getChildren()){
+//                                    UserStories userStories = snapshot1.getValue(UserStories.class);
+//                                    stories.add(userStories);
+//                                }
+//                                story.setStories(stories);
+//                                storyList.add(story);
+//                            }
+//                            adapter.notifyDataSetChanged();
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                    }
+//                });
+
 
 //      Dashboard Recycler View
         dashboardRV = view.findViewById(R.id.dashboardRv);
@@ -188,57 +211,6 @@ public class HomeFragment extends Fragment {
                         }
                     });
         }
-    }
-
-
-
-//    private void uploadStoriesPhotoToFirebase() {
-//        if (imageUri != null) {
-//            final StorageReference reference = storage.getReference().child("stories")
-//                    .child(FirebaseAuth.getInstance().getUid()).child(String.valueOf(new Date().getTime()));
-//
-//            reference.putFile(imageUri)
-//                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                        @Override
-//                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                            // Image uploaded successfully
-//                            Toast.makeText(getActivity(), "Image uploaded successfully", Toast.LENGTH_SHORT).show();
-//
-//                            // Get the download URL of the uploaded image
-//                            reference.getDownloadUrl().addOnSuccessListener(uri -> {
-//                                // Update user data in the database with the image URL
-////                                updateStoriesPhotoInDatabase(uri.toString());
-//                            });
-//                        }
-//                    })
-//                    .addOnFailureListener(e -> {
-//                        // Handle any errors that occurred during the upload
-//                        Toast.makeText(getActivity(), "Failed to upload image", Toast.LENGTH_SHORT).show();
-//                    });
-//
-//        }
-//    }
-
-    private void updateStoriesPhotoInDatabase(String img) {
-        Story story = new Story();
-        story.setStoryAt(String.valueOf(new Date().getTime()));
-        database.getReference()
-                .child("stories")
-                .child(FirebaseAuth.getInstance().getUid())
-                .child("postedBy")
-                .setValue(story.getStoryAt()).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        UserStories stories = new UserStories(img,story.getStoryAt());
-
-                        database.getReference()
-                                .child("stories")
-                                .child(FirebaseAuth.getInstance().getUid())
-                                .child("userStories")
-                                .push()
-                                .setValue(stories);
-                    }
-                });
     }
 
 }
