@@ -4,8 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,40 +39,45 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.viewHolder>{
         return new viewHolder(view);
     }
 
-    @Override
+   @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
 
         Story story = list.get(position);
-/*
-        UserStories lastStory = story.getStories().get(story.getStories().size()-1);
-        Picasso.get()
-                .load(lastStory.getImage())
-                .into(holder.binding.storyPostImage);
 
-        FirebaseDatabase.getInstance().getReference()
-                .child("users")
-                .child(story.getStoryBy()).addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        User user = snapshot.getValue(User.class);
-                        Picasso.get()
-                                .load(user.getProfilePhotoUrl())
-                                .into(holder.binding.profileImagePicture);
-                        holder.binding.name.setText(user.getFullname());
-                    }
+       UserStories lastStory = story.getStories().get(story.getStories().size() - 1);
+       Picasso.get()
+               .load(lastStory.getImage())
+               .into(holder.binding.storyImg);
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+       FirebaseDatabase.getInstance().getReference()
+               .child("users")
+               .child(story.getStoryBy())
+               .addListenerForSingleValueEvent(new ValueEventListener() {
+                   @Override
+                   public void onDataChange(@NonNull DataSnapshot snapshot) {
+                       User user = snapshot.getValue(User.class);
+                       if (user != null) {
+                           Picasso.get()
+                                   .load(user.getProfilePhotoUrl())
+                                   .into(holder.binding.profileImagePicture);
+                           holder.binding.name.setText(user.getFullname());
 
-                    }
-                });*/
+                           holder.binding.storyImg.setOnClickListener(new View.OnClickListener() {
+                               @Override
+                               public void onClick(View v) {
 
-//        holder.storyImg.setImageResource(model.getStory());
-//        holder.profile.setImageResource(model.getProfile());
-//        holder.storyType.setImageResource(model.getStoryType());
-//        holder.name.setText(model.getName());
+                               }
+                           });
+                       }
+                   }
 
+                   @Override
+                   public void onCancelled(@NonNull DatabaseError error) {
+                       // Handle onCancelled event if needed
+                   }
+               });
     }
+
 
     @Override
     public int getItemCount() {
