@@ -17,6 +17,9 @@
         android:theme="@style/Theme.Quillium"
         tools:targetApi="31">
         <activity
+            android:name=".StoryViewActivity"
+            android:exported="false" />
+        <activity
             android:name=".CommentActivity"
             android:exported="false"
             android:screenOrientation="locked" />
@@ -63,7 +66,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:screenOrientation="locked" >
+            android:screenOrientation="locked">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

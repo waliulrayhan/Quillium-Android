@@ -46,22 +46,33 @@
         android:layout_width="22dp"
         android:layout_height="22dp"
         android:layout_marginEnd="8dp"
-        android:src="@drawable/more_vert"
         app:layout_constraintBottom_toBottomOf="@+id/profile_image_picture"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/profile_image_picture"
         app:layout_constraintVertical_bias="0.39999998" />
 
+    <TextView
+        android:id="@+id/postDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="yjgyg rfuyg fyrgfy rgyrgfuy rgryt."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_image_picture" />
+
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/postImage"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_image_picture"
+        app:layout_constraintTop_toBottomOf="@+id/postDescription"
         app:riv_corner_radius="10dip"
         app:riv_mutate_background="true" />
 

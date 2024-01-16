@@ -33,6 +33,7 @@ import com.quillium.Fragment.ProfileFragment;
 import com.quillium.HomePage;
 import com.quillium.MainActivity;
 import com.quillium.Model.Follow;
+import com.quillium.Model.Notification;
 import com.quillium.R;
 import com.quillium.User;
 import com.quillium.databinding.UserSampleBinding;
@@ -113,6 +114,17 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewHolder>{
                                                                 @Override
                                                                 public void onSuccess(Void unused) {
                                                                     Toast.makeText(context,"You Followed "+user.getFullname(),Toast.LENGTH_SHORT).show();
+
+                                                                    Notification notification = new Notification();
+                                                                    notification.setNotificationBy(FirebaseAuth.getInstance().getUid());
+                                                                    notification.setNotificationAt(new Date().getTime());
+                                                                    notification.setType("follow");
+
+                                                                    FirebaseDatabase.getInstance().getReference()
+                                                                            .child("notification")
+                                                                            .child(user.getUserId())
+                                                                            .push()
+                                                                            .setValue(notification);
                                                                 }
                                                             });
                                                 }

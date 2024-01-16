@@ -2,6 +2,20 @@ package com.quillium.Model;
 
 public class UserStories {
     private String image;
+    private long StoryAtLong;
+
+    public long getStoryAtLong() {
+        return StoryAtLong;
+    }
+
+    public UserStories(long storyAtLong) {
+        StoryAtLong = storyAtLong;
+    }
+
+    public void setStoryAtLong(long storyAtLong) {
+        StoryAtLong = storyAtLong;
+    }
+
     private String storyAt;
 
     public UserStories(String image, String storyAt) {

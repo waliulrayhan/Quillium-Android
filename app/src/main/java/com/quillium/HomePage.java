@@ -268,11 +268,11 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.menu_search) {
+/*        if (id == R.id.menu_search) {
 //            openFragment(new HomeFragment());
             Toast.makeText(HomePage.this, "Search is Clicked", Toast.LENGTH_LONG).show();
             return true;
-        } else if (id == R.id.menu_messenger) {
+        } else */if (id == R.id.menu_messenger) {
 //            openFragment(new FriendFragment());
             Intent intent = new Intent(HomePage.this, MessengerHomePage.class);
             startActivity(intent);

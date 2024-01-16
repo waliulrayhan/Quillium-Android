@@ -1,6 +1,8 @@
 package com.quillium.Fragment;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -59,6 +61,8 @@ public class HomeFragment extends Fragment {
     private static final int RESULT_OK = -1; // or Activity.RESULT_OK
     FirebaseStorage storage;
 
+    ProgressDialog dialog;
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -68,6 +72,7 @@ public class HomeFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        dialog = new ProgressDialog(getContext());
     }
 
     @SuppressLint("MissingInflatedId")
@@ -81,6 +86,11 @@ public class HomeFragment extends Fragment {
         database = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
         storage = FirebaseStorage.getInstance();
+
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.setTitle("Story Uploding");
+        dialog.setMessage("Please Wait...");
+        dialog.setCancelable(false);
 
         storyRV = view.findViewById(R.id.storyRV);
 
@@ -176,7 +186,9 @@ public class HomeFragment extends Fragment {
             imageUri = data.getData();
 
             // Set the selected image to the Stories photo
-            addStoryImage.setImageURI(imageUri);
+//            addStoryImage.setImageURI(imageUri);
+
+            dialog.show();
 
             final StorageReference reference = storage.getReference()
                     .child("stories")
@@ -190,7 +202,7 @@ public class HomeFragment extends Fragment {
                                 @Override
                                 public void onSuccess(Uri uri) {
                                     Story story = new Story();
-                                    story.setStoryAt(new Date().getTime()+"");
+                                    story.setStoryAt(String.valueOf(new Date().getTime()));
 
                                     database.getReference()
                                             .child("stories")
@@ -206,7 +218,12 @@ public class HomeFragment extends Fragment {
                                                             .child(FirebaseAuth.getInstance().getUid())
                                                             .child("userStories")
                                                             .push()
-                                                            .setValue(stories);
+                                                            .setValue(stories).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                @Override
+                                                                public void onSuccess(Void unused) {
+                                                                    dialog.dismiss();
+                                                                }
+                                                            });
                                                 }
                                             });
                                 }

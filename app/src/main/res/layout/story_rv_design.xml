@@ -10,7 +10,6 @@
         android:layout_height="150dp"
         android:layout_marginEnd="16dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/world"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/storyType"
@@ -26,7 +25,8 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:padding="4dp"
-        android:src="@drawable/person"
+        app:civ_border_width="1dp"
+        app:civ_border_color="#FFFFFF"
         app:layout_constraintStart_toStartOf="@+id/storyImg"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,18 +46,17 @@
         android:layout_height="20dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="4dp"
-        android:src="@drawable/round_email_24"
         app:layout_constraintEnd_toEndOf="@+id/storyImg"
         app:layout_constraintTop_toTopOf="@+id/storyImg" />
 
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/storyPersonFrontName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/sf_pro_regular"
-        android:text="Waliul Islam"
+        android:text=""
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/storyImg"
         app:layout_constraintStart_toStartOf="@+id/storyImg" />

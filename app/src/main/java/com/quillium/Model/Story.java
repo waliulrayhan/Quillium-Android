@@ -34,6 +34,19 @@ public class Story {
     }
 
     private String storyAt;
+    private long  storyAtLong;
+
+    public long getStoryAtLong() {
+        return storyAtLong;
+    }
+
+    public void setStoryAtLong(long storyAtLong) {
+        this.storyAtLong = storyAtLong;
+    }
+
+    public Story(long storyAtLong) {
+        this.storyAtLong = storyAtLong;
+    }
 
     ArrayList<UserStories> stories;
 

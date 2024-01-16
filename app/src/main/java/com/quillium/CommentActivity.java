@@ -18,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.quillium.Adapter.CommentAdapter;
 import com.quillium.Model.Comment;
+import com.quillium.Model.Notification;
 import com.quillium.Model.Post;
 import com.quillium.databinding.ActivityCommentBinding;
 import com.squareup.picasso.Picasso;
@@ -128,6 +129,19 @@ public class CommentActivity extends AppCompatActivity {
                                                             public void onSuccess(Void unused) {
                                                                 binding.commentET.setText("");
                                                                 Toast.makeText(CommentActivity.this, "Commented", Toast.LENGTH_SHORT).show();
+
+                                                                Notification notification = new Notification();
+                                                                notification.setNotificationBy(FirebaseAuth.getInstance().getUid());
+                                                                notification.setNotificationAt(new Date().getTime());
+                                                                notification.setPostID(postId);
+                                                                notification.setPostedBy(postedBy);
+                                                                notification.setType("comment");
+
+                                                                FirebaseDatabase.getInstance().getReference()
+                                                                        .child("notification")
+                                                                        .child(postedBy)
+                                                                        .push()
+                                                                        .setValue(notification);
                                                             }
                                                         });
                                             }

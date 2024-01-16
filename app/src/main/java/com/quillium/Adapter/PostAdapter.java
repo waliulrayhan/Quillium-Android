@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.quillium.CommentActivity;
+import com.quillium.Model.Notification;
 import com.quillium.Model.Post;
 import com.quillium.R;
 import com.quillium.User;
@@ -23,6 +24,7 @@ import com.quillium.databinding.DashboardRvSampleBinding;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder>{
 
@@ -52,6 +54,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder>{
 
         holder.binding.like.setText(model.getPostLike()+"");
         holder.binding.comment.setText(model.getCommentCount()+"");
+        holder.binding.postDescription.setText(model.getPostDescription());
+
 
         FirebaseDatabase.getInstance().getReference().child("users")
                 .child(model.getPostedBy()).addValueEventListener(new ValueEventListener() {
@@ -110,6 +114,19 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder>{
                                                                 @Override
                                                                 public void onSuccess(Void unused) {
                                                                     holder.binding.like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.thumb_up_fill, 0,0,0);
+
+                                                                    Notification notification = new Notification();
+                                                                    notification.setNotificationBy(FirebaseAuth.getInstance().getUid());
+                                                                    notification.setNotificationAt(new Date().getTime());
+                                                                    notification.setPostID(model.getPostId());
+                                                                    notification.setPostedBy(model.getPostedBy());
+                                                                    notification.setType("like");
+
+                                                                    FirebaseDatabase.getInstance().getReference()
+                                                                            .child("notification")
+                                                                            .child(model.getPostedBy())
+                                                                            .push()
+                                                                            .setValue(notification);
                                                                 }
                                                             });
                                                 }
