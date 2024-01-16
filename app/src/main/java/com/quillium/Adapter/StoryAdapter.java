@@ -10,9 +10,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.quillium.Model.Story;
+import com.quillium.Model.UserStories;
 import com.quillium.R;
+import com.quillium.User;
 import com.quillium.databinding.StoryRvDesignBinding;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -38,6 +45,30 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.viewHolder>{
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
 
         Story story = list.get(position);
+/*
+        UserStories lastStory = story.getStories().get(story.getStories().size()-1);
+        Picasso.get()
+                .load(lastStory.getImage())
+                .into(holder.binding.storyPostImage);
+
+        FirebaseDatabase.getInstance().getReference()
+                .child("users")
+                .child(story.getStoryBy()).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        User user = snapshot.getValue(User.class);
+                        Picasso.get()
+                                .load(user.getProfilePhotoUrl())
+                                .into(holder.binding.profileImagePicture);
+                        holder.binding.name.setText(user.getFullname());
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });*/
+
 //        holder.storyImg.setImageResource(model.getStory());
 //        holder.profile.setImageResource(model.getProfile());
 //        holder.storyType.setImageResource(model.getStoryType());

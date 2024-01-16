@@ -92,32 +92,35 @@ public class HomeFragment extends Fragment {
         storyRV.setNestedScrollingEnabled(false);
         storyRV.setAdapter(adapter);
 
-//        database.getReference().child("stories").addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                        if (snapshot.exists()){
-//                            for (DataSnapshot storySnapshot : snapshot.getChildren()){
-//                                Story story = new Story();
-//                                story.setStoryBy(storySnapshot.getKey());
-//                                story.setStoryAt(String.valueOf(storySnapshot.child("postedBy").getValue(Long.class)));
-//
-//                                ArrayList<UserStories> stories = new ArrayList<>();
-//                                for (DataSnapshot snapshot1 : storySnapshot.child("userStories").getChildren()){
-//                                    UserStories userStories = snapshot1.getValue(UserStories.class);
-//                                    stories.add(userStories);
-//                                }
-//                                story.setStories(stories);
-//                                storyList.add(story);
-//                            }
-//                            adapter.notifyDataSetChanged();
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError error) {
-//
-//                    }
-//                });
+        database.getReference()
+                .child("stories").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()){
+                            storyList.clear();
+                            for (DataSnapshot storySnapshot : snapshot.getChildren()){
+                                Story story = new Story();
+                                story.setStoryBy(storySnapshot.getKey());
+                                story.setStoryAt(storySnapshot.child("postedBy").getValue(String.class));
+
+                                ArrayList<UserStories> stories = new ArrayList<>();
+                                for (DataSnapshot snapshot1 : storySnapshot.child("userStories").getChildren()){
+                                    UserStories userStories = snapshot1.getValue(UserStories.class);
+                                    stories.add(userStories);
+                                }
+                                story.setStories(stories);
+                                storyList.add(story);
+                            }
+                            adapter.notifyDataSetChanged();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
 
 
 //      Dashboard Recycler View
