@@ -1,6 +1,7 @@
 package com.quillium.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.quillium.CommentActivity;
 import com.quillium.Model.Post;
 import com.quillium.R;
 import com.quillium.User;
@@ -123,6 +125,13 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder>{
 
                     }
                 });
+        holder.binding.comment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CommentActivity.class);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

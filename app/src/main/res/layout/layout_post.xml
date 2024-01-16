@@ -20,6 +20,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/imageViewProfilePhoto"
                 android:layout_marginStart="8dp"
+                android:fontFamily="@font/sf_pro_bold"
                 android:text="John Doe"
                 android:textStyle="bold"
                 android:textSize="16sp"/>
@@ -30,6 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textViewName"
+                android:fontFamily="@font/sf_pro_regular"
                 android:text="Nov 27, 2023 - 10:30 AM"
                 android:textSize="12sp"
                 android:textColor="@android:color/darker_gray"
@@ -41,6 +43,7 @@
                 android:id="@+id/textViewPost"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_regular"
                 android:layout_below="@id/textViewDateTime"
                 android:layout_marginTop="8dp"
                 android:text="This is a sample post text. Your dynamic post content will go here."/>

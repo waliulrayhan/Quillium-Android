@@ -49,6 +49,7 @@
                             <TextView
                                 android:id="@+id/chatsTextID"
                                 android:layout_toRightOf="@+id/messageImageViewID"
+                                android:fontFamily="@font/sf_pro_bold"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Chats"
@@ -140,6 +141,7 @@
                             android:id="@+id/chatNameID"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/sf_pro_bold"
                             android:text="Asifuzzaman Asif"
                             android:textSize="16sp"
                             android:textColor="@color/black" />
@@ -148,6 +150,7 @@
                             android:id="@+id/chatmessageID"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/sf_pro_regular"
                             android:layout_below="@+id/chatNameID"
                             android:text="Hey. What's up! All good?"
                             android:textColor="@color/black"
@@ -206,6 +209,7 @@
                             android:id="@+id/chatNameID3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/sf_pro_bold"
                             android:text="Md. Sakibul Islam"
                             android:textColor="@color/black"
                             android:textSize="16sp" />
@@ -214,6 +218,7 @@
                             android:id="@+id/chatmessageID3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/sf_pro_regular"
                             android:layout_below="@+id/chatNameID3"
                             android:text="Okay. See you tomorrow."
                             android:textColor="@color/black"
@@ -269,6 +274,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Md. Fahim Hasan"
+                            android:fontFamily="@font/sf_pro_bold"
                             android:textSize="16sp"
                             android:textColor="@color/black" />
 
@@ -277,6 +283,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/chatNameID4"
+                            android:fontFamily="@font/sf_pro_regular"
                             android:text="I'm coming Dhaka tomorrow."
                             android:textColor="@color/black"
                             android:textSize="13sp" />

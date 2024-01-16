@@ -40,6 +40,7 @@
             android:id="@+id/create_post_fullName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_pro_bold"
             android:text="John Doe"
             android:textSize="16sp"
             android:textColor="@android:color/black"
@@ -54,6 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Post"
+            android:fontFamily="@font/sf_pro_bold"
             android:layout_alignParentEnd="true"
             android:layout_marginBottom="16dp"/>
 
@@ -62,6 +64,7 @@
             android:id="@+id/whatsOnYourMind"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_pro_regular"
             android:hint="What's on your mind?"
             android:layout_below="@id/profilePicture"
             android:background="@android:color/transparent"
@@ -88,6 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="18dp"
+                android:fontFamily="@font/sf_pro_regular"
                 android:layout_marginLeft="20dp"
                 android:text="Photo/video" />
 

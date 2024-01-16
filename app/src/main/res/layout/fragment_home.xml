@@ -84,6 +84,7 @@
                             android:id="@+id/textView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/sf_pro_bold"
                             android:text="Create a Story"
                             android:textColor="#FFFFFF"
                             android:textSize="16sp"
