@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -53,6 +51,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder>{
                 .into(holder.binding.postImage);
 
         holder.binding.like.setText(model.getPostLike()+"");
+        holder.binding.comment.setText(model.getCommentCount()+"");
 
         FirebaseDatabase.getInstance().getReference().child("users")
                 .child(model.getPostedBy()).addValueEventListener(new ValueEventListener() {
@@ -129,6 +128,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder>{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, CommentActivity.class);
+                intent.putExtra("postId", model.getPostId());
+                intent.putExtra("postedBy", model.getPostedBy());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
         });

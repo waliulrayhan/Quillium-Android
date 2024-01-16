@@ -6,6 +6,8 @@ public class Post {
     private String postedBy;
     private String postDescription;
     private String postedAt;
+    private int postLike;
+    private int commentCount;
 
     public int getPostLike() {
         return postLike;
@@ -14,8 +16,6 @@ public class Post {
     public void setPostLike(int postLike) {
         this.postLike = postLike;
     }
-
-    private int postLike;
 
     public Post() {
     }
@@ -66,5 +66,13 @@ public class Post {
 
     public void setPostedAt(String postedAt) {
         this.postedAt = postedAt;
+    }
+
+    public int getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(int commentCount) {
+        this.commentCount = commentCount;
     }
 }
