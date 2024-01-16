@@ -178,7 +178,6 @@
         android:src="@drawable/send_24"
         app:layout_constraintBottom_toBottomOf="@+id/commentET"
         app:layout_constraintEnd_toEndOf="@+id/view3"
-        app:layout_constraintTop_toTopOf="@+id/commentET"
-        tools:srcCompat="@drawable/send_24" />
+        app:layout_constraintTop_toTopOf="@+id/commentET" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
