@@ -25,7 +25,7 @@ public class RegisterActivity extends AppCompatActivity {
     DatePickerDialog datePickerDialog;
 
     //Database Helper
-    private DbHelper dbHelper = new DbHelper(this);
+//    private DbHelper dbHelper = new DbHelper(this);
 
     private String selectedDate = ""; // Define a variable to store the selected date
     String DOB;

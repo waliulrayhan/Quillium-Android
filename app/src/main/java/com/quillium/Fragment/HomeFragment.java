@@ -150,9 +150,11 @@ public class HomeFragment extends Fragment {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     Post post = dataSnapshot.getValue(Post.class);
                     post.setPostId(dataSnapshot.getKey());
-                    PostList.add(post);
+                    // Add posts to the beginning of the list
+                    PostList.add(0, post);
                 }
                 postAdapter.notifyDataSetChanged();
+
             }
 
             @Override

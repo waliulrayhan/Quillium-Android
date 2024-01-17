@@ -59,7 +59,7 @@ public class FriendFragment extends Fragment {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     User user = dataSnapshot.getValue(User.class);
                     user.setUserId(dataSnapshot.getKey());
-                    list.add(user);
+                    list.add(0,user);
                 }
                 adapter.notifyDataSetChanged();
             }

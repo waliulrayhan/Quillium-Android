@@ -77,7 +77,7 @@ public class NotificationFragment extends Fragment {
                         for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                             Notification notification = dataSnapshot.getValue(Notification.class);
                             notification.setNotificationID(dataSnapshot.getKey());
-                            list.add(notification);
+                            list.add(0,notification);
                         }
                         adapter.notifyDataSetChanged();
                     }

@@ -21,13 +21,13 @@
             android:id="@+id/createText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/sf_pro_bold"
-            android:textAlignment="viewStart"
-            android:text="Quillium"
-            android:padding="8dp"
-            android:textColor="@color/lavender"
             android:layout_marginStart="12dp"
             android:layout_marginTop="5dp"
+            android:fontFamily="@font/sf_pro_bold"
+            android:padding="8dp"
+            android:text="Quillium Share Everything"
+            android:textAlignment="viewStart"
+            android:textColor="@color/lavender"
             android:textSize="25dp" />
 
         <ImageView
@@ -65,29 +65,29 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/createStory"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp">
+<!--    <LinearLayout-->
+<!--        android:id="@+id/createStory"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:padding="10dp">-->
 
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/short_stay_24px"/>
+<!--        <ImageView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:src="@drawable/short_stay_24px"/>-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/sf_pro_regular"
-            android:text="Create Story"
-            android:textColor="@color/lavender"
-            android:layout_marginLeft="30dp"
-            android:textSize="16sp"/>
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/sf_pro_regular"-->
+<!--            android:text="Create Story"-->
+<!--            android:textColor="@color/lavender"-->
+<!--            android:layout_marginLeft="30dp"-->
+<!--            android:textSize="16sp"/>-->
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
 <!--    <LinearLayout-->
 <!--        android:id="@+id/layoutLive"-->

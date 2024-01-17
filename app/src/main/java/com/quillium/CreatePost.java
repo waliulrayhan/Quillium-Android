@@ -37,7 +37,9 @@ import java.util.Map;
 
 public class CreatePost extends AppCompatActivity {
 
-    ImageView closeButton, postPhotoImageView;
+    ImageView postPhotoImageView;
+
+    Button closeButton;
     TextView Name;
     FirebaseAuth auth;
     DatabaseReference userRef, databaseReference;

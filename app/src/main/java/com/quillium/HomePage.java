@@ -219,7 +219,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         dialog.setContentView(R.layout.bottomsheetlayout);
 
         LinearLayout createPostLayout = dialog.findViewById(R.id.createPost);
-        LinearLayout createStoryLayout = dialog.findViewById(R.id.createStory);
+//        LinearLayout createStoryLayout = dialog.findViewById(R.id.createStory);
         ImageView cancelButton = dialog.findViewById(R.id.cancelButton);
 
         createPostLayout.setOnClickListener(new View.OnClickListener() {
@@ -233,13 +233,13 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
             }
         });
 
-        createStoryLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                Toast.makeText(HomePage.this, "Create a Story is Clicked", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        createStoryLayout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                dialog.dismiss();
+//                Toast.makeText(HomePage.this, "Create a Story is Clicked", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
