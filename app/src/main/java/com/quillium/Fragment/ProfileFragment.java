@@ -122,7 +122,7 @@ public class ProfileFragment extends Fragment {
                     String coverPhotoUrl = user.getCoverPhotoUrl();
                     String profilePhotoUrl = user.getProfilePhotoUrl();
 
-                    // Load cover photo using Picasso or any other image loading library
+/*                    // Load cover photo using Picasso or any other image loading library
                     Picasso.get()
                             .load(coverPhotoUrl)
                             .placeholder(R.drawable.pexels1)
@@ -132,7 +132,7 @@ public class ProfileFragment extends Fragment {
                     Picasso.get()
                             .load(profilePhotoUrl)
                             .placeholder(R.drawable.man)
-                            .into(profilePhoto);
+                            .into(profilePhoto);*/
 
                     String fullname = user.getFullname();
                     String email = user.getEmail();

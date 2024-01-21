@@ -24,10 +24,6 @@
             android:exported="false"
             android:screenOrientation="locked" />
         <activity
-            android:name=".EditProfileActivity"
-            android:exported="false"
-            android:screenOrientation="locked" />
-        <activity
             android:name=".MessengerChatsItem"
             android:exported="false"
             android:screenOrientation="locked" />
@@ -73,6 +69,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service
+            android:name=".Firebase.MessagingService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
