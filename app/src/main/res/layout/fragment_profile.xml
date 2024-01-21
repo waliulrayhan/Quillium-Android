@@ -9,7 +9,7 @@
     tools:context=".Fragment.ProfileFragment">
 
     <!-- Cover Photo -->
-    <ImageView
+    <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/coverPhoto"
         android:layout_width="match_parent"
         android:layout_height="150dp"
@@ -18,7 +18,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/world"
+        android:src="@drawable/cover_photo_placeholder"
+        app:riv_corner_radius="10dip"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,7 +33,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="100dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/man"
+        android:src="@drawable/profile_photo_placeholder"
         app:civ_border_color="#FFFFFF"
         app:civ_border_width="3dp"
         app:layout_constraintStart_toStartOf="@+id/coverPhoto"
@@ -52,7 +53,7 @@
         android:id="@+id/changeProfilePhoto"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        android:src="@drawable/center_focus_camera"
+        android:src="@drawable/add_a_photo"
         app:layout_constraintBottom_toBottomOf="@+id/profile_picture_image"
         app:layout_constraintEnd_toEndOf="@+id/profile_picture_image" />
 

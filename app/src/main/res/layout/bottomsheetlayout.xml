@@ -25,9 +25,9 @@
             android:layout_marginTop="5dp"
             android:fontFamily="@font/sf_pro_bold"
             android:padding="8dp"
-            android:text="Quillium Share Everything"
+            android:text="Share Your Thoughts"
             android:textAlignment="viewStart"
-            android:textColor="@color/lavender"
+            android:textColor="@color/black"
             android:textSize="25dp" />
 
         <ImageView
@@ -61,7 +61,7 @@
             android:text="Create Post"
             android:textColor="@color/lavender"
             android:layout_marginLeft="30dp"
-            android:textSize="16sp"/>
+            android:textSize="20sp"/>
 
     </LinearLayout>
 

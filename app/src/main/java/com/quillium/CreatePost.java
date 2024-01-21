@@ -29,11 +29,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CreatePost extends AppCompatActivity {
 
@@ -50,6 +53,7 @@ public class CreatePost extends AppCompatActivity {
     private LinearLayout uploadPhotoImageView;
     private static final int PICK_IMAGE_REQUEST = 1;
     private Uri imageUri;
+    CircleImageView profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +67,7 @@ public class CreatePost extends AppCompatActivity {
         postButton = findViewById(R.id.postButton);
         uploadPhotoImageView = findViewById(R.id.craetepost_upload_photo);
         postPhotoImageView = findViewById(R.id.create_post_PostPhoto);
+        profile = findViewById(R.id.profilePictureCreatePost);
 
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -199,25 +204,58 @@ public class CreatePost extends AppCompatActivity {
     }
 
     private void loadUserData() {
+//        FirebaseUser currentUser = auth.getCurrentUser();
+//        if (currentUser != null) {
+//            String userId = currentUser.getUid();
+//            userRef.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                    if (dataSnapshot.exists()) {
+//                        // Data exists, retrieve the values
+//                        name = dataSnapshot.child("fullname").getValue(String.class);
+//
+//                        // Update the TextViews with actual data
+//                        Name.setText(name);
+//                    }
+//                }
+//
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError databaseError) {
+//                    // Handle error
+//                    Log.e("FirebaseData", "Error Reading User Data: " + databaseError.getMessage());
+//                }
+//            });
+//        }
+
         FirebaseUser currentUser = auth.getCurrentUser();
         if (currentUser != null) {
             String userId = currentUser.getUid();
+
             userRef.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
-                        // Data exists, retrieve the values
-                        name = dataSnapshot.child("fullname").getValue(String.class);
 
-                        // Update the TextViews with actual data
-                        Name.setText(name);
+                        User user = dataSnapshot.getValue(User.class);
+                        String profilePhotoUrl = user.getProfilePhotoUrl();
+
+                        // Load Profile photo using Picasso or any other image loading library
+                        Picasso.get()
+                                .load(profilePhotoUrl)
+                                .into(profile);
+
+                        String fullname = user.getFullname();
+                        String email = user.getEmail();
+
+                        // Set the fullname and email to the TextViews
+                        Name.setText(fullname);
                     }
                 }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
                     // Handle error
-                    Log.e("FirebaseData", "Error Reading User Data: " + databaseError.getMessage());
+                    Log.e("FirebaseData", "Error reading user data: " + databaseError.getMessage());
                 }
             });
         }

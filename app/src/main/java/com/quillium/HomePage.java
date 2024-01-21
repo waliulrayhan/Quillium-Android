@@ -44,6 +44,9 @@ import com.quillium.Fragment.FriendFragment;
 import com.quillium.Fragment.HomeFragment;
 import com.quillium.Fragment.NotificationFragment;
 import com.quillium.Fragment.ProfileFragment;
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomePage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawerLayout;
@@ -54,6 +57,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
     TextView fullName, studentEmail;
     FirebaseAuth auth;
     DatabaseReference userRef;
+    CircleImageView profile;
 
 
     @Override
@@ -128,6 +132,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         // Find the TextViews within the header view
         fullName = headerView.findViewById(R.id.nav_full_name);
         studentEmail = headerView.findViewById(R.id.nav_student_email);
+        profile = headerView.findViewById(R.id.profile_image_picture_header);
 
         // Initialize Firebase Auth and Database references
         auth = FirebaseAuth.getInstance();
@@ -149,12 +154,34 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
-                        // Data exists, retrieve the values
-                        String name = dataSnapshot.child("fullname").getValue(String.class);
-                        String email = dataSnapshot.child("email").getValue(String.class);
+//                        // Data exists, retrieve the values
+//                        String name = dataSnapshot.child("fullname").getValue(String.class);
+//                        String email = dataSnapshot.child("email").getValue(String.class);
+//
+//                        // Update the TextViews with actual data
+//                        fullName.setText(name);
+//                        studentEmail.setText(email);
+//
+//                        User user = dataSnapshot.getValue(User.class);
+//
+//                        // Load Profile photo using Picasso or any other image loading library
+//                        Picasso.get()
+//                                .load(profilePhotoUrl)
+//                                .into(profile);
 
-                        // Update the TextViews with actual data
-                        fullName.setText(name);
+                        User user = dataSnapshot.getValue(User.class);
+                        String profilePhotoUrl = user.getProfilePhotoUrl();
+
+                        // Load Profile photo using Picasso or any other image loading library
+                        Picasso.get()
+                                .load(profilePhotoUrl)
+                                .into(profile);
+
+                        String fullname = user.getFullname();
+                        String email = user.getEmail();
+
+                        // Set the fullname and email to the TextViews
+                        fullName.setText(fullname);
                         studentEmail.setText(email);
                     }
                 }

@@ -5,12 +5,12 @@
     <item
         android:id="@+id/home_button"
         android:title="Home"
-        android:icon="@drawable/baseline_home_24"/>
+        android:icon="@drawable/home"/>
 
     <item
         android:id="@+id/friends_button"
         android:title="Find Friends"
-        android:icon="@drawable/baseline_person_add_alt_1_24"
+        android:icon="@drawable/person_add"
         />
 
     <item
@@ -19,10 +19,10 @@
     <item
         android:id="@+id/notifications_button"
         android:title="Notification"
-        android:icon="@drawable/baseline_notifications_none_24" />
+        android:icon="@drawable/notifications" />
     <item
         android:id="@+id/profile_button"
         android:title="Profile"
-        android:icon="@drawable/baseline_person_outline_24" />
+        android:icon="@drawable/account_circle" />
 
 </menu>

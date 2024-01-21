@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginRight="16dp"
     android:layout_marginBottom="10dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -14,7 +14,6 @@
         android:padding="4dp"
         app:civ_border_color="#FFFFFF"
         app:civ_border_width="3dp"
-        android:src="@drawable/man"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,7 +44,7 @@
         android:id="@+id/imageView2"
         android:layout_width="22dp"
         android:layout_height="22dp"
-        android:layout_marginEnd="8dp"
+        android:src="@drawable/more_vert"
         app:layout_constraintBottom_toBottomOf="@+id/profile_image_picture"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/profile_image_picture"
@@ -58,7 +57,9 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="yjgyg rfuyg fyrgfy rgyrgfuy rgryt."
+        android:fontFamily="@font/sf_pro_regular"
+        android:text="Post text goes here..."
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_image_picture" />
@@ -116,7 +117,7 @@
         android:id="@+id/share"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/baseline_share_24"
+        android:drawableLeft="@drawable/share_fill"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:drawablePadding="5dp"
@@ -124,5 +125,13 @@
         android:text=""
         app:layout_constraintStart_toEndOf="@+id/comment"
         app:layout_constraintTop_toBottomOf="@+id/postImage" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/share" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

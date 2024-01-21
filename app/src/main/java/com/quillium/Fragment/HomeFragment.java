@@ -135,6 +135,7 @@ public class HomeFragment extends Fragment {
 
 //      Dashboard Recycler View
         dashboardRV = view.findViewById(R.id.dashboardRv);
+        dashboardRV.setHasFixedSize(true);
         PostList = new ArrayList<>();
         PostAdapter postAdapter = new PostAdapter(PostList,getContext());
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());

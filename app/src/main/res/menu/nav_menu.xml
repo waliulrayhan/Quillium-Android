@@ -9,22 +9,22 @@
 
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/baseline_home_24"
+            android:icon="@drawable/home_fill"
             android:title="Home"/>
 
         <item
             android:id="@+id/nav_settings"
-            android:icon="@drawable/baseline_settings_24"
+            android:icon="@drawable/settings_fill"
             android:title="Settings"/>
 
         <item
             android:id="@+id/nav_share"
-            android:icon="@drawable/baseline_share_24"
+            android:icon="@drawable/share_fill"
             android:title="Share"/>
 
         <item
             android:id="@+id/nav_about"
-            android:icon="@drawable/baseline_person_outline_24"
+            android:icon="@drawable/info_fill"
             android:title="About Quillium"/>
     </group>
     <item
@@ -33,8 +33,8 @@
         <menu>
             <item
                 android:id="@+id/nav_logout"
-                android:icon="@drawable/baseline_exit_to_app_24"
-                android:title="Logout"/>
+                android:icon="@drawable/logout"
+                android:title="Log Out"/>
         </menu>
 
     </item>

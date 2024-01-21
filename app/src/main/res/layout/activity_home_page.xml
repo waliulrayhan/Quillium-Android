@@ -57,13 +57,13 @@
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/fab"
-                    android:layout_width="145dp"
+                    android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:backgroundTint="@color/white"
                     android:src="@drawable/baseline_add_24"
                     app:maxImageSize="45dp"
-                    app:tint="@color/lavender" />
+                    app:tint="@color/black" />
             </com.google.android.material.bottomnavigation.BottomNavigationView>
 
         </com.google.android.material.bottomappbar.BottomAppBar>
@@ -78,7 +78,8 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/nav_menu"
-        app:itemIconTint="@color/lavender"
-        app:itemTextColor="@color/lavender"/>
+        app:itemTextColor="@color/black"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>
+
+<!--    app:itemIconTint="@color/lavender"-->
