@@ -10,8 +10,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.marlonlom.utilities.timeago.TimeAgo;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.quillium.Model.Story;
@@ -24,11 +26,16 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.viewHolder> {
 
 
     ArrayList<Story> list;
     Context context;
+    DatabaseReference userRef;
+    FirebaseDatabase database;
+    CircleImageView profile;
 
     public StoryAdapter(ArrayList<Story> list, Context context) {
         this.list = list;

@@ -9,15 +9,24 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.quillium.Fragment.HomeFragment;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class StoryViewActivity extends AppCompatActivity {
 
@@ -28,6 +37,9 @@ public class StoryViewActivity extends AppCompatActivity {
 
     private ArrayList<String> imageUrls;
     private int currentIndex = 0;
+    DatabaseReference userRef;
+    FirebaseDatabase database;
+    CircleImageView profile;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,6 +52,7 @@ public class StoryViewActivity extends AppCompatActivity {
         Button btnNext = findViewById(R.id.btnNext);
         TextView textViewName = findViewById(R.id.storyPersonName);
         TextView textViewEmail = findViewById(R.id.storyPersonEmail);
+        profile = findViewById(R.id.storyPersonProfile);
 
         closeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +61,36 @@ public class StoryViewActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+//        userRef = database.getReference("users").child(FirebaseAuth.getInstance().getUid());
+//        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                if (snapshot.exists()) {
+//                    User user = snapshot.getValue(User.class);
+//                    String profilePhotoUrl = user.getProfilePhotoUrl();
+//
+//                    // Load Profile photo using Picasso or any other image loading library
+//                    Picasso.get()
+//                            .load(profilePhotoUrl)
+//                            .placeholder(R.drawable.profile_photo_placeholder)
+//                            .into(profile);
+//
+//                    String fullname = user.getFullname();
+//                    String email = user.getEmail();
+//
+//                    // Set the fullname and email to the TextViews
+//                    textViewName.setText(fullname);
+//                    textViewEmail.setText(email);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//                // Handle database error if needed
+//            }
+//        });
 
 
         if (getIntent().hasExtra(EXTRA_IMAGE_URLS) &&

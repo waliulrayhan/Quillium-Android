@@ -51,14 +51,13 @@
                             android:layout_height="150dp"
                             android:layout_marginStart="16dp"
                             android:scaleType="centerCrop"
-                            android:background="#C6C6C6"
+                            android:background="@drawable/story_placeholder"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:riv_border_color="#333333"
                             app:riv_border_width="1dip"
                             app:riv_corner_radius="10dip"
-                            app:riv_mutate_background="true"
-                            app:riv_tile_mode="repeat" />
+                            app:riv_mutate_background="true" />
 
                         <View
                             android:id="@+id/view"
@@ -86,7 +85,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/sf_pro_bold"
                             android:text="Create a Story"
-                            android:textColor="#000"
+                            android:textColor="#fff"
                             android:textSize="16sp"
                             app:layout_constraintEnd_toEndOf="@+id/postImageStores"
                             app:layout_constraintStart_toStartOf="@+id/postImageStores"
