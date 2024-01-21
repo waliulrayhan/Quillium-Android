@@ -122,7 +122,7 @@ public class ProfileFragment extends Fragment {
                     String coverPhotoUrl = user.getCoverPhotoUrl();
                     String profilePhotoUrl = user.getProfilePhotoUrl();
 
-                    // Load cover photo using Picasso or any other image loading library
+/*                    // Load cover photo using Picasso or any other image loading library
                     Picasso.get()
                             .load(coverPhotoUrl)
                             .placeholder(R.drawable.cover_photo_placeholder)
@@ -133,15 +133,17 @@ public class ProfileFragment extends Fragment {
                             .load(profilePhotoUrl)
                             .placeholder(R.drawable.profile_photo_placeholder)
                             .into(profilePhoto);
+                            .placeholder(R.drawable.man)
+                            .into(profilePhoto);*/
 
-                    String fullname = user.getFullname();
-                    String email = user.getEmail();
-                    String follows = String.valueOf(user.getFollowerCount());
-
-                    // Set the fullname and email to the TextViews
-                    name.setText(fullname);
-                    id.setText(email);
-                    followCount.setText(follows);
+//                    String fullname = user.getFullname();
+//                    String email = user.getEmail();
+//                    String follows = String.valueOf(user.getFollowerCount());
+//
+//                    // Set the fullname and email to the TextViews
+//                    name.setText(fullname);
+//                    id.setText(email);
+//                    followCount.setText(follows);
                 }
             }
 
