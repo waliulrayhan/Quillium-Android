@@ -108,7 +108,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/sf_pro_regular"
-        android:text="Publishing and graphic design, Lorem ipsum is a placeholder text ."
+        android:text="Tech enthusiast exploring the digital realm. Coding, coffee, and debugging errors make up the daily routine. Constantly learning, evolving, and chasing the next breakthrough."
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -118,6 +118,7 @@
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/about">
@@ -146,8 +147,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="Followers"
                     android:fontFamily="@font/sf_pro_bold"
+                    android:text="Followers"
                     android:textColor="@android:color/black"
                     android:textSize="15sp"
                     diagonal:layout_constraintEnd_toStartOf="@+id/view5"
@@ -185,8 +186,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="Following"
                     android:fontFamily="@font/sf_pro_bold"
+                    android:text="Following"
                     android:textColor="@android:color/black"
                     android:textSize="15sp"
                     diagonal:layout_constraintEnd_toStartOf="@+id/view7"
@@ -224,8 +225,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="Posts"
                     android:fontFamily="@font/sf_pro_bold"
+                    android:text="Posts"
                     android:textColor="@android:color/black"
                     android:textSize="15sp"
                     diagonal:layout_constraintEnd_toEndOf="parent"
@@ -256,7 +257,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/sf_pro_bold"
         android:text="My Followers"
         android:textSize="16sp"
@@ -274,7 +275,18 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        app:layout_constraintTop_toBottomOf="@+id/textView12" >
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="125dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/followersRV" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

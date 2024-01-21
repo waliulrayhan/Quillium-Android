@@ -154,20 +154,6 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
-//                        // Data exists, retrieve the values
-//                        String name = dataSnapshot.child("fullname").getValue(String.class);
-//                        String email = dataSnapshot.child("email").getValue(String.class);
-//
-//                        // Update the TextViews with actual data
-//                        fullName.setText(name);
-//                        studentEmail.setText(email);
-//
-//                        User user = dataSnapshot.getValue(User.class);
-//
-//                        // Load Profile photo using Picasso or any other image loading library
-//                        Picasso.get()
-//                                .load(profilePhotoUrl)
-//                                .into(profile);
 
                         User user = dataSnapshot.getValue(User.class);
                         String profilePhotoUrl = user.getProfilePhotoUrl();

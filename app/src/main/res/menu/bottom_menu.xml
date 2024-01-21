@@ -9,7 +9,7 @@
 
     <item
         android:id="@+id/friends_button"
-        android:title="Find Friends"
+        android:title="Add Friend"
         android:icon="@drawable/person_add"
         />
 

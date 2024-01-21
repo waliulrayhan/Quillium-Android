@@ -1,5 +1,6 @@
 package com.quillium.Fragment;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -50,6 +51,8 @@ public class ProfileFragment extends Fragment {
     DatabaseReference userRef, databaseReference;
     RecyclerView recyclerView;
     ArrayList<Follow> list;
+    ProgressDialog dialog;
+
 
 
 
@@ -68,6 +71,9 @@ public class ProfileFragment extends Fragment {
         super.onCreate(savedInstanceState);
         storage = FirebaseStorage.getInstance();
         database = FirebaseDatabase.getInstance();
+
+        dialog = new ProgressDialog(getContext());
+
     }
 
     @Override
@@ -84,6 +90,11 @@ public class ProfileFragment extends Fragment {
         id = view.findViewById(R.id.userId);
         recyclerView = view.findViewById(R.id.followersRV);
         followCount = view.findViewById(R.id.followers);
+
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.setTitle("Profile Photo Uploding");
+        dialog.setMessage("Please Wait...");
+        dialog.setCancelable(false);
 
         list = new ArrayList<>();
 
@@ -122,7 +133,7 @@ public class ProfileFragment extends Fragment {
                     String coverPhotoUrl = user.getCoverPhotoUrl();
                     String profilePhotoUrl = user.getProfilePhotoUrl();
 
-/*                    // Load cover photo using Picasso or any other image loading library
+                   // Load cover photo using Picasso or any other image loading library
                     Picasso.get()
                             .load(coverPhotoUrl)
                             .placeholder(R.drawable.cover_photo_placeholder)
@@ -133,17 +144,15 @@ public class ProfileFragment extends Fragment {
                             .load(profilePhotoUrl)
                             .placeholder(R.drawable.profile_photo_placeholder)
                             .into(profilePhoto);
-                            .placeholder(R.drawable.man)
-                            .into(profilePhoto);*/
 
-//                    String fullname = user.getFullname();
-//                    String email = user.getEmail();
-//                    String follows = String.valueOf(user.getFollowerCount());
-//
-//                    // Set the fullname and email to the TextViews
-//                    name.setText(fullname);
-//                    id.setText(email);
-//                    followCount.setText(follows);
+                    String fullname = user.getFullname();
+                    String email = user.getEmail();
+                    String follows = String.valueOf(user.getFollowerCount());
+
+                    // Set the fullname and email to the TextViews
+                    name.setText(fullname);
+                    id.setText(email);
+                    followCount.setText(follows);
                 }
             }
 
@@ -192,11 +201,17 @@ public class ProfileFragment extends Fragment {
             if (requestCode == PICK_IMAGE_REQUEST_PROFILE) {
                 // Set the selected image to the profile photo
                 profilePhoto.setImageURI(imageUri);
+
+                dialog.show();
+
                 // Upload the profile photo to Firebase if needed
                  uploadProfilePhotoToFirebase();
             } else if (requestCode == PICK_IMAGE_REQUEST_COVER) {
                 // Set the selected image to the cover photo
                 cPhoto.setImageURI(imageUri);
+
+                dialog.show();
+
                 // Upload the cover photo to Firebase if needed
                  uploadCoverPhotoToFirebase();
             }
@@ -247,6 +262,8 @@ public class ProfileFragment extends Fragment {
                     // Handle any errors that occurred during the database update
                     Toast.makeText(getActivity(), "Failed to update Cover Photo", Toast.LENGTH_SHORT).show();
                 });
+
+        dialog.dismiss();
     }
 
     private void uploadProfilePhotoToFirebase() {
@@ -279,5 +296,7 @@ public class ProfileFragment extends Fragment {
         userRef.updateChildren(updates)
                 .addOnSuccessListener(aVoid -> Toast.makeText(getActivity(), "Profile photo updated successfully", Toast.LENGTH_SHORT).show())
                 .addOnFailureListener(e -> Toast.makeText(getActivity(), "Failed to update profile photo", Toast.LENGTH_SHORT).show());
+
+        dialog.dismiss();
     }
 }
