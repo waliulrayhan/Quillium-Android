@@ -58,7 +58,10 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.viewHold
                                 .load(user.getProfilePhotoUrl())
 //                                .placeholder(R.drawable.placeholder)
                                 .into(holder.binding.profilePictureImage);
-                        holder.binding.comment.setText(Html.fromHtml("<b>" + user.getFullname() + "    " + "</b>" + comment.getCommentBody()));
+                        holder.binding.comment.setText(user.getFullname());
+
+                        String c = comment.getCommentBody();
+                        holder.binding.userComment.setText(c);
                     }
 
                     @Override

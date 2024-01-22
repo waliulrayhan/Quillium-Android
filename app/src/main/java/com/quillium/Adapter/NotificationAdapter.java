@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.text.HtmlCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -70,14 +71,14 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                                 .load(user.getProfilePhotoUrl())
                                 .into(holder.binding.profileImagePicture);
 
-                        if (type.equals("like")){
-                            holder.binding.notification.setText(Html.fromHtml("<b>"+user.getFullname()+"</b>"+" Liked your post."));
+                        if (type.equals("like")) {
+                            holder.binding.notification.setText(HtmlCompat.fromHtml("<b>" + user.getFullname() + "</b>" + " liked your post.", HtmlCompat.FROM_HTML_MODE_LEGACY));
                         } else if (type.equals("comment")) {
-                            holder.binding.notification.setText(Html.fromHtml("<b>"+user.getFullname()+"</b>"+" Commented on your post."));
+                            holder.binding.notification.setText(HtmlCompat.fromHtml("<b>" + user.getFullname() + "</b>" + " commented on your post.", HtmlCompat.FROM_HTML_MODE_LEGACY));
+                        } else {
+                            holder.binding.notification.setText(HtmlCompat.fromHtml("<b>" + user.getFullname() + "</b>" + " started following you.", HtmlCompat.FROM_HTML_MODE_LEGACY));
                         }
-                        else {
-                            holder.binding.notification.setText(Html.fromHtml("<b>"+user.getFullname()+"</b>"+" Start following you."));
-                        }
+
                     }
 
                     @Override

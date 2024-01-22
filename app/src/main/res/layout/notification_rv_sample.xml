@@ -41,6 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/sf_pro_regular"
+        android:textColor="@color/lightText"
         android:text="Just now"
         app:layout_constraintStart_toStartOf="@+id/notification"
         app:layout_constraintTop_toBottomOf="@+id/notification" />

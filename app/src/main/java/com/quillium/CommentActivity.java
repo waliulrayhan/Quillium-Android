@@ -64,8 +64,24 @@ public class CommentActivity extends AppCompatActivity {
 //                                .placeholder(R.drawable.placeholder)
                                 .into(binding.postImage);
                         binding.description.setText(post.getPostDescription());
-                        binding.like.setText(post.getPostLike()+"");
-                        binding.comment.setText(post.getCommentCount()+"");
+//                        binding.like.setText(post.getPostLike()+"");
+//                        binding.comment.setText(post.getCommentCount()+"");
+
+                        if(post.getPostLike()==0){
+                            binding.like.setText("  Like");
+                        } else if (post.getPostLike()==1) {
+                            binding.like.setText(" "+post.getPostLike()+"  Like");
+                        }else {
+                            binding.like.setText(" "+post.getPostLike()+"  Likes");
+                        }
+
+                        if(post.getCommentCount()==0){
+                            binding.comment.setText("Comment");
+                        } else if (post.getCommentCount()==1) {
+                            binding.comment.setText(" "+post.getCommentCount()+"  Comment");
+                        }else {
+                            binding.comment.setText(" "+post.getCommentCount()+"  Comments");
+                        }
                     }
 
                     @Override
@@ -93,12 +109,72 @@ public class CommentActivity extends AppCompatActivity {
                     }
                 });
 
+//        database.getReference()
+//                .child("posts")
+//                .child(postId)
+//                .child("likes")
+//                .child(FirebaseAuth.getInstance().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                        Post model = snapshot.getValue(Post.class);
+//
+//                        if(snapshot.exists()){
+//                            binding.like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.thumb_up_fill, 0,0,0);
+//                        }
+//                        else {
+//                            binding.like.setOnClickListener(new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View v) {
+//                                    FirebaseDatabase.getInstance().getReference()
+//                                            .child("posts")
+//                                            .child(model.getPostId())
+//                                            .child("likes")
+//                                            .child(FirebaseAuth.getInstance().getUid())
+//                                            .setValue(true).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                                                @Override
+//                                                public void onSuccess(Void unused) {
+//                                                    FirebaseDatabase.getInstance().getReference()
+//                                                            .child("posts")
+//                                                            .child(model.getPostId())
+//                                                            .child("postLike")
+//                                                            .setValue(model.getPostLike()+1).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                                                                @Override
+//                                                                public void onSuccess(Void unused) {
+//                                                                    binding.like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.thumb_up_fill, 0,0,0);
+//
+//                                                                    Notification notification = new Notification();
+//                                                                    notification.setNotificationBy(FirebaseAuth.getInstance().getUid());
+//                                                                    notification.setNotificationAt(new Date().getTime());
+//                                                                    notification.setPostID(model.getPostId());
+//                                                                    notification.setPostedBy(model.getPostedBy());
+//                                                                    notification.setType("like");
+//
+//                                                                    FirebaseDatabase.getInstance().getReference()
+//                                                                            .child("notification")
+//                                                                            .child(model.getPostedBy())
+//                                                                            .push()
+//                                                                            .setValue(notification);
+//                                                                }
+//                                                            });
+//                                                }
+//                                            });
+//                                }
+//                            });
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                    }
+//                });
+
         binding.commentPostBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if(binding.commentET.getText().toString().isEmpty()){
-                    Toast.makeText(CommentActivity.this, "Please enter any comment.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CommentActivity.this, "Please enter any comment", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     Comment comment = new Comment();
@@ -132,7 +208,7 @@ public class CommentActivity extends AppCompatActivity {
                                                                 @Override
                                                                 public void onSuccess(Void unused) {
                                                                     binding.commentET.setText("");
-                                                                    Toast.makeText(CommentActivity.this, "Commented", Toast.LENGTH_SHORT).show();
+                                                                    Toast.makeText(CommentActivity.this, "Your comment is published", Toast.LENGTH_SHORT).show();
 
                                                                     Notification notification = new Notification();
                                                                     notification.setNotificationBy(FirebaseAuth.getInstance().getUid());

@@ -155,7 +155,7 @@ public class CreatePost extends AppCompatActivity {
             whatsOnYourMindEditText.setText("");
 
             // Show a success message
-            Toast.makeText(this, "Post created successfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Post uploaded successfully", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(CreatePost.this, HomePage.class);
             startActivity(intent);
         } else {
@@ -185,10 +185,10 @@ public class CreatePost extends AppCompatActivity {
                 // Update the post with the actual image URL
                 DatabaseReference postRef = databaseReference.child(postId);
                 postRef.child("postImage").setValue(uri.toString());
-                Log.d("CreatePostActivity", "Image upload successful, URL: " + uri.toString());
+                Log.d("CreatePostActivity", "Image is successfully uploaded, URL: " + uri.toString());
             }).addOnFailureListener(e -> {
                 // Handle failure to get download URL
-                Log.e("CreatePostActivity", "Error getting download URL: " + e.getMessage());
+                Log.e("CreatePostActivity", "Error getting the download URL: " + e.getMessage());
             });
         }).addOnFailureListener(e -> {
             // Image upload failed

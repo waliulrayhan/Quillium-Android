@@ -186,18 +186,18 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         int itemID = item.getItemId();
         if (itemID == R.id.nav_home) {
 //            openFragment(new HomeFragment());
-            Toast.makeText(HomePage.this, "Home is Clicked", Toast.LENGTH_LONG).show();
+            Toast.makeText(HomePage.this, "Home Menu is Clicked", Toast.LENGTH_LONG).show();
         } else if (itemID == R.id.nav_settings) {
 //            openFragment(new FriendFragment());
-            Toast.makeText(HomePage.this, "Settings is Clicked", Toast.LENGTH_LONG).show();
+            Toast.makeText(HomePage.this, "Settings Menu is Clicked", Toast.LENGTH_LONG).show();
         } else if (itemID == R.id.nav_share) {
 //            openFragment(new NotificationFragment());
-            Toast.makeText(HomePage.this, "Share is Clicked", Toast.LENGTH_LONG).show();
+            Toast.makeText(HomePage.this, "Share Menu is Clicked", Toast.LENGTH_LONG).show();
         } else if (itemID == R.id.nav_about) {
 //            openFragment(new ProfileFragment());
-            Toast.makeText(HomePage.this, "About is Clicked", Toast.LENGTH_LONG).show();
+            Toast.makeText(HomePage.this, "About Menu is Clicked", Toast.LENGTH_LONG).show();
         } else if (itemID == R.id.nav_logout) {
-            Toast.makeText(this, "Logout is Successful", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Successfully logged out", Toast.LENGTH_LONG).show();
 
             auth.signOut();
 
@@ -242,7 +242,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
 //                openFragment(new CreatePostFragment());
                 Intent intent = new Intent(HomePage.this, CreatePost.class);
                 startActivity(intent);
-                Toast.makeText(HomePage.this, "Create a Post is clicked", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(HomePage.this, "Create a Post is clicked", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -289,7 +289,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
 //            openFragment(new FriendFragment());
             Intent intent = new Intent(HomePage.this, MessengerHomePage.class);
             startActivity(intent);
-            Toast.makeText(HomePage.this, "Messenger is Clicked", Toast.LENGTH_LONG).show();
+            Toast.makeText(HomePage.this, "Messenger button is clicked", Toast.LENGTH_LONG).show();
             return true;
         }
         return super.onOptionsItemSelected(item);

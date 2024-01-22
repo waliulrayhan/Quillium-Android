@@ -91,7 +91,7 @@ public class FirebaseRegistration extends AppCompatActivity {
                 } else {
                     registerButton.setVisibility(View.VISIBLE);
                     circularLoading.setVisibility(View.INVISIBLE);
-                    Toast.makeText(FirebaseRegistration.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FirebaseRegistration.this, "Please fill out all the fields", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -117,7 +117,7 @@ public class FirebaseRegistration extends AppCompatActivity {
                         databaseReference.child(userId).setValue(user);
                     }
 
-                    Toast.makeText(FirebaseRegistration.this, "Registration successful", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FirebaseRegistration.this, "Registration is successful", Toast.LENGTH_SHORT).show();
                     // Add your logic to navigate to the next activity or perform other actions
 
                     registerButton.setVisibility(View.VISIBLE);
@@ -127,12 +127,12 @@ public class FirebaseRegistration extends AppCompatActivity {
                     if (task.getException() instanceof FirebaseAuthUserCollisionException) {
                         registerButton.setVisibility(View.VISIBLE);
                         circularLoading.setVisibility(View.INVISIBLE);
-                        Toast.makeText(getApplicationContext(), "User is already Registered", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "User is already registered. Try with different credentials.", Toast.LENGTH_LONG).show();
 
                     } else {
                         registerButton.setVisibility(View.VISIBLE);
                         circularLoading.setVisibility(View.INVISIBLE);
-                        Toast.makeText(getApplicationContext(), "Registration is Unsuccessful. Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Sorry! Registration is unsuccessful. Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }
             }
