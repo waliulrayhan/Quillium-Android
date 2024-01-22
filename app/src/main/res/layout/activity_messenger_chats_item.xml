@@ -22,7 +22,7 @@
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 android:elevation="10dp"
-                android:src="@drawable/person"
+                android:src="@drawable/man"
                 android:layout_centerVertical="true"
                 />
         </RelativeLayout>
