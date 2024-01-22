@@ -91,7 +91,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_toEndOf="@id/imageViewComment"
                 android:layout_marginStart="16dp"
-                android:src="@drawable/share_fill"
+                android:src="@drawable/share"
                 android:clickable="true"
                 android:onClick="onShareClick"/>
 

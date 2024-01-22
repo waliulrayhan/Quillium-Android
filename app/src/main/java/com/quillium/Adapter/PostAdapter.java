@@ -52,8 +52,26 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder>{
                 .load(model.getPostImage())
                 .into(holder.binding.postImage);
 
-        holder.binding.like.setText(model.getPostLike()+"");
-        holder.binding.comment.setText(model.getCommentCount()+"");
+//        holder.binding.like.setText(model.getPostLike()+""  );
+//        holder.binding.comment.setText(model.getCommentCount()+""+" Comment");
+//        holder.binding.postDescription.setText(model.getPostDescription());
+
+        if(model.getPostLike()==0){
+            holder.binding.like.setText("  Like");
+        } else if (model.getPostLike()==1) {
+            holder.binding.like.setText(" "+model.getPostLike()+"  Like");
+        }else {
+            holder.binding.like.setText(" "+model.getPostLike()+"  Likes");
+        }
+
+        if(model.getCommentCount()==0){
+            holder.binding.comment.setText("Comment");
+        } else if (model.getCommentCount()==1) {
+            holder.binding.comment.setText(" "+model.getCommentCount()+"  Comment");
+        }else {
+            holder.binding.comment.setText(" "+model.getCommentCount()+"  Comments");
+        }
+
         holder.binding.postDescription.setText(model.getPostDescription());
 
 
