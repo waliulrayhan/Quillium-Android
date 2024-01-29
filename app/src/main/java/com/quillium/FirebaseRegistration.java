@@ -17,13 +17,15 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.quillium.utils.Constants;
 
 import java.util.Calendar;
+import java.util.HashMap;
 
 public class FirebaseRegistration extends AppCompatActivity {
 
@@ -88,6 +90,7 @@ public class FirebaseRegistration extends AppCompatActivity {
 
                 if (!email.isEmpty() && !fullname.isEmpty() && !selectedDate.isEmpty() && !password.isEmpty()) {
                     registerUser(email, password, fullname, selectedDate);
+                    addUserRegisterToFirestore(email, password, fullname);
                 } else {
                     registerButton.setVisibility(View.VISIBLE);
                     circularLoading.setVisibility(View.INVISIBLE);
@@ -117,7 +120,7 @@ public class FirebaseRegistration extends AppCompatActivity {
                         databaseReference.child(userId).setValue(user);
                     }
 
-                    Toast.makeText(FirebaseRegistration.this, "Registration successful", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(FirebaseRegistration.this, "Registration successful", Toast.LENGTH_SHORT).show();
                     // Add your logic to navigate to the next activity or perform other actions
 
                     registerButton.setVisibility(View.VISIBLE);
@@ -177,5 +180,21 @@ public class FirebaseRegistration extends AppCompatActivity {
 
         // Return the selected date after the dialog is closed
         return selectedDate;
+    }
+
+    private void addUserRegisterToFirestore(String email, String password, String fullname){
+        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+        HashMap<String, Object> user = new HashMap<>();
+        user.put(Constants.KEY_NAME, fullname);
+        user.put(Constants.KEY_EMAIL, email);
+        user.put(Constants.KEY_PASSWORD, password);
+        firestore.collection(Constants.KEY_COLLECTION_USERS)
+                .add(user)
+                .addOnSuccessListener(documentReference -> {
+                    Toast.makeText(FirebaseRegistration.this, "Data Inserted to Firestore", Toast.LENGTH_LONG).show();
+                })
+                .addOnFailureListener(exception -> {
+                    Toast.makeText(FirebaseRegistration.this, exception.getMessage(), Toast.LENGTH_LONG).show();
+                });
     }
 }
