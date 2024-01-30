@@ -92,8 +92,8 @@ public class ProfileFragment extends Fragment {
         followCount = view.findViewById(R.id.followers);
 
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        dialog.setTitle("Profile Photo Uploding");
-        dialog.setMessage("Please Wait...");
+        dialog.setTitle("Profile photo is uploading");
+        dialog.setMessage("Please wait...");
         dialog.setCancelable(false);
 
         list = new ArrayList<>();
@@ -228,7 +228,7 @@ public class ProfileFragment extends Fragment {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             // Image uploaded successfully
-                            Toast.makeText(getActivity(), "Image uploaded successfully", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(getActivity(), "Image uploaded successfully", Toast.LENGTH_SHORT).show();
 
                             // Get the download URL of the uploaded image
                             reference.getDownloadUrl().addOnSuccessListener(uri -> {
@@ -239,7 +239,7 @@ public class ProfileFragment extends Fragment {
                     })
                     .addOnFailureListener(e -> {
                         // Handle any errors that occurred during the upload
-                        Toast.makeText(getActivity(), "Failed to upload image", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getActivity(), "Failed to upload image", Toast.LENGTH_SHORT).show();
                     });
 
         }
@@ -256,11 +256,11 @@ public class ProfileFragment extends Fragment {
         userRef.updateChildren(updates)
                 .addOnSuccessListener(aVoid -> {
                     // Database update successful
-                    Toast.makeText(getActivity(), "Cover Photo updated successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Cover Photo uploaded successfully", Toast.LENGTH_SHORT).show();
                 })
                 .addOnFailureListener(e -> {
                     // Handle any errors that occurred during the database update
-                    Toast.makeText(getActivity(), "Failed to update Cover Photo", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Failed to upload Cover Photo", Toast.LENGTH_SHORT).show();
                 });
 
         dialog.dismiss();
@@ -273,7 +273,7 @@ public class ProfileFragment extends Fragment {
 
             reference.putFile(imageUri)
                     .addOnSuccessListener(taskSnapshot -> {
-                        Toast.makeText(getActivity(), "Profile photo uploaded successfully", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getActivity(), "Profile Photo uploaded successfully", Toast.LENGTH_SHORT).show();
 
                         // Get the download URL of the uploaded image
                         reference.getDownloadUrl().addOnSuccessListener(uri -> {
@@ -282,7 +282,7 @@ public class ProfileFragment extends Fragment {
                         });
                     })
                     .addOnFailureListener(e -> {
-                        Toast.makeText(getActivity(), "Failed to upload profile photo", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getActivity(), "Failed to upload profile photo", Toast.LENGTH_SHORT).show();
                     });
         }
     }
@@ -294,8 +294,8 @@ public class ProfileFragment extends Fragment {
         updates.put("profilePhotoUrl", imageUrl);
 
         userRef.updateChildren(updates)
-                .addOnSuccessListener(aVoid -> Toast.makeText(getActivity(), "Profile photo updated successfully", Toast.LENGTH_SHORT).show())
-                .addOnFailureListener(e -> Toast.makeText(getActivity(), "Failed to update profile photo", Toast.LENGTH_SHORT).show());
+                .addOnSuccessListener(aVoid -> Toast.makeText(getActivity(), "Profile Photo uploaded successfully", Toast.LENGTH_SHORT).show())
+                .addOnFailureListener(e -> Toast.makeText(getActivity(), "Failed to upload Profile Photo", Toast.LENGTH_SHORT).show());
 
         dialog.dismiss();
     }

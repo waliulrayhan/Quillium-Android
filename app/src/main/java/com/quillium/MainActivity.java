@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
                     finish();
                 } else {
                     // If login fails, display a message to the user.
-                    Toast.makeText(MainActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Login failed! Check your credentials.", Toast.LENGTH_SHORT).show();
                 }
             }
         });

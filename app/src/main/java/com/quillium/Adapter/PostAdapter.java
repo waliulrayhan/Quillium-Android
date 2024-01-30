@@ -111,6 +111,45 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder>{
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.exists()){
                             holder.binding.like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.thumb_up_fill, 0,0,0);
+
+//                            holder.binding.like.setOnClickListener(new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View v) {
+//                                    FirebaseDatabase.getInstance().getReference()
+//                                            .child("posts")
+//                                            .child(model.getPostId())
+//                                            .child("likes")
+//                                            .child(FirebaseAuth.getInstance().getUid())
+//                                            .setValue(true).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                                                @Override
+//                                                public void onSuccess(Void unused) {
+//                                                    FirebaseDatabase.getInstance().getReference()
+//                                                            .child("posts")
+//                                                            .child(model.getPostId())
+//                                                            .child("postLike")
+//                                                            .setValue(model.getPostLike()-1).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                                                                @Override
+//                                                                public void onSuccess(Void unused) {
+//                                                                    holder.binding.like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.thumb_up, 0,0,0);
+//
+////                                                                    Notification notification = new Notification();
+////                                                                    notification.setNotificationBy(FirebaseAuth.getInstance().getUid());
+////                                                                    notification.setNotificationAt(new Date().getTime());
+////                                                                    notification.setPostID(model.getPostId());
+////                                                                    notification.setPostedBy(model.getPostedBy());
+////                                                                    notification.setType("like");
+////
+////                                                                    FirebaseDatabase.getInstance().getReference()
+////                                                                            .child("notification")
+////                                                                            .child(model.getPostedBy())
+////                                                                            .push()
+////                                                                            .setValue(notification);
+//                                                                }
+//                                                            });
+//                                                }
+//                                            });
+//                                }
+//                            });
                         }
                         else {
                             holder.binding.like.setOnClickListener(new View.OnClickListener() {

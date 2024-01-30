@@ -93,6 +93,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/username"
         android:layout_marginStart="24dp"
+        android:textColor="@color/lightText"
         android:fontFamily="@font/sf_pro_regular"
         android:text="waliulrayhan"
         android:textSize="14sp"

@@ -28,7 +28,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/sf_pro_regular"
-        android:text="Md. Amin Islam mention you in a comment."
+        android:text="A user interacted on your post."
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/profile_image_picture"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,6 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/sf_pro_regular"
+        android:textColor="@color/lightText"
         android:text="Just now"
         app:layout_constraintStart_toStartOf="@+id/notification"
         app:layout_constraintTop_toBottomOf="@+id/notification" />

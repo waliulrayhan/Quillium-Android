@@ -24,22 +24,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/sf_pro_regular"
-        android:text="Md. Amin Islam"
-        android:textSize="18sp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/sf_pro_bold"
+        android:text="User Name"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/profile_picture_image"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/profile_picture_image" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="test@gmail.com"
+        android:textColor="@color/lightText"
+        android:text="User Email"
         android:fontFamily="@font/sf_pro_regular"
-        android:textSize="15sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/profile_picture_image"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -49,7 +50,7 @@
         android:layout_height="35dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
-        android:fontFamily="@font/sf_pro_regular"
+        android:fontFamily="@font/sf_pro_bold"
         android:background="@drawable/follow_btn_bg"
         android:text="Follow"
         android:textColor="#FFFFFF"
