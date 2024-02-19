@@ -1,24 +1,8 @@
 <h1 align="center">Quillium</h1>
 <p align="center">
-  <img src="logo.png" alt="Logo" width="100" height="100">
-</p>
-<p align="center">
   An Intra University Social Media Platform for Android
 </p>
 
-## Table of Contents
-
-- About the Project
-  - Built With
-- Getting Started
-  - Prerequisites
-  - Installation
-- Usage
-- Roadmap
-- Contributing
-- License
-- Contact
-- Acknowledgements
 
 ## About The Project
 
@@ -50,4 +34,4 @@ You need to have the following software installed on your computer:
 
 1. Clone the repository
    ```sh
-   git clone https://github.com/waliulrayhan/Quillium.git
+   git clone https://github.com/waliulrayhan/Quillium-Android.git
