@@ -59,4 +59,4 @@ Contributions are what makes the open-source community such an amazing place to 
 
 ### License
 
-Distributed under the MIT License. See LICENSE for more information.
+This project is licensed under the MIT License - see the <a href="LICENSE">LICENSE</a> file for details
