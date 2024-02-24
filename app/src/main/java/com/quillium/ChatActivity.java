@@ -175,6 +175,11 @@ public class ChatActivity extends BaseActivity {
                     isReceiverAvailable = availability == 1;
                 }
                 receiverUser.token = value.getString(Constants.KEY_FCM_TOKEN);
+                if (receiverUser.image == null){
+                    receiverUser.image = value.getString(Constants.KEY_IMAGE);
+                    chatAdapter.setReceiverProfileImage(getBitmapFromEncodedString(receiverUser.image));
+                    chatAdapter.notifyItemRangeChanged(0, chatMessages.size());
+                }
             }
             if (isReceiverAvailable){
                 binding.textAvailability.setVisibility(View.VISIBLE);
@@ -227,8 +232,12 @@ public class ChatActivity extends BaseActivity {
         }
     };
     private Bitmap getBitmapFromEncodedString(String encodedImage){
-        byte[] bytes = Base64.decode(encodedImage, Base64.DEFAULT);
-        return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        if (encodedImage != null){
+            byte[] bytes = Base64.decode(encodedImage, Base64.DEFAULT);
+            return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        }else {
+            return null;
+        }
     }
 
     private void loadReceiverDetails(){
