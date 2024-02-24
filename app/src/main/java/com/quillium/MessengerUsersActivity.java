@@ -15,8 +15,8 @@ import com.quillium.Adapter.UsersAdapter;
 import com.quillium.Listeners.UserListener;
 import com.quillium.Model.User;
 import com.quillium.databinding.ActivityMessengerUsersBinding;
-import com.quillium.Utils.Constants;
-import com.quillium.Utils.PreferenceManager;
+import com.quillium.utils.Constants;
+import com.quillium.utils.PreferenceManager;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -32,31 +32,27 @@
             android:exported="false"
             android:screenOrientation="locked" />
         <activity
-            android:name=".MessengerChatsItem"
+            android:name=".MessengerHomePageActivity"
             android:exported="false"
             android:screenOrientation="locked" />
         <activity
-            android:name=".MessengerHomePage"
+            android:name=".CreatePostActivity"
             android:exported="false"
             android:screenOrientation="locked" />
         <activity
-            android:name=".CreatePost"
+            android:name=".FirebaseRegistrationActivity"
             android:exported="false"
             android:screenOrientation="locked" />
         <activity
-            android:name=".FirebaseRegistration"
+            android:name=".HomePageActivity"
             android:exported="false"
             android:screenOrientation="locked" />
         <activity
-            android:name=".HomePage"
+            android:name=".TestLayoutActivity"
             android:exported="false"
             android:screenOrientation="locked" />
         <activity
-            android:name=".TestLayout"
-            android:exported="false"
-            android:screenOrientation="locked" />
-        <activity
-            android:name=".CreatePassword"
+            android:name=".CreatePasswordActivity"
             android:exported="false"
             android:screenOrientation="locked" />
         <activity
@@ -68,7 +64,7 @@
             android:exported="false"
             android:screenOrientation="locked" />
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="true"
             android:screenOrientation="locked">
             <intent-filter>

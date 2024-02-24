@@ -19,9 +19,9 @@ import com.quillium.Model.ChatMessage;
 import com.quillium.Network.ApiClient;
 import com.quillium.Network.ApiService;
 import com.quillium.databinding.ActivityChatBinding;
-import com.quillium.Utils.Constants;
+import com.quillium.utils.Constants;
 import com.quillium.Model.User;
-import com.quillium.Utils.PreferenceManager;
+import com.quillium.utils.PreferenceManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;

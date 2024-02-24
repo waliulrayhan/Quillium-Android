@@ -36,8 +36,8 @@ import com.quillium.Model.Follow;
 import com.quillium.R;
 import com.quillium.User;
 import com.quillium.databinding.FragmentProfileBinding;
-import com.quillium.Utils.Constants;
-import com.quillium.Utils.PreferenceManager;
+import com.quillium.utils.Constants;
+import com.quillium.utils.PreferenceManager;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;

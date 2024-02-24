@@ -48,15 +48,15 @@ import com.quillium.Fragment.FriendFragment;
 import com.quillium.Fragment.HomeFragment;
 import com.quillium.Fragment.NotificationFragment;
 import com.quillium.Fragment.ProfileFragment;
-import com.quillium.Utils.Constants;
-import com.quillium.Utils.PreferenceManager;
+import com.quillium.utils.Constants;
+import com.quillium.utils.PreferenceManager;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class HomePage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class HomePageActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawerLayout;
     BottomNavigationView bottomNavigationView;
     FragmentManager fragmentManager;
@@ -197,16 +197,16 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
         int itemID = item.getItemId();
         if (itemID == R.id.nav_home) {
 //            openFragment(new HomeFragment());
-            Toast.makeText(HomePage.this, "Home Menu is Clicked", Toast.LENGTH_LONG).show();
+            Toast.makeText(HomePageActivity.this, "Home Menu is Clicked", Toast.LENGTH_LONG).show();
         } else if (itemID == R.id.nav_settings) {
 //            openFragment(new FriendFragment());
-            Toast.makeText(HomePage.this, "Settings Menu is Clicked", Toast.LENGTH_LONG).show();
+            Toast.makeText(HomePageActivity.this, "Settings Menu is Clicked", Toast.LENGTH_LONG).show();
         } else if (itemID == R.id.nav_share) {
 //            openFragment(new NotificationFragment());
-            Toast.makeText(HomePage.this, "Share Menu is Clicked", Toast.LENGTH_LONG).show();
+            Toast.makeText(HomePageActivity.this, "Share Menu is Clicked", Toast.LENGTH_LONG).show();
         } else if (itemID == R.id.nav_about) {
 //            openFragment(new ProfileFragment());
-            Toast.makeText(HomePage.this, "About Menu is Clicked", Toast.LENGTH_LONG).show();
+            Toast.makeText(HomePageActivity.this, "About Menu is Clicked", Toast.LENGTH_LONG).show();
         } else if (itemID == R.id.nav_logout) {
             FirebaseFirestore firestore = FirebaseFirestore.getInstance();
             DocumentReference documentReference = firestore.collection(Constants.KEY_COLLECTION_USERS).document(
@@ -225,7 +225,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
                             Toast.makeText(getApplicationContext(), "Successfully logged out", Toast.LENGTH_LONG).show();
 
                             // Redirect the user to the login screen or perform any other necessary actions
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                             startActivity(intent);
                             finish(); // Close the current activity to prevent the user from going back
                         }
@@ -271,7 +271,7 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
             public void onClick(View v) {
                 dialog.dismiss();
 //                openFragment(new CreatePostFragment());
-                Intent intent = new Intent(HomePage.this, CreatePost.class);
+                Intent intent = new Intent(HomePageActivity.this, CreatePostActivity.class);
                 startActivity(intent);
 //                Toast.makeText(HomePage.this, "Create a Post is clicked", Toast.LENGTH_SHORT).show();
             }
@@ -318,9 +318,9 @@ public class HomePage extends AppCompatActivity implements NavigationView.OnNavi
             return true;
         } else */if (id == R.id.menu_messenger) {
 //            openFragment(new FriendFragment());
-            Intent intent = new Intent(HomePage.this, MessengerHomePage.class);
+            Intent intent = new Intent(HomePageActivity.this, MessengerHomePageActivity.class);
             startActivity(intent);
-            Toast.makeText(HomePage.this, "Messenger button is clicked", Toast.LENGTH_LONG).show();
+            Toast.makeText(HomePageActivity.this, "Messenger button is clicked", Toast.LENGTH_LONG).show();
             return true;
         }
         return super.onOptionsItemSelected(item);

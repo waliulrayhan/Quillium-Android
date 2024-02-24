@@ -1,4 +1,4 @@
-package com.quillium.Utils;
+package com.quillium.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;

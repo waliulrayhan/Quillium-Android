@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@mipmap/app_bg"
     android:backgroundTintMode="src_over"
-    tools:context=".FirebaseRegistration">
+    tools:context=".FirebaseRegistrationActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

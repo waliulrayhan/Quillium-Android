@@ -19,14 +19,14 @@ import com.quillium.Listeners.ConversionListener;
 import com.quillium.Model.ChatMessage;
 import com.quillium.Model.User;
 import com.quillium.databinding.ActivityMessengerHomePageBinding;
-import com.quillium.Utils.Constants;
-import com.quillium.Utils.PreferenceManager;
+import com.quillium.utils.Constants;
+import com.quillium.utils.PreferenceManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MessengerHomePage extends BaseActivity implements ConversionListener {
+public class MessengerHomePageActivity extends BaseActivity implements ConversionListener {
 
     private ActivityMessengerHomePageBinding binding;
     private PreferenceManager preferenceManager;

@@ -1,4 +1,4 @@
-package com.quillium.Utils;
+package com.quillium.utils;
 
 import java.util.HashMap;
 
