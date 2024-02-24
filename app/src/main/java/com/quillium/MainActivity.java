@@ -19,8 +19,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.quillium.utils.Constants;
-import com.quillium.utils.PreferenceManager;
+import com.quillium.Utils.Constants;
+import com.quillium.Utils.PreferenceManager;
 
 public class MainActivity extends AppCompatActivity {
 

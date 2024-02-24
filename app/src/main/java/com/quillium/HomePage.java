@@ -1,7 +1,6 @@
 package com.quillium;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -49,8 +48,8 @@ import com.quillium.Fragment.FriendFragment;
 import com.quillium.Fragment.HomeFragment;
 import com.quillium.Fragment.NotificationFragment;
 import com.quillium.Fragment.ProfileFragment;
-import com.quillium.utils.Constants;
-import com.quillium.utils.PreferenceManager;
+import com.quillium.Utils.Constants;
+import com.quillium.Utils.PreferenceManager;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;

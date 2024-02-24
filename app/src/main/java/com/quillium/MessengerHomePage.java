@@ -19,8 +19,8 @@ import com.quillium.Listeners.ConversionListener;
 import com.quillium.Model.ChatMessage;
 import com.quillium.Model.User;
 import com.quillium.databinding.ActivityMessengerHomePageBinding;
-import com.quillium.utils.Constants;
-import com.quillium.utils.PreferenceManager;
+import com.quillium.Utils.Constants;
+import com.quillium.Utils.PreferenceManager;
 
 import java.util.ArrayList;
 import java.util.Collections;

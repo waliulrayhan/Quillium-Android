@@ -30,8 +30,8 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.quillium.utils.Constants;
-import com.quillium.utils.PreferenceManager;
+import com.quillium.Utils.Constants;
+import com.quillium.Utils.PreferenceManager;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;

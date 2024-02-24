@@ -18,7 +18,7 @@ import com.google.firebase.messaging.RemoteMessage;
 import com.quillium.ChatActivity;
 import com.quillium.Model.User;
 import com.quillium.R;
-import com.quillium.utils.Constants;
+import com.quillium.Utils.Constants;
 
 import java.util.Random;
 

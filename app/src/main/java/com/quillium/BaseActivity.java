@@ -7,8 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.quillium.utils.Constants;
-import com.quillium.utils.PreferenceManager;
+import com.quillium.Utils.Constants;
+import com.quillium.Utils.PreferenceManager;
 
 public class BaseActivity extends AppCompatActivity {
     private DocumentReference documentReference;
