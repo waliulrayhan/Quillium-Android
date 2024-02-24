@@ -29,7 +29,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.quillium.Adapter.RecentConversationsAdapter;
+import com.quillium.Listeners.ConversionListener;
 import com.quillium.Model.ChatMessage;
+import com.quillium.Model.User;
 import com.quillium.databinding.ActivityMessengerHomePageBinding;
 import com.quillium.utils.Constants;
 import com.quillium.utils.PreferenceManager;
@@ -183,7 +185,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 //    }
 
 //}
-public class MessengerHomePage extends AppCompatActivity {
+public class MessengerHomePage extends AppCompatActivity implements ConversionListener {
 
     private ActivityMessengerHomePageBinding binding;
     private PreferenceManager preferenceManager;
@@ -211,7 +213,7 @@ public class MessengerHomePage extends AppCompatActivity {
     private void init(){
         preferenceManager = new PreferenceManager(getApplicationContext());
         conversations = new ArrayList<>();
-        conversationsAdapter = new RecentConversationsAdapter(conversations);
+        conversationsAdapter = new RecentConversationsAdapter(conversations, this);
         binding.conversationsRecyclerView.setAdapter(conversationsAdapter);
         firestore = FirebaseFirestore.getInstance();
     }
@@ -306,5 +308,12 @@ public class MessengerHomePage extends AppCompatActivity {
         } else {
             binding.messageImageViewID.setImageResource(R.drawable.man); // or any other default image
         }
+    }
+
+    @Override
+    public void onConversionClicked(User user) {
+        Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
+        intent.putExtra(Constants.KEY_USER, user);
+        startActivity(intent);
     }
 }
