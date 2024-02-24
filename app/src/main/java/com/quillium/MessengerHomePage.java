@@ -118,6 +118,7 @@ public class MessengerHomePage extends BaseActivity implements ConversionListene
     }
 
     private void updateToken(String token) {
+        preferenceManager.putString(Constants.KEY_FCM_TOKEN,token);
         String userId = preferenceManager.getString(Constants.KEY_USER_ID);
         if (userId != null) {
             FirebaseFirestore firestore = FirebaseFirestore.getInstance();
