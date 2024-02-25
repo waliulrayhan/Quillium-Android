@@ -28,7 +28,7 @@
             android:text="Share Your Thoughts"
             android:textAlignment="viewStart"
             android:textColor="@color/black"
-            android:textSize="25dp" />
+            android:textSize="20sp" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -61,33 +61,33 @@
             android:text="Create Post"
             android:textColor="@color/lavender"
             android:layout_marginLeft="30dp"
-            android:textSize="20sp"/>
+            android:textSize="16sp"/>
 
     </LinearLayout>
 
-<!--    <LinearLayout-->
-<!--        android:id="@+id/createStory"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:padding="10dp">-->
+    <LinearLayout
+        android:id="@+id/createStory"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
 
 
-<!--        <ImageView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:src="@drawable/short_stay_24px"/>-->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/edit_square_24px"/>
 
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:fontFamily="@font/sf_pro_regular"-->
-<!--            android:text="Create Story"-->
-<!--            android:textColor="@color/lavender"-->
-<!--            android:layout_marginLeft="30dp"-->
-<!--            android:textSize="16sp"/>-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_pro_regular"
+            android:text="Create a Story"
+            android:textColor="@color/lavender"
+            android:layout_marginLeft="30dp"
+            android:textSize="16sp"/>
 
-<!--    </LinearLayout>-->
+    </LinearLayout>
 
 <!--    <LinearLayout-->
 <!--        android:id="@+id/layoutLive"-->
