@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -67,6 +68,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
     DatabaseReference userRef;
     CircleImageView profile;
     private PreferenceManager preferenceManager;
+    ProgressDialog dialog;
 
 
     @Override
@@ -86,6 +88,12 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
 
         preferenceManager = new PreferenceManager(getApplicationContext());
 
+        dialog = new ProgressDialog(this);
+
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.setTitle("Logging Out from Quillium");
+        dialog.setMessage("Please wait...");
+        dialog.setCancelable(false);
 
         fab = findViewById(R.id.fab);
         toolbar = findViewById(R.id.toolbar);
@@ -208,6 +216,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
 //            openFragment(new ProfileFragment());
             Toast.makeText(HomePageActivity.this, "About Menu is Clicked", Toast.LENGTH_LONG).show();
         } else if (itemID == R.id.nav_logout) {
+            dialog.show();
             FirebaseFirestore firestore = FirebaseFirestore.getInstance();
             DocumentReference documentReference = firestore.collection(Constants.KEY_COLLECTION_USERS).document(
                     preferenceManager.getString(Constants.KEY_USER_ID)
@@ -223,6 +232,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
                             auth.signOut();
                             preferenceManager.clear();
                             Toast.makeText(getApplicationContext(), "Successfully logged out", Toast.LENGTH_LONG).show();
+                            dialog.dismiss();
 
                             // Redirect the user to the login screen or perform any other necessary actions
                             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
@@ -234,6 +244,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
                         public void onFailure(@NonNull Exception e) {
                             // Failed to update FCM token
                             Toast.makeText(getApplicationContext(), "Unable to Sign Out.", Toast.LENGTH_LONG).show();
+                            dialog.dismiss();
                         }
                     });
         }

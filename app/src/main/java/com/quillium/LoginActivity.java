@@ -2,10 +2,12 @@ package com.quillium;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,12 +30,14 @@ public class LoginActivity extends AppCompatActivity {
     private Button loginButton;
     private FirebaseAuth firebaseAuth;
     private PreferenceManager preferenceManager;
+    ProgressBar circularLoading;
 
 
     // SharedPreferences key constants
     private static final String PREF_NAME = "LoginPrefs";
     private static final String KEY_EMAIL = "email";
     private static final String KEY_PASSWORD = "password";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,14 +48,12 @@ public class LoginActivity extends AppCompatActivity {
         emailEditText = findViewById(R.id.student_email);
         passwordEditText = findViewById(R.id.password_id);
         loginButton = findViewById(R.id.button_login);
+        circularLoading = findViewById(R.id.circularLoading); // Initialize here
+
+        // Set the color programmatically
+        circularLoading.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.primary), PorterDuff.Mode.SRC_IN);
 
         preferenceManager = new PreferenceManager(getApplicationContext());
-
-
-        // open register activity
-        TextView Register = findViewById(R.id.textView_register);
-        TextView FRegister = findViewById(R.id.textView_firebase_register);
-
 
         // Check if the user is already authenticated
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
@@ -69,6 +71,10 @@ public class LoginActivity extends AppCompatActivity {
         // Set saved values to EditText fields
         emailEditText.setText(savedEmail);
         passwordEditText.setText(savedPassword);
+
+        // Open register activity
+        TextView Register = findViewById(R.id.textView_register);
+        TextView FRegister = findViewById(R.id.textView_firebase_register);
 
         FRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,24 +95,24 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                loginButton.setVisibility(View.INVISIBLE);
+                circularLoading.setVisibility(View.VISIBLE); // Show here
 
                 String email = emailEditText.getText().toString().trim();
                 String password = passwordEditText.getText().toString().trim();
 
                 if (!email.isEmpty() && !password.isEmpty()) {
-                    // Save login information
-//                    saveLoginInfo(email, password);
-
-                    // Login user
                     loginUser(email, password);
-
                     addDataToFirestore(email, password);
                 } else {
                     Toast.makeText(LoginActivity.this, "Please enter email and password", Toast.LENGTH_SHORT).show();
+                    loginButton.setVisibility(View.VISIBLE);
+                    circularLoading.setVisibility(View.INVISIBLE);
                 }
             }
         });
     }
+
 
     private void saveLoginInfo(String email, String password) {
         // Save login information using SharedPreferences
@@ -122,6 +128,11 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task task) {
                 if (task.isSuccessful()) {
+
+                    // Add your logic to navigate to the next activity or perform other actions
+                    loginButton.setVisibility(View.VISIBLE);
+                    circularLoading.setVisibility(View.INVISIBLE);
+
                     // Login successful
                     Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
 
@@ -134,6 +145,10 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 } else {
+                    // Add your logic to navigate to the next activity or perform other actions
+                    loginButton.setVisibility(View.VISIBLE);
+                    circularLoading.setVisibility(View.INVISIBLE);
+
                     // If login fails, display a message to the user.
                     Toast.makeText(LoginActivity.this, "Login failed! Check your credentials.", Toast.LENGTH_SHORT).show();
                 }
@@ -161,7 +176,6 @@ public class LoginActivity extends AppCompatActivity {
 //                            startActivity(intent);
 //                            finish();
                             Toast.makeText(LoginActivity.this, "Token User Id: "+documentSnapshot.getId(), Toast.LENGTH_SHORT).show();
-
                         }
                     }
                 });
