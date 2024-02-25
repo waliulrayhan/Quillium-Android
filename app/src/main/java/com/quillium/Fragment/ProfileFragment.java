@@ -57,7 +57,7 @@ public class ProfileFragment extends Fragment {
     DatabaseReference userRef, databaseReference;
     RecyclerView recyclerView;
     ArrayList<Follow> list;
-    ProgressDialog dialog;
+    ProgressDialog profileDialog, coverDialog;
     String encodeImage;
     private PreferenceManager preferenceManager;
 
@@ -78,8 +78,6 @@ public class ProfileFragment extends Fragment {
         storage = FirebaseStorage.getInstance();
         database = FirebaseDatabase.getInstance();
 
-        dialog = new ProgressDialog(getContext());
-
     }
 
     @Override
@@ -97,10 +95,17 @@ public class ProfileFragment extends Fragment {
         recyclerView = view.findViewById(R.id.followersRV);
         followCount = view.findViewById(R.id.followers);
 
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        dialog.setTitle("Profile photo is uploading");
-        dialog.setMessage("Please wait...");
-        dialog.setCancelable(false);
+        profileDialog = new ProgressDialog(getActivity());
+        profileDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        profileDialog.setTitle("Profile photo is uploading");
+        profileDialog.setMessage("Please wait...");
+        profileDialog.setCancelable(false);
+
+        coverDialog = new ProgressDialog(getActivity());
+        coverDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        coverDialog.setTitle("Cover photo is uploading");
+        coverDialog.setMessage("Please wait...");
+        coverDialog.setCancelable(false);
 
         list = new ArrayList<>();
 
@@ -211,7 +216,7 @@ public class ProfileFragment extends Fragment {
                 // Set the selected image to the profile photo
                 profilePhoto.setImageURI(imageUri);
 
-                dialog.show();
+                profileDialog.show();
 
 //                try {
 //                    InputStream inputStream = getActivity().getContentResolver().openInputStream(imageUri);
@@ -267,7 +272,7 @@ public class ProfileFragment extends Fragment {
                 // Set the selected image to the cover photo
                 cPhoto.setImageURI(imageUri);
 
-                dialog.show();
+                coverDialog.show();
 
                 // Upload the cover photo to Firebase if needed
                  uploadCoverPhotoToFirebase();
@@ -347,17 +352,17 @@ public class ProfileFragment extends Fragment {
                     .update(updateData)
                     .addOnSuccessListener(aVoid -> {
                         // Profile photo uploaded successfully
-                        dialog.dismiss(); // dismiss the dialog
+//                        profileDialog.dismiss(); // dismiss the dialog
                         Toast.makeText(getActivity(), "Profile photo uploaded to Firestore", Toast.LENGTH_SHORT).show();
                     })
                     .addOnFailureListener(e -> {
                         // Handle failure
-                        dialog.dismiss(); // dismiss the dialog
+//                        profileDialog.dismiss(); // dismiss the dialog
                         Toast.makeText(getActivity(), "Failed to upload profile photo to Firestore", Toast.LENGTH_SHORT).show();
                     });
         } else {
             // Handle case where current user ID is null
-            dialog.dismiss(); // dismiss the dialog
+//            profileDialog.dismiss(); // dismiss the dialog
             Toast.makeText(getActivity(), "User ID not found", Toast.LENGTH_SHORT).show();
         }
     }
@@ -376,8 +381,6 @@ public class ProfileFragment extends Fragment {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             // Image uploaded successfully
-//                            Toast.makeText(getActivity(), "Image uploaded successfully", Toast.LENGTH_SHORT).show();
-
                             // Get the download URL of the uploaded image
                             reference.getDownloadUrl().addOnSuccessListener(uri -> {
                                 // Update user data in the database with the image URL
@@ -387,7 +390,6 @@ public class ProfileFragment extends Fragment {
                     })
                     .addOnFailureListener(e -> {
                         // Handle any errors that occurred during the upload
-//                        Toast.makeText(getActivity(), "Failed to upload image", Toast.LENGTH_SHORT).show();
                     });
 
         }
@@ -411,7 +413,7 @@ public class ProfileFragment extends Fragment {
                     Toast.makeText(getActivity(), "Failed to upload Cover Photo", Toast.LENGTH_SHORT).show();
                 });
 
-        dialog.dismiss();
+        coverDialog.dismiss();
     }
 
     private void uploadProfilePhotoToFirebase() {
@@ -421,8 +423,6 @@ public class ProfileFragment extends Fragment {
 
             reference.putFile(imageUri)
                     .addOnSuccessListener(taskSnapshot -> {
-//                        Toast.makeText(getActivity(), "Profile Photo uploaded successfully", Toast.LENGTH_SHORT).show();
-
                         // Get the download URL of the uploaded image
                         reference.getDownloadUrl().addOnSuccessListener(uri -> {
                             // Update user data in the database with the profile photo URL
@@ -430,7 +430,6 @@ public class ProfileFragment extends Fragment {
                         });
                     })
                     .addOnFailureListener(e -> {
-//                        Toast.makeText(getActivity(), "Failed to upload profile photo", Toast.LENGTH_SHORT).show();
                     });
         }
     }
@@ -445,6 +444,6 @@ public class ProfileFragment extends Fragment {
                 .addOnSuccessListener(aVoid -> Toast.makeText(getActivity(), "Profile Photo uploaded successfully", Toast.LENGTH_SHORT).show())
                 .addOnFailureListener(e -> Toast.makeText(getActivity(), "Failed to upload Profile Photo", Toast.LENGTH_SHORT).show());
 
-        dialog.dismiss();
+        profileDialog.dismiss();
     }
 }

@@ -1,9 +1,11 @@
 package com.quillium;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -15,7 +17,9 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -45,14 +49,20 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.quillium.Fragment.FriendFragment;
 import com.quillium.Fragment.HomeFragment;
 import com.quillium.Fragment.NotificationFragment;
 import com.quillium.Fragment.ProfileFragment;
+import com.quillium.Model.Story;
+import com.quillium.Model.UserStories;
 import com.quillium.utils.Constants;
 import com.quillium.utils.PreferenceManager;
 import com.squareup.picasso.Picasso;
 
+import java.util.Date;
 import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -68,7 +78,11 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
     DatabaseReference userRef;
     CircleImageView profile;
     private PreferenceManager preferenceManager;
-    ProgressDialog dialog;
+    ProgressDialog storyDialog, logoutDialog;
+    private Uri imageUri;
+    private static final int PICK_IMAGE_REQUEST_STORIES = 3;
+    FirebaseStorage storage;
+    FirebaseDatabase database;
 
 
     @Override
@@ -87,13 +101,20 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
 //        }
 
         preferenceManager = new PreferenceManager(getApplicationContext());
+        storage = FirebaseStorage.getInstance();
+        database = FirebaseDatabase.getInstance();
 
-        dialog = new ProgressDialog(this);
+        storyDialog = new ProgressDialog(this);
+        storyDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        storyDialog.setTitle("Story Uploading");
+        storyDialog.setMessage("Please wait...");
+        storyDialog.setCancelable(false);
 
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        dialog.setTitle("Logging Out from Quillium");
-        dialog.setMessage("Please wait...");
-        dialog.setCancelable(false);
+        logoutDialog = new ProgressDialog(this);
+        logoutDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        logoutDialog.setTitle("Signing out from Quillium");
+        logoutDialog.setMessage("Please Wait...");
+        logoutDialog.setCancelable(false);
 
         fab = findViewById(R.id.fab);
         toolbar = findViewById(R.id.toolbar);
@@ -216,7 +237,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
 //            openFragment(new ProfileFragment());
             Toast.makeText(HomePageActivity.this, "About Menu is Clicked", Toast.LENGTH_LONG).show();
         } else if (itemID == R.id.nav_logout) {
-            dialog.show();
+            logoutDialog.show();
             FirebaseFirestore firestore = FirebaseFirestore.getInstance();
             DocumentReference documentReference = firestore.collection(Constants.KEY_COLLECTION_USERS).document(
                     preferenceManager.getString(Constants.KEY_USER_ID)
@@ -232,7 +253,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
                             auth.signOut();
                             preferenceManager.clear();
                             Toast.makeText(getApplicationContext(), "Successfully logged out", Toast.LENGTH_LONG).show();
-                            dialog.dismiss();
+                            logoutDialog.dismiss();
 
                             // Redirect the user to the login screen or perform any other necessary actions
                             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
@@ -244,7 +265,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
                         public void onFailure(@NonNull Exception e) {
                             // Failed to update FCM token
                             Toast.makeText(getApplicationContext(), "Unable to Sign Out.", Toast.LENGTH_LONG).show();
-                            dialog.dismiss();
+                            logoutDialog.dismiss();
                         }
                     });
         }
@@ -273,9 +294,9 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.bottomsheetlayout);
 
-        LinearLayout createPostLayout = dialog.findViewById(R.id.createPost);
-//        LinearLayout createStoryLayout = dialog.findViewById(R.id.createStory);
-        ImageView cancelButton = dialog.findViewById(R.id.cancelButton);
+        ConstraintLayout createPostLayout = dialog.findViewById(R.id.createPost);
+        ConstraintLayout createStoryLayout = dialog.findViewById(R.id.createStory);
+//        ImageView cancelButton = dialog.findViewById(R.id.cancelButton);
 
         createPostLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -288,20 +309,21 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
             }
         });
 
-//        createStoryLayout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                dialog.dismiss();
-//                Toast.makeText(HomePage.this, "Create a Story is Clicked", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
-        cancelButton.setOnClickListener(new View.OnClickListener() {
+        createStoryLayout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 dialog.dismiss();
+                Toast.makeText(getApplicationContext(), "Create a Story is Clicked", Toast.LENGTH_SHORT).show();
+                openGalleryForStories();
             }
         });
+
+//        cancelButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                dialog.dismiss();
+//            }
+//        });
 
         dialog.show();
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -336,4 +358,69 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         }
         return super.onOptionsItemSelected(item);
     }
+
+    private void openGalleryForStories() {
+        // Open gallery for Stories photo
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(galleryIntent, PICK_IMAGE_REQUEST_STORIES);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK && data != null && data.getData() != null) {
+            imageUri = data.getData();
+
+            if (requestCode == PICK_IMAGE_REQUEST_STORIES) { // Check the request code
+                // Set the selected image to the Stories photo
+//            addStoryImage.setImageURI(imageUri);
+
+                storyDialog.show();
+
+                final StorageReference reference = storage.getReference()
+                        .child("stories")
+                        .child(FirebaseAuth.getInstance().getUid())
+                        .child(new Date().getTime()+"");
+
+                reference.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                Story story = new Story();
+                                story.setStoryAt(String.valueOf(new Date().getTime()));
+
+                                database.getReference()
+                                        .child("stories")
+                                        .child(FirebaseAuth.getInstance().getUid())
+                                        .child("postedBy")
+                                        .setValue(story.getStoryAt()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void unused) {
+                                                UserStories stories = new UserStories(uri.toString(),story.getStoryAt());
+
+                                                database.getReference()
+                                                        .child("stories")
+                                                        .child(FirebaseAuth.getInstance().getUid())
+                                                        .child("userStories")
+                                                        .push()
+                                                        .setValue(stories).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                            @Override
+                                                            public void onSuccess(Void unused) {
+                                                                Toast.makeText(HomePageActivity.this, "Story Uploaded Successfully.", Toast.LENGTH_LONG).show();
+                                                                storyDialog.dismiss();
+                                                            }
+                                                        });
+                                            }
+                                        });
+                            }
+                        });
+                    }
+                });
+            }
+        }
+    }
+
 }

@@ -3,6 +3,7 @@ package com.quillium;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
 
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -40,7 +41,7 @@ public class CreatePostActivity extends AppCompatActivity {
 
     ImageView postPhotoImageView;
 
-    Button closeButton;
+    AppCompatImageView closeButton;
     TextView Name;
     FirebaseAuth auth;
     DatabaseReference userRef, databaseReference;
@@ -67,13 +68,7 @@ public class CreatePostActivity extends AppCompatActivity {
         postPhotoImageView = findViewById(R.id.create_post_PostPhoto);
         profile = findViewById(R.id.profilePictureCreatePost);
 
-        closeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(CreatePostActivity.this, HomePageActivity.class);
-                startActivity(intent);
-            }
-        });
+        closeButton.setOnClickListener(v -> onBackPressed());
 
         // Initialize Firebase Auth and Database references
         auth = FirebaseAuth.getInstance();
