@@ -223,6 +223,7 @@ public class FirebaseRegistrationActivity extends AppCompatActivity {
         firestore.collection(Constants.KEY_COLLECTION_USERS)
                 .add(user)
                 .addOnSuccessListener(documentReference -> {
+                    Toast.makeText(getApplicationContext(), "encodedImage is "+encodedImage, Toast.LENGTH_LONG).show();
                     preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
                     preferenceManager.putString(Constants.KEY_USER_ID, documentReference.getId());
                     preferenceManager.putString(Constants.KEY_NAME, fullname);
@@ -230,7 +231,7 @@ public class FirebaseRegistrationActivity extends AppCompatActivity {
                     Intent intent = new Intent(FirebaseRegistrationActivity.this, LoginActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
-                    Toast.makeText(FirebaseRegistrationActivity.this, "Data Inserted to Firestore", Toast.LENGTH_LONG).show();
+                    Toast.makeText(FirebaseRegistrationActivity.this, "Data Inserted to Firestore", Toast.LENGTH_SHORT).show();
                 })
                 .addOnFailureListener(exception -> {
                     Toast.makeText(FirebaseRegistrationActivity.this, exception.getMessage(), Toast.LENGTH_LONG).show();
