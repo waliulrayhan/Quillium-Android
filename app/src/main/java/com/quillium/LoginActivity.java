@@ -32,12 +32,6 @@ public class LoginActivity extends AppCompatActivity {
     private PreferenceManager preferenceManager;
     ProgressBar circularLoading;
 
-
-    // SharedPreferences key constants
-    private static final String PREF_NAME = "LoginPrefs";
-    private static final String KEY_EMAIL = "email";
-    private static final String KEY_PASSWORD = "password";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,16 +56,6 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(new Intent(LoginActivity.this, HomePageActivity.class));
             finish(); // Finish the MainActivity to prevent going back when pressing back button
         }
-
-        // Retrieve saved login information
-        SharedPreferences preferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
-        String savedEmail = preferences.getString(KEY_EMAIL, "");
-        String savedPassword = preferences.getString(KEY_PASSWORD, "");
-
-        // Set saved values to EditText fields
-        emailEditText.setText(savedEmail);
-        passwordEditText.setText(savedPassword);
-
         // Open register activity
         TextView Register = findViewById(R.id.textView_register);
         TextView FRegister = findViewById(R.id.textView_firebase_register);
@@ -113,16 +97,6 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-
-    private void saveLoginInfo(String email, String password) {
-        // Save login information using SharedPreferences
-        SharedPreferences preferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(KEY_EMAIL, email);
-        editor.putString(KEY_PASSWORD, password);
-        editor.apply();
-    }
-
     private void loginUser(String email, String password) {
         firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener() {
             @Override
@@ -137,9 +111,6 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
 
                     // Add your logic to navigate to the next activity or perform other actions
-//                    Intent intent = new Intent(MainActivity.this, HomePage.class);
-//                    startActivity(intent);
-//                    finish();
                     Intent intent = new Intent(getApplicationContext(), HomePageActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
@@ -171,10 +142,6 @@ public class LoginActivity extends AppCompatActivity {
                             preferenceManager.putString(Constants.KEY_USER_ID, documentSnapshot.getId());
                             preferenceManager.putString(Constants.KEY_NAME, documentSnapshot.getString(Constants.KEY_NAME));
                             preferenceManager.putString(Constants.KEY_IMAGE, documentSnapshot.getString(Constants.KEY_IMAGE));
-//                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-//                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                            startActivity(intent);
-//                            finish();
                             Toast.makeText(LoginActivity.this, "Token User Id: "+documentSnapshot.getId(), Toast.LENGTH_SHORT).show();
                         }
                     }
