@@ -75,7 +75,7 @@
             app:hintAnimationEnabled="true"
             app:hintEnabled="true"
             app:hintTextColor="@color/primary"
-            app:startIconDrawable="@drawable/round_person_24">
+            app:startIconDrawable="@drawable/round_email_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/student_email"

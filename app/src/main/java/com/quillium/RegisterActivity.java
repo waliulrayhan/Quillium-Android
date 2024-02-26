@@ -42,8 +42,8 @@ public class RegisterActivity extends AppCompatActivity {
 //        dateOfBirthButton.setOnClickListener(view -> openDatePicker());
 
         // Set dynamic hints and show keyboard when EditTexts gain focus
-        setEditTextFocusListener(studentFullNameEditText, "(e.g: John Doe)");
-        setEditTextFocusListener(studentEmailEditText, "(e.g: b190305034@cse.jnu.ac.bd)");
+//        setEditTextFocusListener(studentFullNameEditText, "(e.g: John Doe)");
+//        setEditTextFocusListener(studentEmailEditText, "(e.g: b190305034@cse.jnu.ac.bd)");
 
         loginTextView.setOnClickListener(view -> openLoginActivity());
 
