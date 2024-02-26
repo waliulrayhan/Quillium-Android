@@ -22,10 +22,8 @@ import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
     private Button verifyButton;
-    //    private Button dateOfBirthButton;
     private TextInputEditText studentFullNameEditText, studentEmailEditText;
     private TextView loginTextView;
-    //    private String selectedDate = "";
     CircularProgressIndicator circularLoading;
     String std_id = null;
     String dept_code = null;
@@ -35,7 +33,6 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-//        dateOfBirthButton = findViewById(R.id.date_of_birth_field);
         studentFullNameEditText = findViewById(R.id.student_id);
         studentEmailEditText = findViewById(R.id.student_hsc_roll);
         loginTextView = findViewById(R.id.textView_login);
@@ -204,9 +201,5 @@ public class RegisterActivity extends AppCompatActivity {
             verifyButton.setVisibility(View.VISIBLE);
             circularLoading.setVisibility(View.INVISIBLE);
         }
-    }
-
-    private void verifyEmailActivity(String email, String name) {
-
     }
 }

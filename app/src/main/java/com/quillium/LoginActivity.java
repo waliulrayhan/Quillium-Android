@@ -49,24 +49,9 @@ public class LoginActivity extends AppCompatActivity {
 
         preferenceManager = new PreferenceManager(getApplicationContext());
 
-        // Check if the user is already authenticated
-//        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-//        if (currentUser != null) {
-//            // User is already logged in, navigate to HomePage
-//            startActivity(new Intent(LoginActivity.this, HomePageActivity.class));
-//            finish(); // Finish the MainActivity to prevent going back when pressing back button
-//        }
         // Open register activity
         TextView Register = findViewById(R.id.textView_register);
-//        TextView FRegister = findViewById(R.id.textView_firebase_register);
 
-//        FRegister.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(LoginActivity.this, FirebaseRegistrationActivity.class);
-//                startActivity(intent);
-//            }
-//        });
 
         Register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (!email.isEmpty() && !password.isEmpty()) {
                     loginUser(email, password);
                 } else {
-                    Toast.makeText(LoginActivity.this, "Please enter email and password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Please enter your email and password.", Toast.LENGTH_SHORT).show();
                     loginButton.setVisibility(View.VISIBLE);
                     circularLoading.setVisibility(View.INVISIBLE);
                 }
@@ -110,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
                         circularLoading.setVisibility(View.INVISIBLE);
 
                         // Login successful
-                        Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
 
                         addDataToFirestore(email, password);
 
@@ -122,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
                     } else {
                         loginButton.setVisibility(View.VISIBLE);
                         circularLoading.setVisibility(View.INVISIBLE);
-                        Toast.makeText(LoginActivity.this, "Verify Your Email First.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Please verify your email first.", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     // Add your logic to navigate to the next activity or perform other actions
@@ -130,7 +115,7 @@ public class LoginActivity extends AppCompatActivity {
                     circularLoading.setVisibility(View.INVISIBLE);
 
                     // If login fails, display a message to the user.
-                    Toast.makeText(LoginActivity.this, "Login failed! Check your credentials.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Email and password do not match.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -153,7 +138,7 @@ public class LoginActivity extends AppCompatActivity {
                             preferenceManager.putString(Constants.KEY_IMAGE, documentSnapshot.getString(Constants.KEY_IMAGE));
                             preferenceManager.putString(Constants.KEY_STUDENT_ID, documentSnapshot.getString(Constants.KEY_STUDENT_ID));
                             preferenceManager.putString(Constants.KEY_DEPARTMENT, documentSnapshot.getString(Constants.KEY_DEPARTMENT));
-                            Toast.makeText(LoginActivity.this, "Token User Id: " + documentSnapshot.getId(), Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(LoginActivity.this, "Token User Id: " + documentSnapshot.getId(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

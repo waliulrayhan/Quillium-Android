@@ -92,7 +92,7 @@ public class CreatePasswordActivity extends AppCompatActivity {
                 } else {
                     createAccount.setVisibility(View.VISIBLE);
                     circularLoading.setVisibility(View.INVISIBLE);
-                    Toast.makeText(CreatePasswordActivity.this, "Please fill out all the fields", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreatePasswordActivity.this, "Please fill out all the fields.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -115,11 +115,7 @@ public class CreatePasswordActivity extends AppCompatActivity {
                     preferenceManager.putString(Constants.KEY_STUDENT_ID, id);
                     preferenceManager.putString(Constants.KEY_DEPARTMENT, department);
 
-                    Toast.makeText(CreatePasswordActivity.this, "Data Inserted to Firestore", Toast.LENGTH_SHORT).show();
-
-//                    Intent intent = new Intent(CreatePasswordActivity.this, LoginActivity.class);
-//                    startActivity(intent);
-//                    finish();
+//                    Toast.makeText(CreatePasswordActivity.this, "Data Inserted to Firestore", Toast.LENGTH_SHORT).show();
                 })
                 .addOnFailureListener(exception -> {
                     Toast.makeText(CreatePasswordActivity.this, exception.getMessage(), Toast.LENGTH_LONG).show();
@@ -137,7 +133,7 @@ public class CreatePasswordActivity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Void unused) {
 
-                                    Toast.makeText(CreatePasswordActivity.this, "Account creation successful. Verify your email and then try to log in.", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(CreatePasswordActivity.this, "Account creation successful. Please verify your email and then try to log in.", Toast.LENGTH_LONG).show();
 
                                     // Add your logic to navigate to the next activity or perform other actions
                                     createAccount.setVisibility(View.VISIBLE);
@@ -153,7 +149,7 @@ public class CreatePasswordActivity extends AppCompatActivity {
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(getApplicationContext(), "Sorry! Registration is unsuccessful. Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getApplicationContext(), "Sorry! Registration was unsuccessful. Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                                 }
                             });
 
@@ -162,12 +158,12 @@ public class CreatePasswordActivity extends AppCompatActivity {
                     if (task.getException() instanceof FirebaseAuthUserCollisionException) {
                         createAccount.setVisibility(View.VISIBLE);
                         circularLoading.setVisibility(View.INVISIBLE);
-                        Toast.makeText(getApplicationContext(), "User is already registered. Try with different credentials.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "User is already registered. Please try with a different email and password.", Toast.LENGTH_LONG).show();
 
                     } else {
                         createAccount.setVisibility(View.VISIBLE);
                         circularLoading.setVisibility(View.INVISIBLE);
-                        Toast.makeText(getApplicationContext(), "Sorry! Registration is unsuccessful. Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Sorry! Registration was unsuccessful. Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }
             }
