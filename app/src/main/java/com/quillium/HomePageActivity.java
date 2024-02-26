@@ -90,6 +90,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
+//        checkEmailVerification();
 
 //        Toolbar toolbar = findViewById(R.id.toolbar); // Replace with the correct ID
 ////        setSupportActionBar(toolbar);
@@ -184,6 +185,22 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
 
 
     }
+
+//    private void checkEmailVerification() {
+//        FirebaseUser currentUser = auth.getCurrentUser();
+//        if (currentUser != null) {
+//            boolean isEmailVerified = currentUser.isEmailVerified();
+//            if (!isEmailVerified) {
+//                // User's email is not verified
+//                // You can handle this case, for example, by displaying a message to the user
+//                Toast.makeText(this, "Your email is not verified. Please verify your email.", Toast.LENGTH_LONG).show();
+//                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                startActivity(intent);
+//                finish();
+//            }
+//        }
+//    }
 
     private void loadUserData() {
         FirebaseUser currentUser = auth.getCurrentUser();
