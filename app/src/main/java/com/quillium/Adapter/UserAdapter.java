@@ -52,10 +52,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewHolder>{
 
         Picasso.get()
                 .load(user.getProfilePhotoUrl())
+                .placeholder(R.drawable.man)
                 .into(holder.binding.profilePictureImage);
 
         holder.binding.textView4.setText(user.getFullname());
-        holder.binding.textView5.setText(user.getEmail());
+        holder.binding.textView5.setText(user.getDepartment());
 
         FirebaseDatabase.getInstance().getReference()
                         .child("users")

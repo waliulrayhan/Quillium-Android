@@ -113,7 +113,7 @@ public class CommentActivity extends AppCompatActivity {
                         User user = snapshot.getValue(User.class);
                         Picasso.get()
                                 .load(user.getProfilePhotoUrl())
-//                                .placeholder(R.drawable.placeholder)
+                                .placeholder(R.drawable.man)
                                 .into(binding.profileImage);
                         binding.name.setText(user.getFullname());
                     }

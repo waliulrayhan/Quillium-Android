@@ -41,7 +41,7 @@ public class MessengerHomePageActivity extends BaseActivity implements Conversio
         setContentView(binding.getRoot());
 
         init();
-        loadUserData();
+//        loadUserData();
         getToken();
         listenConversations();
 
@@ -132,7 +132,7 @@ public class MessengerHomePageActivity extends BaseActivity implements Conversio
     }
 
     private void loadUserData() {
-        binding.chatsTextID.setText(preferenceManager.getString(Constants.KEY_NAME));
+//        binding.chatsTextID.setText(preferenceManager.getString(Constants.KEY_NAME));
 
         String base64Image = preferenceManager.getString(Constants.KEY_IMAGE);
         if (base64Image != null && !base64Image.isEmpty()) {

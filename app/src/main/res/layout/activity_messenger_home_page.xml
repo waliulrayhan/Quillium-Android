@@ -97,7 +97,7 @@
         android:layout_marginBottom="@dimen/_24sdp"
         android:contentDescription="@string/app_name"
         android:src="@drawable/round_add_24"
-        android:backgroundTint="@color/primary"
+        android:backgroundTint="@color/ash"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:tint="@color/white"/>

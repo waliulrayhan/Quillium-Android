@@ -52,6 +52,21 @@ public class LoginActivity extends AppCompatActivity {
         // Open register activity
         TextView Register = findViewById(R.id.textView_register);
 
+        // Check if the user is already authenticated
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        if (currentUser != null) {
+            boolean isEmailVerified = currentUser.isEmailVerified();
+            if (!isEmailVerified) {
+                // User's email is not verified
+                // You can handle this case, for example, by displaying a message to the user
+                Toast.makeText(this, "Your email is not verified. Please verify your email.", Toast.LENGTH_LONG).show();
+            }else {
+                Intent intent = new Intent(getApplicationContext(), HomePageActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            }
+        }
 
         Register.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.quillium.Listeners.UserListener;
 import com.quillium.Model.User;
+import com.quillium.R;
 import com.quillium.databinding.ItemContainerUserBinding;
 
 import java.util.List;
@@ -59,9 +60,14 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
         void setUserData(User user) {
             binding.textName.setText(user.name);
             binding.textEmail.setText(user.email);
-            binding.imageProfile.setImageBitmap(getUserImage(user.image));
+            if (user.image != null) {
+                binding.imageProfile.setImageBitmap(getUserImage(user.image));
+            } else {
+                binding.imageProfile.setImageResource(R.drawable.man); // Assuming you have a default profile photo resource
+            }
             binding.getRoot().setOnClickListener(v -> userListener.onUserClicked(user));
         }
+
     }
 
     private Bitmap getUserImage(String encodedImage) {

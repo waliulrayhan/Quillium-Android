@@ -49,21 +49,26 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.quillium.Adapter.RecentConversationsAdapter;
 import com.quillium.Fragment.FriendFragment;
 import com.quillium.Fragment.HomeFragment;
 import com.quillium.Fragment.NotificationFragment;
 import com.quillium.Fragment.ProfileFragment;
+import com.quillium.Model.ChatMessage;
 import com.quillium.Model.Story;
 import com.quillium.Model.UserStories;
 import com.quillium.utils.Constants;
 import com.quillium.utils.PreferenceManager;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -73,7 +78,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
     FragmentManager fragmentManager;
     Toolbar toolbar;
     FloatingActionButton fab;
-    TextView fullName, studentEmail;
+    TextView fullName, studentEmail, studentId;
     FirebaseAuth auth;
     DatabaseReference userRef;
     CircleImageView profile;
@@ -83,6 +88,8 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
     private static final int PICK_IMAGE_REQUEST_STORIES = 3;
     FirebaseStorage storage;
     FirebaseDatabase database;
+    private List<ChatMessage> conversations;
+    private RecentConversationsAdapter conversationsAdapter;
 
 
     @Override
@@ -174,6 +181,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         fullName = headerView.findViewById(R.id.nav_full_name);
         studentEmail = headerView.findViewById(R.id.nav_student_email);
         profile = headerView.findViewById(R.id.profile_image_picture_header);
+        studentId = headerView.findViewById(R.id.nav_student_ID);
 
         // Initialize Firebase Auth and Database references
         auth = FirebaseAuth.getInstance();
@@ -183,25 +191,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         loadUserData();
 //==================================================================================================
 
-
     }
-
-//    private void checkEmailVerification() {
-//        FirebaseUser currentUser = auth.getCurrentUser();
-//        if (currentUser != null) {
-//            boolean isEmailVerified = currentUser.isEmailVerified();
-//            if (!isEmailVerified) {
-//                // User's email is not verified
-//                // You can handle this case, for example, by displaying a message to the user
-//                Toast.makeText(this, "Your email is not verified. Please verify your email.", Toast.LENGTH_LONG).show();
-//                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                startActivity(intent);
-//                finish();
-//            }
-//        }
-//    }
-
     private void loadUserData() {
         FirebaseUser currentUser = auth.getCurrentUser();
         if (currentUser != null) {
@@ -221,11 +211,13 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
                                 .into(profile);
 
                         String fullname = user.getFullname();
-                        String email = user.getEmail();
+                        String email = user.getDepartment();
+                        String id = user.getStudentId();
 
                         // Set the fullname and email to the TextViews
                         fullName.setText(fullname);
                         studentEmail.setText(email);
+                        studentId.setText(id);
                     }
                 }
 
@@ -370,7 +362,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
 //            openFragment(new FriendFragment());
             Intent intent = new Intent(HomePageActivity.this, MessengerHomePageActivity.class);
             startActivity(intent);
-            Toast.makeText(HomePageActivity.this, "Messenger button is clicked", Toast.LENGTH_LONG).show();
+//            Toast.makeText(HomePageActivity.this, "Messenger button is clicked", Toast.LENGTH_LONG).show();
             return true;
         }
         return super.onOptionsItemSelected(item);
