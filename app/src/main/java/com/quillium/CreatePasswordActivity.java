@@ -94,12 +94,12 @@ public class CreatePasswordActivity extends AppCompatActivity {
                     // Show toast message for password mismatch
                     createAccount.setVisibility(View.VISIBLE);
                     circularLoading.setVisibility(View.INVISIBLE);
-                    Toast.makeText(CreatePasswordActivity.this, "Passwords do not match. Please re-enter.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreatePasswordActivity.this, "Passwords did not match. Please Check Again.", Toast.LENGTH_SHORT).show();
                 } else if (pass.length() < 8 || !containsUppercase(pass) || !containsSpecialCharacter(pass)) {
                     // Show toast message for password not meeting requirements
                     createAccount.setVisibility(View.VISIBLE);
                     circularLoading.setVisibility(View.INVISIBLE);
-                    Toast.makeText(CreatePasswordActivity.this, "Your password needs to be at least 8 characters long and include an uppercase letter and a special character.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreatePasswordActivity.this, "Please check the password criteria.", Toast.LENGTH_SHORT).show();
                 } else {
                     // All checks passed, register the user
                     registerUser(name, email, pass, id, department);
@@ -163,7 +163,7 @@ public class CreatePasswordActivity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Void unused) {
 
-                                    Toast.makeText(CreatePasswordActivity.this, "Account creation successful. Please verify your email and then try to log in.", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(CreatePasswordActivity.this, "Account creation successful. Please verify your email first.", Toast.LENGTH_LONG).show();
 
                                     // Add your logic to navigate to the next activity or perform other actions
                                     createAccount.setVisibility(View.VISIBLE);

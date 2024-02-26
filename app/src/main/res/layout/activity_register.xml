@@ -82,7 +82,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sf_pro_regular"
-                android:inputType="textEmailAddress"
+                android:inputType="text"
                 android:paddingStart="52dp"
                 android:paddingEnd="0dp"
                 tools:ignore="VisualLintTextFieldSize" />
@@ -138,7 +138,7 @@
             android:layout_marginBottom="8dp"
             android:height="55dp"
             android:fontFamily="@font/sf_pro_bold"
-            android:text="VERIFY EMAIL"
+            android:text="NEXT"
             android:textSize="18sp"
             android:textColor="@color/secondary"
             app:backgroundTint="@color/primary"

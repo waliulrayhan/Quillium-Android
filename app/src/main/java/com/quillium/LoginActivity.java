@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
             if (!isEmailVerified) {
                 // User's email is not verified
                 // You can handle this case, for example, by displaying a message to the user
-                Toast.makeText(this, "Your email is not verified. Please verify your email.", Toast.LENGTH_LONG).show();
+//                Toast.makeText(this, "Your email is not verified. Please verify your email.", Toast.LENGTH_LONG).show();
             }else {
                 Intent intent = new Intent(getApplicationContext(), HomePageActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -130,7 +130,7 @@ public class LoginActivity extends AppCompatActivity {
                     circularLoading.setVisibility(View.INVISIBLE);
 
                     // If login fails, display a message to the user.
-                    Toast.makeText(LoginActivity.this, "Email and password do not match.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Email and password did not match.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
