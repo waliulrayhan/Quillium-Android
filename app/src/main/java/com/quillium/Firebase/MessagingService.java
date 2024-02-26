@@ -63,15 +63,13 @@ public class MessagingService extends FirebaseMessagingService {
         builder.setContentIntent(pendingIntent);
         builder.setAutoCancel(true);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence channelName = "Chat Message";
-            String channelDescription = "This notification channel is used for chat message notification";
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel(channelId, channelName, importance);
-            channel.setDescription(channelDescription);
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
+        CharSequence channelName = "Chat Message";
+        String channelDescription = "This notification channel is used for chat message notification";
+        int importance = NotificationManager.IMPORTANCE_DEFAULT;
+        NotificationChannel channel = new NotificationChannel(channelId, channelName, importance);
+        channel.setDescription(channelDescription);
+        NotificationManager notificationManager = getSystemService(NotificationManager.class);
+        notificationManager.createNotificationChannel(channel);
 
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
