@@ -172,13 +172,13 @@ public class ProfileFragment extends Fragment {
                    // Load cover photo using Picasso or any other image loading library
                     Picasso.get()
                             .load(coverPhotoUrl)
-                            .placeholder(R.drawable.cover_photo_placeholder)
+                            .placeholder(R.drawable.cover_photo)
                             .into(cPhoto);
 
                     // Load Profile photo using Picasso or any other image loading library
                     Picasso.get()
                             .load(profilePhotoUrl)
-                            .placeholder(R.drawable.profile_photo_placeholder)
+                            .placeholder(R.drawable.profile_photo)
                             .into(profilePhoto);
 
                     String fullname = user.getFullname();
