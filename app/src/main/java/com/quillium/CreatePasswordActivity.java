@@ -85,17 +85,47 @@ public class CreatePasswordActivity extends AppCompatActivity {
                 pass = password.getText().toString().trim();
                 confirmPass = confirmPassword.getText().toString().trim();
 
-                if (!pass.isEmpty() && !confirmPass.isEmpty() && pass.equals(confirmPass)) {
-
-                    registerUser(name, email, pass, id, department);
-
-                } else {
+                if (pass.isEmpty() || confirmPass.isEmpty()) {
+                    // Show toast message for empty password fields
                     createAccount.setVisibility(View.VISIBLE);
                     circularLoading.setVisibility(View.INVISIBLE);
-                    Toast.makeText(CreatePasswordActivity.this, "Please fill out all the fields.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreatePasswordActivity.this, "Please enter both password and confirm password.", Toast.LENGTH_SHORT).show();
+                } else if (!pass.equals(confirmPass)) {
+                    // Show toast message for password mismatch
+                    createAccount.setVisibility(View.VISIBLE);
+                    circularLoading.setVisibility(View.INVISIBLE);
+                    Toast.makeText(CreatePasswordActivity.this, "Passwords do not match. Please re-enter.", Toast.LENGTH_SHORT).show();
+                } else if (pass.length() < 8 || !containsUppercase(pass) || !containsSpecialCharacter(pass)) {
+                    // Show toast message for password not meeting requirements
+                    createAccount.setVisibility(View.VISIBLE);
+                    circularLoading.setVisibility(View.INVISIBLE);
+                    Toast.makeText(CreatePasswordActivity.this, "Your password needs to be at least 8 characters long and include an uppercase letter and a special character.", Toast.LENGTH_SHORT).show();
+                } else {
+                    // All checks passed, register the user
+                    registerUser(name, email, pass, id, department);
                 }
+
             }
         });
+    }
+
+    public boolean containsUppercase(String password) {
+        for (char c : password.toCharArray()) {
+            if (Character.isUpperCase(c)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean containsSpecialCharacter(String password) {
+        String specialCharacters = "!@#$%^&*()-+";
+        for (char c : password.toCharArray()) {
+            if (specialCharacters.contains(String.valueOf(c))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void addUserRegisterToFirestore(String name, String email, String pass, String id, String department) {

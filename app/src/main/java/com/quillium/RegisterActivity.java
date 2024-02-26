@@ -108,7 +108,7 @@ public class RegisterActivity extends AppCompatActivity {
             Pattern pattern = Pattern.compile("([a-zA-Z0-9]+)@([a-zA-Z]+)\\.jnu\\.ac\\.bd");
             Matcher matcher = pattern.matcher(email);
             if (matcher.find()) {
-                std_id = matcher.group(1); // Student ID
+                std_id = matcher.group(1).toUpperCase(); // Student ID
                 if (matcher.group(2).equals("bangla")) {
                     dept_code = "Bangla";
                 } else if (matcher.group(2).equals("eng")) {
@@ -193,11 +193,11 @@ public class RegisterActivity extends AppCompatActivity {
             } else {
                 verifyButton.setVisibility(View.VISIBLE);
                 circularLoading.setVisibility(View.INVISIBLE);
-                Toast.makeText(RegisterActivity.this, "This is not a Jagannath University Email.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, "This email address is not associated with Jagannath University.", Toast.LENGTH_SHORT).show();
             }
 
         } else {
-            Toast.makeText(RegisterActivity.this, "Please fill out all the fields", Toast.LENGTH_SHORT).show();
+            Toast.makeText(RegisterActivity.this, "Please fill out all the fields.", Toast.LENGTH_SHORT).show();
             verifyButton.setVisibility(View.VISIBLE);
             circularLoading.setVisibility(View.INVISIBLE);
         }
