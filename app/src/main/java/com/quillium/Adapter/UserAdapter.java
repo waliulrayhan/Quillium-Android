@@ -68,7 +68,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewHolder>{
                         if (snapshot.exists()){
                             holder.binding.followBtn.setBackgroundDrawable(ContextCompat.getDrawable(context,R.drawable.follow_active_btn));
                             holder.binding.followBtn.setText("Following");
-                            holder.binding.followBtn.setTextColor(context.getResources().getColor(R.color.ash));
+                            holder.binding.followBtn.setTextColor(context.getResources().getColor(R.color.lavender));
                             holder.binding.followBtn.setEnabled(false);
                         }
                         else {
@@ -77,7 +77,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewHolder>{
                                 public void onClick(View v) {
                                     holder.binding.followBtn.setBackgroundDrawable(ContextCompat.getDrawable(context,R.drawable.follow_active_btn));
                                     holder.binding.followBtn.setText("Following");
-                                    holder.binding.followBtn.setTextColor(context.getResources().getColor(R.color.ash));
+                                    holder.binding.followBtn.setTextColor(context.getResources().getColor(R.color.lavender));
                                     holder.binding.followBtn.setEnabled(false);
 
                                     Follow follow = new Follow();
