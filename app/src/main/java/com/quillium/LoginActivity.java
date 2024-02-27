@@ -15,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -161,9 +163,26 @@ public class LoginActivity extends AppCompatActivity {
                             preferenceManager.putString(Constants.KEY_IMAGE, documentSnapshot.getString(Constants.KEY_IMAGE));
                             preferenceManager.putString(Constants.KEY_STUDENT_ID, documentSnapshot.getString(Constants.KEY_STUDENT_ID));
                             preferenceManager.putString(Constants.KEY_DEPARTMENT, documentSnapshot.getString(Constants.KEY_DEPARTMENT));
-//                            Toast.makeText(LoginActivity.this, "Token User Id: " + documentSnapshot.getId(), Toast.LENGTH_SHORT).show();
+
+                            // Update the verify field to true
+                            firestore.collection(Constants.KEY_COLLECTION_USERS)
+                                    .document(documentSnapshot.getId())
+                                    .update("verify", true)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            // Verification update successful
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            // Handle failure
+                                        }
+                                    });
                         }
                     }
                 });
     }
+
 }
