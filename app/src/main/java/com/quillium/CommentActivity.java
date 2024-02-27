@@ -129,7 +129,7 @@ public class CommentActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(binding.commentET.getText().toString().isEmpty()){
-                    Toast.makeText(CommentActivity.this, "Please enter any comment", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CommentActivity.this, "Please write something.", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     Comment comment = new Comment();

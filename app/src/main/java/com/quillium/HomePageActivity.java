@@ -322,7 +322,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                Toast.makeText(getApplicationContext(), "Create a Story is Clicked", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), "Create a Story is Clicked", Toast.LENGTH_SHORT).show();
                 openGalleryForStories();
             }
         });

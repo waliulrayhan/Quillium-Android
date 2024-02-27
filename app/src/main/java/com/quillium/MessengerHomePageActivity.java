@@ -15,6 +15,8 @@ import androidx.annotation.NonNull;
 import android.content.pm.PackageManager;
 import android.util.Log;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.EventListener;
@@ -56,7 +58,7 @@ public class MessengerHomePageActivity extends BaseActivity implements Conversio
         }
 
         init();
-//        loadUserData();
+        loadUserData();
         getToken();
         listenConversations();
 
@@ -168,8 +170,18 @@ public class MessengerHomePageActivity extends BaseActivity implements Conversio
             FirebaseFirestore firestore = FirebaseFirestore.getInstance();
             DocumentReference documentReference = firestore.collection(Constants.KEY_COLLECTION_USERS).document(userId);
             documentReference.update(Constants.KEY_FCM_TOKEN, token)
-                    .addOnSuccessListener(unused -> Toast.makeText(getApplicationContext(), "Token Update Successfully "+userId, Toast.LENGTH_SHORT).show())
-                    .addOnFailureListener(e -> Toast.makeText(getApplicationContext(), "Token Update Failed", Toast.LENGTH_SHORT).show());
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                        }
+                    });
         } else {
             Toast.makeText(getApplicationContext(), "User ID is null", Toast.LENGTH_SHORT).show();
         }
