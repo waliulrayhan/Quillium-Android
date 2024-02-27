@@ -18,6 +18,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -59,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
             if (!isEmailVerified) {
                 // User's email is not verified
                 // You can handle this case, for example, by displaying a message to the user
-//                Toast.makeText(this, "Your email is not verified. Please verify your email.", Toast.LENGTH_LONG).show();
+//                Toast.makeText(this, "Id: "+currentUser, Toast.LENGTH_LONG).show();
             }else {
                 Intent intent = new Intent(getApplicationContext(), HomePageActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -111,6 +113,12 @@ public class LoginActivity extends AppCompatActivity {
 
                         // Login successful
                         Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+
+                        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+
+                        // Update isEmailVerified field in the database
+                        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users").child(currentUser.getUid());
+                        userRef.child("verify").setValue("true");
 
                         addDataToFirestore(email, password);
 
