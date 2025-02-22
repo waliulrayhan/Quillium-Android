@@ -29,7 +29,7 @@ This project is built with the following technologies:
 
 | App View (Screenshot 4) | App View (Screenshot 5) | App View (Screenshot 6) |
 |--------------------------|--------------------------|--------------------------|
-| ![App View (Screenshot 4)](images/Screenshot_4.PNG) | ![App View (Screenshot 5)](images/Screenshot_5.PNG) | ![App View (Screenshot 6)](images/Screenshot_6.PNG) |
+| ![App View (Screenshot 4)](images/Screenshot_4.PNG) | ![image](https://github.com/user-attachments/assets/f58b75e4-4cc4-4706-8915-c531ab91b4e0) | ![App View (Screenshot 6)](images/Screenshot_6.PNG) |
 
 ## Detail Description of Quillium
 
