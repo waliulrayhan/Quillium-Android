@@ -21,6 +21,16 @@ This project is built with the following technologies:
 - Glide
 - CircleImageView
 
+## Screenshots
+
+| App View (Screenshot 1) | App View (Screenshot 2) | App View (Screenshot 3) |
+|--------------------------|--------------------------|--------------------------|
+| ![App View (Screenshot 1)](images/Screenshot_1.PNG) | ![App View (Screenshot 2)](images/Screenshot_2.PNG) | ![App View (Screenshot 3)](images/Screenshot_3.PNG) |
+
+| App View (Screenshot 4) | App View (Screenshot 5) | App View (Screenshot 6) |
+|--------------------------|--------------------------|--------------------------|
+| ![App View (Screenshot 4)](images/Screenshot_4.PNG) | ![App View (Screenshot 5)](images/Screenshot_5.PNG) | ![App View (Screenshot 6)](images/Screenshot_6.PNG) |
+
 ## Detail Description of Quillium
 
 To use the app, you need to sign up with a valid university email address and a password. After verifying your email, you can log in and access the main features of the app, such as:
